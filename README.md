@@ -10,7 +10,7 @@ WSL forum members can submit new shaders to be added to the collection, and watc
 
 ### For More Information
 
-The KickAss ShaderZ toolset ships with a custom "File > Import > [PBR Textures](PBR-Import.md)..." menu entry.
+The KickAss ShaderZ toolset ships with a custom "File > Import > [PBR Textures](PBR-Import.md)..." menu entry. The "Substance PBR Import" script reads the image from the selected Loader node and expands it to import the full set of Substance painter style "PBR metal roughness" texture maps. In a practical sense, the process of running this script works in a very similar way to the "hos_SplitEXRUltra" script in that it loads in multiple images based upon a single selected Loader node in the comp.
 
 If you'd like to explore how the KickAss Shaders were created, simply expand the group to peek inside the shader.
 
