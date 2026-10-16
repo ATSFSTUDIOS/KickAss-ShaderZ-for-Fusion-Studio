@@ -1,0 +1,1504 @@
+{
+	Tools = ordered() {
+		kas_ShaderBall = GroupOperator {
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderBall\"  adds a shader ball model to your Fusion 3D system scene. It is used to apply and preview the look of surface materials. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n \nThis node's output is supposed to be connected directly to the \"kas_ShaderPreview\" nodes input connection so you can see a high-quality preview of your surface material. ", },
+				LightingControls = Input { Value = 1, },
+				MaterialInput = InstanceInput {
+					SourceOp = "ShaderBallFBXMesh3D",
+					Source = "MaterialInput",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 495, 83.1061 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 545.667, 172.813, 228, 20.7546 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -483.6, 302.428 }
+			},
+			Tools = ordered() {
+				ShaderBallCamera3D = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									PreviewCamera3D = Camera3D {
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = -8.19999504089355 },
+											["Transform3DOp.Translate.X"] = Input { Value = -2.39945639043846 },
+											["Transform3DOp.Translate.Z"] = Input { Value = 2.30316502834493 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 17 },
+											AoV = Input { Value = 37.24 },
+											["Stereo.Mode"] = Input { Value = FuID { "OffAxis" } },
+											["Transform3DOp.Rotate.Y"] = Input { Value = -45.0000267028809 },
+											["Transform3DOp.Translate.Y"] = Input { Value = 0.444355502984551 },
+											FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" } },
+											FLength = Input { Value = 22.3900912079698 }
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { 550, -246.894 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input {
+							Value = -2.4,
+							Expression = "-2.4",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.47,
+							Expression = "0.47",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							Value = 2.3,
+							Expression = "2.3",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -8.2,
+							Expression = "-8.2",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = -45,
+							Expression = "-45.0",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "0.0", },
+						AoV = Input { Value = 37.24, },
+						FLength = Input { Value = 22.3900912079698, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						IDepth = Input { Value = 300, },
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.BlendMode.GL.BlendMode"] = Input { Value = FuID { "Replace" }, },
+						["SurfacePlaneInputs.BlendMode.SW.BlendMode"] = Input { Value = FuID { "SolidMatte" }, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 17, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -247.5 } },
+				},
+				ShaderBallReplaceNormals3D = ReplaceNormals3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallFBXMesh3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -280.5 } },
+				},
+				ShaderBallDirectionalLight = LightDirectional {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LightingControls = Input { Value = 1, },
+						["Transform3DOp.Rotate.X"] = Input { Expression = "kas_ShaderBall.RotateXInput", },
+						["Transform3DOp.Rotate.Y"] = Input { Expression = "kas_ShaderBall.RotateYInput", },
+						["Transform3DOp.Rotate.Z"] = Input {
+							Value = 35,
+							Expression = "kas_ShaderBall.RotateZInput",
+						},
+						Enabled = Input { Expression = "kas_ShaderBall.LightEnabled", },
+						Intensity = Input { Expression = "kas_ShaderBall.LightIntensityInput", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -181.5 } },
+				},
+				ShaderBallMerge3D = Merge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "ShaderBallCamera3D",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ShaderBallReplaceNormals3D",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ShaderBallDirectionalLight",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -247.5 } },
+				},
+				ShaderBallFBXMesh3D = SurfaceFBXMesh {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						NumMtlSlots = 0
+					},
+					Inputs = {
+						ImportFile = Input { Value = "Macros:/KickAss ShaderZ/Assets/kas_ShaderBall.obj", },
+						ObjName = Input { Value = "ShaderBall", },
+						TransformToWorld = Input { Value = 0, },
+						EnableAxisConversion = Input { Value = 1, },
+						EnableUnitConversion = Input { Value = 1, },
+						Triangulate = Input { Value = 0, },
+						ImportVertexColors = Input { Value = 0, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "ShaderPipeRouter",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				LightEnabled = {
+					CBC_TriState = false,
+					INP_Integer = false,
+					INPID_InputControl = "CheckboxControl",
+					INP_Default = 1,
+					IC_ControlPage = 1,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Enabled",
+				},
+				LightingControls = {
+					INP_Integer = false,
+					LBLC_DropDownButton = true,
+					INPID_InputControl = "LabelControl",
+					LBLC_NumInputs = 6,
+					IC_ControlPage = 1,
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					LBLC_NestLevel = 1,
+					LINKS_Name = "Lighting Controls",
+				},
+				LightIntensityInput = {
+					INP_MaxAllowed = 100,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 2,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = 0,
+					LINKID_DataType = "Number",
+					ICD_Center = 0.5,
+					LINKS_Name = "Light Intensity",
+				},
+				RotateXInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate X",
+				},
+				RotateYInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Y",
+				},
+				RotateZInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 35,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Z",
+				},
+				LightColorRedInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					CLRC_ShowWheel = true,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					ICD_Center = 1,
+					INP_Default = 1,
+					LINKS_Name = "Light Color",
+				},
+				LightColorGreenInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					INP_Default = 1,
+					ICD_Center = 1,
+				},
+				LightColorBlueInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 2,
+					INP_Default = 1,
+					ICD_Center = 1,
+				}
+			}
+		},
+		kas_VolcanicMagma = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_VolcanicMagma\" creates a super hot molten rock material. When you render this material, consider attaching a 2D glow effect to highlight the surface cracks that are luminous.\n\nTo get the displacement effect out of this material you need to add a Displace3D node and connect its \"SceneInput\" input to a 3D model's \"3DData\" output connection. Then connect the \"kas_VolcanicMagma\" material' s \"DisplacementTextureOutput\" connection to the Displace3D node's \"Input\" connection. The strength of the displacement effect is controlled on the Displace3D node's scale attribute with a good starting value of approximately 0.2.", },
+				AlbedoMap = InstanceInput {
+					SourceOp = "AlbedoInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AlbedoMap",
+				},
+				DisplacementMap = InstanceInput {
+					SourceOp = "DisplacementInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "DisplacementMap",
+				},
+				NormalMap = InstanceInput {
+					SourceOp = "NormalInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "NormalMap",
+				},
+				SpecularMap = InstanceInput {
+					SourceOp = "SpecularInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "SpecularMap",
+				},
+				AOMap = InstanceInput {
+					SourceOp = "AOInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AOMap",
+				}
+			},
+			Outputs = {
+				DisplacementTextureOutput = InstanceOutput {
+					SourceOp = "DisplacementBitmap",
+					Source = "Mask",
+					Name = "DisplacementTextureOutput",
+				},
+				MagmaMaterial = InstanceOutput {
+					SourceOp = "ShaderPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 330, 16.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 725.912, 374.167, 487.054, -36.6493 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1370.17, -230.143 }
+			},
+			Tools = ordered() {
+				AlbedoLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_VolcanicMagma_Albedo.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 313.5 } },
+				},
+				NormalLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_VolcanicMagma_Normal.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 313.5 } },
+				},
+				AOLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_VolcanicMagma_AO.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 313.5 } },
+				},
+				SpecularLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_VolcanicMagma_Specular.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 313.5 } },
+				},
+				DisplacementLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_VolcanicMagma_Displacement.png",
+							FormatID = "PNGFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 313.5 } },
+				},
+				ShaderPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "MagmaCookTorrance",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1430, 511.5 } },
+				},
+				DisplacementInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "DisplacementLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 346.5 } },
+					Version = 100
+				},
+				AlbedoExponentialGlow = MacroOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						HelpPage = "https://www.steakunderwater.com/VFXPedia/96.0.243.189/index2f2f.html?title=Settings_and_Macros/ExponentialGlow_Description"
+					},
+					Inputs = ordered() {
+						Input = InstanceInput {
+							SourceOp = "_ExpGlowBG",
+							Source = "Background",
+							Name = "Input",
+						},
+						Gain = InstanceInput {
+							SourceOp = "_ExpGlowGainSaturation",
+							Source = "Gain",
+							Default = 1,
+						},
+						Radius = InstanceInput {
+							SourceOp = "_BlurRadius1",
+							Source = "Radius",
+							Default = 1,
+						},
+						Falloff = InstanceInput {
+							SourceOp = "_AddGlow2",
+							Source = "Falloff",
+							Default = 1,
+						},
+						Separator1 = InstanceInput {
+							SourceOp = "_ExpGlowOut",
+							Source = "Separator1",
+						},
+						ColorNest = InstanceInput {
+							SourceOp = "_ExpGlowTint",
+							Source = "ColorNest",
+							Default = 0,
+						},
+						Saturation = InstanceInput {
+							SourceOp = "_ExpGlowGainSaturation",
+							Source = "Saturation",
+							Default = 1,
+						},
+						TintRed = InstanceInput {
+							SourceOp = "_ExpGlowTint",
+							Source = "TintRed",
+							ControlGroup = 8,
+							Default = 1,
+						},
+						TintGreen = InstanceInput {
+							SourceOp = "_ExpGlowTint",
+							Source = "TintGreen",
+							ControlGroup = 8,
+							Default = 1,
+						},
+						TintBlue = InstanceInput {
+							SourceOp = "_ExpGlowTint",
+							Source = "TintBlue",
+							ControlGroup = 8,
+							Default = 1,
+						},
+						Separator2 = InstanceInput {
+							SourceOp = "_ExpGlowOut",
+							Source = "Separator2",
+						},
+						EffectOnly = InstanceInput {
+							SourceOp = "_ExpGlowOut",
+							Source = "EffectOnly",
+							Default = 0,
+						},
+						Blend = InstanceInput {
+							SourceOp = "_ExpGlowOut",
+							Source = "Blend",
+							Default = 1,
+						},
+						Low = InstanceInput {
+							SourceOp = "_ExpGlowKey",
+							Source = "Low",
+							ControlGroup = 1,
+							Page = "Advanced",
+							Default = 0,
+						},
+						High = InstanceInput {
+							SourceOp = "_ExpGlowKey",
+							Source = "High",
+							ControlGroup = 1,
+							Default = 1,
+						},
+						Overscan = InstanceInput {
+							SourceOp = "_ExpGlowDomain",
+							Source = "Overscan",
+							Default = 0.1,
+						},
+						GlowMask = InstanceInput {
+							SourceOp = "_ExpGlowMask",
+							Source = "Garbage.Matte",
+							Name = "Glow Mask",
+						},
+						EffectMask = InstanceInput {
+							SourceOp = "_ExpGlowOut",
+							Source = "EffectMask",
+						}
+					},
+					Outputs = {
+						Output = InstanceOutput {
+							SourceOp = "_ExpGlowOut",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { 1100, 478.5 } },
+					Tools = ordered() {
+						_ExpGlowMask = MatteControl {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								["Garbage.MaskInverted"] = Input { Value = 1, },
+								Background = Input {
+									SourceOp = "_ExpGlowBG",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -495, 140.258 } },
+						},
+						_ExpGlowKey = LumaKeyer {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Input = Input {
+									SourceOp = "_ExpGlowMask",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -385, 140.258 } },
+						},
+						_ClearAlpha = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								ToAlpha = Input { Value = 15, },
+								Background = Input {
+									SourceOp = "_ExpGlowKey",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -275, 140.258 } },
+						},
+						_PreGain = BrightnessContrast {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Gain = Input { Value = 0.1, },
+								Input = Input {
+									SourceOp = "_ClearAlpha",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -165, 140.258 } },
+						},
+						_Scale_2 = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 0.5, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_PreGain",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 140.258 } },
+						},
+						_Scale_4 = Scale {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 0.25, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_PreGain",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 239.258 } },
+						},
+						_BlurRadius128 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 137.856,
+									Expression = "_BlurRadius1.XBlurSize * 128",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 239.258 } },
+						},
+						_BlurRadius32 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 34.464,
+									Expression = "_BlurRadius1.XBlurSize * 32",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 173.258 } },
+						},
+						_BlurRadius16 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 17.232,
+									Expression = "_BlurRadius1.XBlurSize * 16",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 140.258 } },
+						},
+						_BlurRadius64 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 68.928,
+									Expression = "_BlurRadius1.XBlurSize * 64",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 206.258 } },
+						},
+						_BlurRadius8 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 8.616,
+									Expression = "_BlurRadius1.XBlurSize * 8",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 107.258 } },
+						},
+						_BlurRadius4 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 4.308,
+									Expression = "_BlurRadius1.XBlurSize * 4",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_PreGain",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 74.2574 } },
+						},
+						_BlurRadius2 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 2.154,
+									Expression = "_BlurRadius1.XBlurSize * 2",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_PreGain",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 41.2572 } },
+						},
+						_BlurRadius1 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 1.077,
+									Expression = "Radius",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_PreGain",
+									Source = "Output",
+								},
+								Radius = Input { Value = 1.077, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 8.25711 } },
+							UserControls = ordered() {
+								Radius = {
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+									ICD_Center = 1,
+									INP_MaxScale = 10,
+									INP_Default = 1,
+								}
+							}
+						},
+						_BlurRadius256 = Blur {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Filter = Input { Value = FuID { "Multi-box" }, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 275.712,
+									Expression = "_BlurRadius1.XBlurSize * 256",
+								},
+								ClippingMode = Input { Value = FuID { "None" }, },
+								Input = Input {
+									SourceOp = "_Scale_4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 220, 272.258 } },
+						},
+						_ExpGlowBG = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								ToRed = Input { Value = 4, },
+								ToGreen = Input { Value = 4, },
+								ToBlue = Input { Value = 4, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "AlbedoInputSwitchElseFuse",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -660, 437.258 } },
+							Colors = {
+								TileColor = { R = 0.776470588235294, G = 0.627450980392157, B = 0.466666666666667 },
+								TextColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 },
+							}
+						},
+						_Scale_2a = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 2, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius8",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 107.258 } },
+						},
+						_Scale_2c = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 2, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius32",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 173.258 } },
+						},
+						_Scale_2b = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 2, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius16",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 140.258 } },
+						},
+						_Scale_4a = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 4, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius64",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 206.258 } },
+						},
+						_Scale_4c = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 4, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius256",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 272.258 } },
+						},
+						_Scale_4b = Scale {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								XSize = Input { Value = 4, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Input = Input {
+									SourceOp = "_BlurRadius128",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 239.258 } },
+						},
+						_AddGlow8 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 1.70172740930214,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 3)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow4",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_2a",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 107.258 } },
+						},
+						_ExpGlowDomain = SetDomain {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Mode = Input { Value = FuID { "Set" }, },
+								Left = Input {
+									Value = -0.1,
+									Expression = "-Overscan",
+								},
+								Bottom = Input {
+									Value = -0.1,
+									Expression = "-Overscan",
+								},
+								Right = Input {
+									Value = 1.1,
+									Expression = "1 + Overscan",
+								},
+								Top = Input {
+									Value = 1.1,
+									Expression = "1 + Overscan",
+								},
+								Combine = Input { Value = FuID { "Intersect" }, },
+								Input = Input {
+									SourceOp = "_AddGlow256",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 305.258 } },
+							UserControls = ordered() {
+								Overscan = {
+									INP_Default = 0.1,
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+								}
+							}
+						},
+						_AddGlow32 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 2.42558588465757,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 5)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow16",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_2c",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 173.258 } },
+						},
+						_AddGlow16 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 2.03167073698918,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 4)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow8",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_2b",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 140.258 } },
+						},
+						_AddGlow128 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 3.45734977981156,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 7)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow64",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_4b",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 239.258 } },
+						},
+						_AddGlow2 = ChannelBoolean {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 1.19388729703916,
+									Expression = "1.0 / Falloff",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_BlurRadius1",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_BlurRadius2",
+									Source = "Output",
+								},
+								Falloff = Input { Value = 0.8376, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 41.2572 } },
+							UserControls = ordered() {
+								Falloff = {
+									INPID_InputControl = "SliderControl",
+									INP_MinScale = 0.1,
+									INP_MinAllowed = 0.5,
+									LINKID_DataType = "Number",
+									IC_Steps = 0.1,
+									ICD_Center = 1,
+									INP_MaxScale = 3,
+									INP_Default = 1,
+								}
+							}
+						},
+						_ExpGlowGainSaturation = BrightnessContrast {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Gain = Input { Value = 5, },
+								ClipBlack = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "_ExpGlowDomain",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 338.258 } },
+						},
+						_ExpGlowTint = ColorGain {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								GainNest = Input { Value = 0, },
+								GainRed = Input { Expression = "TintRed", },
+								GainGreen = Input { Expression = "TintGreen", },
+								GainBlue = Input { Expression = "TintBlue", },
+								LiftNest = Input { Value = 0, },
+								GammaNest = Input { Value = 0, },
+								ColorRanges = Input {
+									Value = ColorCurves {
+										Curves = {
+											{
+												Points = {
+													{ 0, 1 },
+													{ 0.125, 0.75 },
+													{ 0.375, 0.25 },
+													{ 0.5, 0 }
+												}
+											},
+											{
+												Points = {
+													{ 0.5, 0 },
+													{ 0.625, 0.25 },
+													{ 0.875, 0.75 },
+													{ 1, 1 }
+												}
+											}
+										}
+									},
+								},
+								Input = Input {
+									SourceOp = "_ExpGlowGainSaturation",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 371.258 } },
+							UserControls = ordered() {
+								ColorNest = {
+									LINKS_Name = "Color",
+									LINKID_DataType = "Number",
+									LBLC_DropDownButton = true,
+									INPID_InputControl = "LabelControl",
+									LBLC_NumInputs = 4,
+									INP_Passive = true,
+									LBLC_NestLevel = 1,
+									INP_Default = 0,
+								},
+								TintRed = {
+									LINKS_Name = "Glow Tint",
+									IC_ControlID = 0,
+									CLRC_ShowWheel = true,
+									INPID_InputControl = "ColorControl",
+									CLRC_ColorSpace = 0,
+									LINKID_DataType = "Number",
+									IC_ControlGroup = 1,
+									INP_Default = 1,
+								},
+								TintGreen = {
+									INP_Default = 1,
+									INPID_InputControl = "ColorControl",
+									IC_ControlID = 1,
+									LINKID_DataType = "Number",
+									CLRC_ColorSpace = 0,
+									IC_ControlGroup = 1,
+								},
+								TintBlue = {
+									IC_ControlGroup = 1,
+									CLRC_ShowWheel = true,
+									INPID_InputControl = "ColorControl",
+									CLRC_ColorSpace = 0,
+									IC_ControlID = 2,
+									LINKID_DataType = "Number",
+									INP_Default = 1,
+								}
+							}
+						},
+						_AddGlow4 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 1.42536687803147,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 2)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow2",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_BlurRadius4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 74.2574 } },
+						},
+						_AddGlow256 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 4.12768598353816,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 8)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow128",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_4c",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 272.258 } },
+						},
+						_AddGlow64 = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Blend = Input {
+									Value = 2.89587617557016,
+									Expression = "1.0 / math.pow(_AddGlow2.Falloff, 6)",
+								},
+								Operation = Input { Value = 1, },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_AddGlow32",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_Scale_4a",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 206.258 } },
+						},
+						_ExpGlowOut = ChannelBoolean {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Operation = Input { Expression = "1 - math.min(math.max(0, EffectOnly), 1)", },
+								ToAlpha = Input { Value = 4, },
+								Background = Input {
+									SourceOp = "_ExpGlowBG",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "_ExpGlowTint",
+									Source = "Output",
+								},
+								EffectOnly = Input { Value = 1, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 660, 437.258 } },
+							Colors = {
+								TileColor = { R = 0.776470588235294, G = 0.627450980392157, B = 0.466666666666667 },
+								TextColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 },
+							},
+							UserControls = ordered() {
+								Separator1 = {
+									LBLC_DropDownButton = false,
+									INPID_InputControl = "LabelControl",
+									LBLC_NumInputs = 0,
+									INP_Default = 0,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									INP_Passive = true,
+									LBLC_NestLevel = 1,
+									LINKS_Name = "",
+								},
+								EffectOnly = {
+									INP_Default = 0,
+									INPID_InputControl = "CheckboxControl",
+									LINKS_Name = "Effect Only",
+									LINKID_DataType = "Number",
+								},
+								Separator2 = {
+									LBLC_DropDownButton = false,
+									INPID_InputControl = "LabelControl",
+									LBLC_NumInputs = 0,
+									INP_Default = 0,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									INP_Passive = true,
+									LBLC_NestLevel = 1,
+									LINKS_Name = "",
+								}
+							}
+						}
+					},
+					Colors = {
+						TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 },
+						TextColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 },
+					}
+				},
+				MagmaBumpMap5 = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FilterSize = Input { Value = FuID { "5" }, },
+						Input = Input {
+							SourceOp = "NormalInputSwitchElseFuse",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 100, },
+						MaterialID = Input { Value = 25, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 379.5 } },
+				},
+				AlbedoGlowMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "AlbedoInputSwitchElseFuse",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "_ExpGlowOut",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Hue" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 478.5 } },
+				},
+				DisplacementBitmap = BitmapMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Invert = Input { Value = 1, },
+						MaskWidth = Input { Value = 1828, },
+						MaskHeight = Input { Value = 988, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "DisplacementInputSwitchElseFuse",
+							Source = "Output",
+						},
+						Channel = Input { Value = FuID { "Luminance" }, },
+						Low = Input { Value = 0.108, },
+						High = Input { Value = 0.809, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 379.5 } },
+				},
+				MagmaCookTorrance = MtlCookTorrance {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "AlbedoGlowFalloff",
+							Source = "MaterialOutput",
+						},
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 0.2, },
+						["Specular.Intensity.Material"] = Input {
+							SourceOp = "SpecularInputSwitchElseFuse",
+							Source = "Output",
+						},
+						["Specular.Roughness"] = Input { Value = 0.8, },
+						["Specular.Roughness.Material"] = Input {
+							SourceOp = "AOInputSwitchElseFuse",
+							Source = "Output",
+						},
+						["Bumpmap.Material"] = Input {
+							SourceOp = "MagmaBumpMap5",
+							Source = "MaterialOutput",
+						},
+						["Transmittance.Nest"] = Input { Value = 1, },
+						MaterialID = Input { Value = 23, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 511.5 } },
+				},
+				AlbedoGlowFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["FaceOn.Nest"] = Input { Value = 0, },
+						["FaceOn.Opacity"] = Input { Value = 1, },
+						["Glancing.Red"] = Input { Value = 0, },
+						["Glancing.Green"] = Input { Value = 0, },
+						["Glancing.Blue"] = Input { Value = 0, },
+						Falloff = Input { Value = 0.8, },
+						FaceOnMaterial = Input {
+							SourceOp = "AlbedoGlowMerge",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 26, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 511.5 } },
+				},
+				SpecularInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "SpecularLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 346.5 } },
+					Version = 100
+				},
+				NormalInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "NormalLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 346.5 } },
+					Version = 100
+				},
+				AlbedoInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "AlbedoLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 346.5 } },
+					Version = 100
+				},
+				AOInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "AOLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 346.5 } },
+					Version = 100
+				}
+			},
+		},
+		MagmaDisplace3D = Displace3D {
+			NameSet = true,
+			Inputs = {
+				SceneInput = Input {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				},
+				Scale = Input { Value = 0.02, },
+				Input = Input {
+					SourceOp = "DisplacementBitmap",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo { Pos = { 495, 16.5 } },
+		}
+	}
+}

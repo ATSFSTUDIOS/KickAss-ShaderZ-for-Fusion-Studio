@@ -1,0 +1,390 @@
+{
+	Tools = ordered() {
+		kas_Gold = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_Gold\" creates a stylized NPR metallic surface material which which be used for logos and titles. The lustre of the gold is highly dependent on the lighting angle. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+				NormalMap = InstanceInput {
+					SourceOp = "NormalMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "NormalMap",
+				},
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "GoldPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -110, 115.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 771.174, 305.911, 64.3233, 17.357 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1396.95, -274.593 }
+			},
+			Tools = ordered() {
+				kas_ParklandLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 313.5 } },
+				},
+				NormalMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "NormalAngleGradientBackground",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 346.5 } },
+					Version = 100
+				},
+				GoldPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "GoldChannelBooleanMaterial_1",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 2035, 511.5 } },
+				},
+				BaseBackground = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 512, },
+						Height = Input { Value = 512, },
+						TopLeftRed = Input { Value = 0.5, },
+						TopLeftGreen = Input { Value = 0.5, },
+						TopLeftBlue = Input { Value = 0.5, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 313.5 } },
+				},
+				NoiseBase = Filter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FilterType = Input { Value = 5, },
+						Alpha = Input { Value = 0, },
+						Power = Input { Value = 0, },
+						Animated = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "BaseBackground",
+							Source = "Output",
+						},
+						Comments = Input { Value = "Some noise, not animated.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 346.5 } },
+				},
+				DirectionalBlurBase = DirectionalBlur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Type = Input { Value = 3, },
+						Angle = Input { Value = 45.714, },
+						Input = Input {
+							SourceOp = "NoiseBase",
+							Source = "Output",
+						},
+						Comments = Input { Value = "When a zoom directional blur is applied we get a nice streaking pattern.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 379.5 } },
+				},
+				RedToAlphaChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ToAlpha = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "SixPercentBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 478.5 } },
+				},
+				SixPercentBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Contrast = Input { Value = 1, },
+						Brightness = Input { Value = 0.066, },
+						Input = Input {
+							SourceOp = "AutoGainBase",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 478.5 } },
+				},
+				AutoGainBase = AutoGain {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "DirectionalBlurBase",
+							Source = "Output",
+						},
+						Comments = Input { Value = "Auto gain just emphasizes the streaks.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 412.5 } },
+				},
+				GoldBaseBlinn = MtlBlinn {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									bl_base_1_1 = MtlBlinn {
+										Inputs = {
+											["Specular.Intensity"] = Input { Value = 0 },
+											["Specular.Nest"] = Input { Value = 1 },
+											["Diffuse.Color.Red"] = Input { Value = 0.713333333333333 },
+											["Diffuse.Color.Green"] = Input { Value = 0.621019441544542 },
+											MaterialID = Input { Value = 2 },
+											["Diffuse.Color.Blue"] = Input { Value = 0.465537185185185 },
+											["Diffuse.Color.Material"] = Input {
+												SourceOp = "AutoGain1_1_1",
+												Source = "Output"
+											}
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -1870, 181.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Diffuse.Color.Red"] = Input { Value = 0.713333333333333, },
+						["Diffuse.Color.Green"] = Input { Value = 0.616574136810658, },
+						["Diffuse.Color.Blue"] = Input { Value = 0.121266666666667, },
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "AutoGainBase",
+							Source = "Output",
+						},
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 0, },
+						MaterialID = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 511.5 } },
+				},
+				PseudoColor = PseudoColor {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "FiftyPercentBrightnessContrast",
+							Source = "Output",
+						},
+						RedFrequency = Input { Value = 0.5494505, },
+						RedPhase = Input { Value = -0.1217, },
+						GreenFrequency = Input { Value = 2.3076923, },
+						GreenPhase = Input { Value = 0.1534392, },
+						Blue = Input { Value = 0, },
+						BlueFrequency = Input { Value = 1.2087912, },
+						Comments = Input { Value = "The gradient is too linear, Pseudo Color helps to break it up. \r\n\r\nNotice that the Blue channel is turned off. The bumpmap tool doesn't use the blue channel, so there isn't much point in processing it.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 412.5 } },
+				},
+				FiftyPercentBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Contrast = Input { Value = 0.5055, },
+						Input = Input {
+							SourceOp = "NormalMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 379.5 } },
+				},
+				NormalBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceImageType = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PseudoColor",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 445.5 } },
+				},
+				NormalAngleGradientBackground = Background {
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 512, },
+						Height = Input { Value = 512, },
+						Depth = Input { Value = 1, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						GradientType = Input { Value = FuID { "Angle" }, },
+						Start = Input { Value = { 0.5, 0.5 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 1, 0.5, 1, 1 },
+									[0.25] = { 0.5, 1, 1, 1 },
+									[0.5] = { 0, 0.5, 1, 1 },
+									[0.75] = { 0.5, 0, 1, 1 },
+									[1] = { 1, 0.5, 1, 1 }
+								}
+							},
+						},
+						Comments = Input { Value = "Setting the first and last point of the gradient to the same color makes it easy to create a perfectly smooth angle gradient. \r\n\r\nWe use this to produce a normals bumpmap.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 313.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "kas_ParklandLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 346.5 } },
+					Version = 100
+				},
+				GoldChannelBooleanMaterial_1 = MtlChanBool {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						OperationR = Input { Value = 4, },
+						OperationG = Input { Value = 4, },
+						OperationB = Input { Value = 4, },
+						BackgroundMaterial = Input {
+							SourceOp = "GoldBaseBlinn",
+							Source = "MaterialOutput",
+						},
+						ForegroundMaterial = Input {
+							SourceOp = "ChromeReflect",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 5, },
+						Comments = Input { Value = "Add the two materials RGB together.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 511.5 } },
+				},
+				ChromeReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "GoldHighlightsBlinn_1",
+							Source = "MaterialOutput",
+						},
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "ParklandSphereMap",
+							Source = "MaterialOutput",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 0.553, },
+						["Refraction.Tint.Red"] = Input { Value = 0.182, },
+						["Refraction.Tint.Green"] = Input { Value = 0.188402057523773, },
+						["Refraction.Tint.Blue"] = Input { Value = 0.2, },
+						MaterialID = Input { Value = 8, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 478.5 } },
+				},
+				GoldHighlightsBlinn_1 = MtlBlinn {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Red"] = Input { Value = 0, },
+						["Diffuse.Color.Green"] = Input { Value = 0, },
+						["Diffuse.Color.Blue"] = Input { Value = 0, },
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Color.Green"] = Input { Value = 0.9352, },
+						["Specular.Color.Blue"] = Input { Value = 0.7408, },
+						["Specular.Exponent"] = Input { Value = 13.9882353, },
+						["Specular.Exponent.Material"] = Input {
+							SourceOp = "RedToAlphaChannelBooleans",
+							Source = "Output",
+						},
+						["Bumpmap.Material"] = Input {
+							SourceOp = "NormalBumpMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 3, },
+						Comments = Input { Value = "Diffuse color is black since we are only interested in the highlights from this material.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 478.5 } },
+				},
+				ParklandSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Rotation = Input { Value = 1, },
+						["Rotate.Y"] = Input { Value = -65, },
+						Image = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 15, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 379.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_Gold"
+}

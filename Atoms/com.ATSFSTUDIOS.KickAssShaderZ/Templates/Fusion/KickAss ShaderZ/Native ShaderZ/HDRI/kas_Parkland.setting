@@ -1,0 +1,66 @@
+{
+	Tools = ordered() {
+		ChromeReflect = MtlReflect {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				["Reflection.GlancingStrength"] = Input { Value = 1, },
+				["Reflection.Falloff"] = Input { Value = 0, },
+				["Reflection.Color.Material"] = Input {
+					SourceOp = "ParklandSphereMap",
+					Source = "MaterialOutput",
+				},
+				["Refraction.RefractiveIndex.RGB"] = Input { Value = 1, },
+				["Refraction.Tint.Red"] = Input { Value = 0, },
+				["Refraction.Tint.Green"] = Input { Value = 0, },
+				["Refraction.Tint.Blue"] = Input { Value = 0, },
+				MaterialID = Input { Value = 8, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 440, -49.5 } },
+		},
+		ParklandSphereMap = SphereMap {
+			NameSet = true,
+			Inputs = {
+				Rotation = Input { Value = 1, },
+				Image = Input {
+					SourceOp = "kas_ParklandLoader",
+					Source = "Output",
+				},
+				MaterialIDNest = Input { Value = 1, },
+				MaterialID = Input { Value = 15, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 330, -49.5 } },
+		},
+		kas_ParklandLoader = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+					FormatID = "OpenEXRFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+				["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+				["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+				["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+				Comments = Input { Value = "Copyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 220, -49.5 } },
+		}
+	}
+}

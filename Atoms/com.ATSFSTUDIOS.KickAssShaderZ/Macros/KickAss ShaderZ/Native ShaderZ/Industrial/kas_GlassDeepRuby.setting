@@ -1,0 +1,194 @@
+{
+	Tools = ordered() {
+		kas_GlassDeepRuby = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_GlassDeepRuby\" is a semi-transparent glass material. A primitive attempt has been taken to simulate a faked red color absorption effect on the material using a Falloff node.\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "DeepBluePipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -165, 181.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 424.49, 162.713, -147.052, 22 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1347.5, -269.8 }
+			},
+			Tools = ordered() {
+				kas_ParklandLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					NameSet = true,
+					Inputs = {
+						MissingFrames = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Copyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 280.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "kas_ParklandLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 313.5 } },
+					Version = 100
+				},
+				DeepBluePipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "RubyGlassReflect",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1870, 379.5 } },
+				},
+				ParklandSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Image = Input {
+							SourceOp = "ParklandBlur",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 9, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 379.5 } },
+				},
+				ParklandBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input { Value = 1.7, },
+						Input = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 346.5 } },
+				},
+				RubyGlassReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "RubyFresnelFalloff",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 1, },
+						["Reflection.FaceOnStrength"] = Input { Value = 0.15, },
+						["Reflection.Falloff"] = Input { Value = 3.5, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "ParklandSphereMap",
+							Source = "MaterialOutput",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 0.55, },
+						["Refraction.Tint.Red"] = Input { Value = 0.182, },
+						["Refraction.Tint.Green"] = Input { Value = 0.18, },
+						["Refraction.Tint.Blue"] = Input { Value = 0.2, },
+						MaterialID = Input { Value = 8, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 379.5 } },
+				},
+				RubyFresnelFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["FaceOn.Red"] = Input { Value = 0.3, },
+						["FaceOn.Green"] = Input { Value = 0.22, },
+						["FaceOn.Blue"] = Input { Value = 0.22, },
+						["FaceOn.Opacity"] = Input { Value = 1, },
+						["Glancing.Red"] = Input { Value = 0.6, },
+						["Glancing.Green"] = Input { Value = 0, },
+						["Glancing.Blue"] = Input { Value = 0, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0, 0.039443967745417, 1, 1 },
+									[1] = { 0, 0.659061437278699, 1, 1 }
+								}
+							},
+						},
+						Falloff = Input { Value = 0.5, },
+						FaceOnMaterial = Input {
+							SourceOp = "RubyBlinn",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 14, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 313.5 } },
+				},
+				RubyBlinn = MtlBlinn {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Red"] = Input { Value = 0.22, },
+						["Diffuse.Color.Green"] = Input { Value = 0.05, },
+						["Diffuse.Color.Blue"] = Input { Value = 0.05, },
+						["Diffuse.Opacity"] = Input { Value = 0.25, },
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 0.725, },
+						["Transmittance.Color.Red"] = Input { Value = 0.5, },
+						["Transmittance.Color.Green"] = Input { Value = 0.733288473265971, },
+						["Transmittance.Color.Blue"] = Input { Value = 1, },
+						["Transmittance.ColorDetail"] = Input { Value = 1, },
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 280.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_GlassDeepRuby"
+}

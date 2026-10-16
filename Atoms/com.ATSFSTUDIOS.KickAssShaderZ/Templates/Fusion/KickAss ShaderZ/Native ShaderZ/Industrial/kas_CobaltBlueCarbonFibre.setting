@@ -1,0 +1,2408 @@
+{
+	Tools = ordered() {
+		kas_CobaltBlueCarbonFibre = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_CobaltBlueCarbonFibre\" is great for futuristic hard surface modelled objects where you might want a procedurally textured lightly scuffed surface for added photorealism.", },
+				TextureMap = InstanceInput {
+					SourceOp = "TextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "TextureMap",
+				},
+				NoiseTextureMap = InstanceInput {
+					SourceOp = "NoiseTextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "NoiseTextureMap",
+				},
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "CobaltBluePipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 1265, 544.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 574.233, 225.157, -32.0519, 22 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1347.5, -287.372 }
+			},
+			Tools = ordered() {
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "VelvetBlueDaySky",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 313.5 } },
+					Version = 100
+				},
+				TextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "WhiteStreaksFastNoise",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 313.5 } },
+					Version = 100
+				},
+				CobaltBluePipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Reflect1_2",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1925, 445.5 } },
+				},
+				CobaltBlueCarbonFiber = GroupOperator {
+					NameSet = true,
+					Inputs = ordered() {
+						FiberLayer = Input { Value = 1, },
+						FiberReflectionEdge = Input { Value = 1, },
+						FiberReflectionBlur = Input { Value = 27.8, },
+						FiberEdgeSize = Input { Value = 28.63, },
+						FiberEdgeGain = Input { Value = 0.385, },
+						FiberEdgeBlur = Input { Value = 9.83, },
+						FiberIllumination = Input { Value = 1, },
+						FiberEffect = Input { Value = 0, },
+						MicroStructure = Input { Value = 1, },
+						CoatingLayer = Input { Value = 1, },
+						DirtTex = Input { Value = 1, },
+						FiberTexturePlacement = Input { Value = 1, },
+						ReflectionPlacement = Input { Value = 1, },
+						DirtTexturePlacement = Input { Value = 1, },
+						Input1 = InstanceInput {
+							SourceOp = "ReflectionTextureInput",
+							Source = "Input",
+							Name = "ReflectionTexture",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "DirtTextureInput",
+							Source = "Input",
+							Name = "DirtTexture",
+						},
+						Input3 = InstanceInput {
+							SourceOp = "Reflect1_2",
+							Source = "MaterialIDNest",
+							Default = 0,
+						},
+						Input4 = InstanceInput {
+							SourceOp = "Reflect1_2",
+							Source = "MaterialID",
+							Default = 1,
+						}
+					},
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "Reflect1_2",
+							Source = "MaterialOutput",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { 1815, 445.5 },
+						Flags = {
+							AllowPan = false,
+							AutoSnap = true
+						},
+						Size = { 2766, 890.201, 1383, 22 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 0, 0 }
+					},
+					Tools = ordered() {
+						Reflect1_2 = MtlReflect {
+							CtrlWShown = false,
+							Inputs = {
+								BackgroundMaterial = Input {
+									SourceOp = "Phong2",
+									Source = "MaterialOutput",
+								},
+								["Reflection.GlancingStrength"] = Input {
+									Value = 0.55,
+									Expression = "CobaltBlueCarbonFiber.CoatingReflectionEdge",
+								},
+								["Reflection.FaceOnStrength"] = Input {
+									Value = 0.07,
+									Expression = "CobaltBlueCarbonFiber.CoatingReflectionFaceOn",
+								},
+								["Reflection.Color.Material"] = Input {
+									SourceOp = "SphereMap1_2",
+									Source = "MaterialOutput",
+								},
+								["Reflection.Intensity.Material"] = Input {
+									SourceOp = "TextureTransform5",
+									Source = "MaterialOutput",
+								},
+								["Bumpmap.Material"] = Input {
+									SourceOp = "TextureTransform2",
+									Source = "MaterialOutput",
+								},
+								MaterialIDNest = Input { Value = 1, },
+								MaterialID = Input { Value = 83, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1320, 571.601 } },
+						},
+						TextureTransform5 = TextureTransformOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["Translation.U"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementTx", },
+								["Translation.V"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementTy", },
+								["Translation.W"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementTz", },
+								["Rotation.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.DirtTexturePlacementRo == 0) and \"UVW\" or (CobaltBlueCarbonFiber.DirtTexturePlacementRo == 1) and \"UWV\" or (CobaltBlueCarbonFiber.DirtTexturePlacementRo == 2) and \"VUW\" or (CobaltBlueCarbonFiber.DirtTexturePlacementRo == 3) and \"VWU\" or (CobaltBlueCarbonFiber.DirtTexturePlacementRo == 4) and \"WUV\" or \"WVU\"", },
+								["Rotation.U"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementRx", },
+								["Rotation.V"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementRy", },
+								["Rotation.W"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementRz", },
+								["Scale.U"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementSx", },
+								["Scale.V"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementSy", },
+								["Scale.W"] = Input { Expression = "CobaltBlueCarbonFiber.DirtTexturePlacementSz", },
+								MaterialInput = Input {
+									SourceOp = "CreateTexture3",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 8, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 670.601 } },
+						},
+						CreateTexture3 = Texture2DOperator {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "ChannelBooleans2_1",
+									Source = "Output",
+								},
+								WrapMode = Input { Value = FuID { "Wrap" }, },
+								MaterialID = Input { Value = 1, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 703.601 } },
+						},
+						ChannelBooleans2_1 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0.5,
+									Expression = "1 - CobaltBlueCarbonFiber.DirtStrength",
+								},
+								ToAlpha = Input { Value = 17, },
+								Background = Input {
+									SourceOp = "BrightnessContrast3_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 769.601 } },
+						},
+						BrightnessContrast3_1 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Red = Input { Value = 0, },
+								Green = Input { Value = 0, },
+								Blue = Input { Value = 0, },
+								Alpha = Input { Value = 1, },
+								Brightness = Input { Value = 0.043956, },
+								ClipBlack = Input { Value = 1, },
+								ClipWhite = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "ChannelBooleans1_1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 802.601 } },
+						},
+						ChannelBooleans1_1_1 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToRed = Input { Value = 15, },
+								ToGreen = Input { Value = 15, },
+								ToBlue = Input { Value = 15, },
+								ToAlpha = Input { Value = 5, },
+								Background = Input {
+									SourceOp = "DirtTextureInput",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 835.601 } },
+						},
+						TextureTransform1_1 = TextureTransformOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["Translation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTx", },
+								["Translation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTy", },
+								["Translation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTz", },
+								["Rotation.Nest"] = Input { Value = 1, },
+								["Rotation.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.FiberTexturePlacementRo == 0) and \"UVW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 1) and \"UWV\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 2) and \"VUW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 3) and \"VWU\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 4) and \"WUV\" or \"WVU\"", },
+								["Rotation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRx", },
+								["Rotation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRy", },
+								["Rotation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRz", },
+								["Scale.U"] = Input {
+									Value = 0.03,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSx",
+								},
+								["Scale.V"] = Input {
+									Value = 0.12,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSy",
+								},
+								["Scale.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSz", },
+								MaterialInput = Input {
+									SourceOp = "BumpMap1_1",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 2, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 307.601 } },
+						},
+						TextureTransform2 = TextureTransformOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["Translation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTx", },
+								["Translation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTy", },
+								["Translation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTz", },
+								["Rotation.Nest"] = Input { Value = 1, },
+								["Rotation.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.FiberTexturePlacementRo == 0) and \"UVW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 1) and \"UWV\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 2) and \"VUW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 3) and \"VWU\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 4) and \"WUV\" or \"WVU\"", },
+								["Rotation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRx", },
+								["Rotation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRy", },
+								["Rotation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRz", },
+								["Scale.U"] = Input {
+									Value = 0.03,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSx",
+								},
+								["Scale.V"] = Input {
+									Value = 0.12,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSy",
+								},
+								["Scale.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSz", },
+								MaterialInput = Input {
+									SourceOp = "BumpMap2_1",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 5, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 439.601 } },
+						},
+						Phong2 = MtlPhong {
+							CtrlWShown = false,
+							Inputs = {
+								SpecularNest = Input { Value = 1, },
+								["Diffuse.Nest"] = Input { Value = 0, },
+								["Diffuse.Color.Material"] = Input {
+									SourceOp = "CookTorrance1_1",
+									Source = "MaterialOutput",
+								},
+								["Specular.Nest"] = Input { Value = 1, },
+								["Specular.Color.Red"] = Input { Expression = "CobaltBlueCarbonFiber.CoatingSpecularColorRed", },
+								["Specular.Color.Green"] = Input {
+									Value = 0.96,
+									Expression = "CobaltBlueCarbonFiber.CoatingSpecularColorGreen",
+								},
+								["Specular.Color.Blue"] = Input {
+									Value = 0.89,
+									Expression = "CobaltBlueCarbonFiber.CoatingSpecularColorBlue",
+								},
+								["Specular.Intensity"] = Input { Expression = "CobaltBlueCarbonFiber.CoatingSpecularIntensity", },
+								["Specular.Intensity.Material"] = Input {
+									SourceOp = "TextureTransform5",
+									Source = "MaterialOutput",
+								},
+								["Specular.Exponent"] = Input {
+									Value = 100,
+									Expression = "CobaltBlueCarbonFiber.CoatingSpecularExponent",
+								},
+								["Specular.Exponent.Material"] = Input {
+									SourceOp = "TextureTransform5",
+									Source = "MaterialOutput",
+								},
+								["Bumpmap.Material"] = Input {
+									SourceOp = "TextureTransform2",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 94, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1210, 571.601 } },
+						},
+						Merge1_2 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								Background = Input {
+									SourceOp = "BrightnessContrast1_2_1",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "ChannelBooleans3_1",
+									Source = "Output",
+								},
+								ApplyMode = Input { Value = FuID { "Overlay" }, },
+								Gain = Input { Value = 0.5, },
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1045, 274.601 } },
+						},
+						CookTorrance1_1 = MtlCookTorrance {
+							CtrlWShown = false,
+							Inputs = {
+								["Diffuse.Color.Material"] = Input {
+									SourceOp = "Reflect2_1",
+									Source = "MaterialOutput",
+								},
+								["Specular.Nest"] = Input { Value = 1, },
+								["Specular.Color.Red"] = Input { Value = 0.890909090909091, },
+								["Specular.Color.Green"] = Input { Value = 0.963636363636364, },
+								["Specular.Color.Material"] = Input {
+									SourceOp = "Falloff2_1_3",
+									Source = "MaterialOutput",
+								},
+								["Specular.Intensity"] = Input {
+									Value = 2,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecularIntensity",
+								},
+								["Specular.Intensity.Material"] = Input {
+									SourceOp = "TextureTransform4",
+									Source = "MaterialOutput",
+								},
+								["Specular.Roughness"] = Input {
+									Value = 0.32,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecularRoughness",
+								},
+								["Specular.Roughness.Material"] = Input {
+									SourceOp = "TextureTransform3",
+									Source = "MaterialOutput",
+								},
+								["Specular.RefractiveIndex"] = Input {
+									Value = 2.25,
+									Expression = "CobaltBlueCarbonFiber.FiberRefractiveIndex",
+								},
+								["Bumpmap.Material"] = Input {
+									SourceOp = "TextureTransform1_1",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 9, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 990, 571.601 } },
+						},
+						ChannelBooleans3_1 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToBlue = Input { Value = 16, },
+								Background = Input {
+									SourceOp = "BrightnessContrast6",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 935, 274.601 } },
+						},
+						BrightnessContrast1_2_1 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Blue = Input { Value = 0, },
+								Contrast = Input {
+									Value = -1,
+									Expression = "-1 + CobaltBlueCarbonFiber.FiberEffect",
+								},
+								Input = Input {
+									SourceOp = "ChannelBooleans4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 935, 175.601 } },
+						},
+						ChannelBooleans3_1_1 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToBlue = Input { Value = 16, },
+								Background = Input {
+									SourceOp = "BrightnessContrast5_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 935, 406.601 } },
+						},
+						Falloff2_1_3 = FalloffOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["FaceOn.Nest"] = Input { Value = 0, },
+								["FaceOn.Red"] = Input {
+									Value = 0.95,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecFaceColorRed",
+								},
+								["FaceOn.Green"] = Input {
+									Value = 0.97,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecFaceColorGreen",
+								},
+								["FaceOn.Blue"] = Input { Expression = "CobaltBlueCarbonFiber.FiberSpecFaceColorBlue", },
+								["FaceOn.Opacity"] = Input { Value = 1, },
+								["Glancing.Nest"] = Input { Value = 0, },
+								["Glancing.Red"] = Input { Expression = "CobaltBlueCarbonFiber.FiberSpecGlancColorRed", },
+								["Glancing.Green"] = Input {
+									Value = 0.9,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecGlancColorGreen",
+								},
+								["Glancing.Blue"] = Input {
+									Value = 0.77,
+									Expression = "CobaltBlueCarbonFiber.FiberSpecGlancColorBlue",
+								},
+								Falloff = Input { Value = 3.2707182, },
+								MaterialID = Input { Value = 4, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 880, 670.601 } },
+						},
+						Reflect2_1 = MtlReflect {
+							CtrlWShown = false,
+							Inputs = {
+								BackgroundMaterial = Input {
+									SourceOp = "Falloff1_1_3",
+									Source = "MaterialOutput",
+								},
+								["Reflection.GlancingStrength"] = Input {
+									Value = 1,
+									Expression = "CobaltBlueCarbonFiber.FiberReflectionEdge",
+								},
+								["Reflection.FaceOnStrength"] = Input {
+									Value = 0.06,
+									Expression = "CobaltBlueCarbonFiber.FiberReflectionFaceOn",
+								},
+								["Reflection.Color.Material"] = Input {
+									SourceOp = "SphereMap1_1_1",
+									Source = "MaterialOutput",
+								},
+								["Bumpmap.Material"] = Input {
+									SourceOp = "TextureTransform1_1",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 98, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 825, 571.601 } },
+						},
+						BrightnessContrast6 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Blue = Input { Value = 0, },
+								Contrast = Input { Expression = "-1 + CobaltBlueCarbonFiber.MicroStructureBump", },
+								Input = Input {
+									SourceOp = "CreateBumpMap1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 825, 274.601 } },
+						},
+						BrightnessContrast5_1 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Blue = Input { Value = 0, },
+								Contrast = Input {
+									Value = -1,
+									Expression = "-1 + CobaltBlueCarbonFiber.CoatingStructureLevel",
+								},
+								Input = Input {
+									SourceOp = "CreateBumpMap1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 825, 406.601 } },
+						},
+						Falloff1_1_3 = FalloffOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["FaceOn.Nest"] = Input { Value = 0, },
+								["FaceOn.Red"] = Input {
+									Value = 0.14,
+									Expression = "CobaltBlueCarbonFiber.FiberFaceColorRed",
+								},
+								["FaceOn.Green"] = Input {
+									Value = 0.12,
+									Expression = "CobaltBlueCarbonFiber.FiberFaceColorGreen",
+								},
+								["FaceOn.Blue"] = Input {
+									Value = 0.1,
+									Expression = "CobaltBlueCarbonFiber.FiberFaceColorBlue",
+								},
+								["FaceOn.Opacity"] = Input { Value = 1, },
+								["Glancing.Nest"] = Input { Value = 0, },
+								["Glancing.Red"] = Input {
+									Value = 0.24,
+									Expression = "CobaltBlueCarbonFiber.FiberGlancColorRed",
+								},
+								["Glancing.Green"] = Input {
+									Value = 0.25,
+									Expression = "CobaltBlueCarbonFiber.FiberGlancColorGreen",
+								},
+								["Glancing.Blue"] = Input {
+									Value = 0.26,
+									Expression = "CobaltBlueCarbonFiber.FiberGlancColorBlue",
+								},
+								MaterialID = Input { Value = 92, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 715, 571.601 } },
+						},
+						DirtTextureInput = PipeRouter {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Input = Input {
+									SourceOp = "NoiseTextureInputSwitchElseFuse",
+									Source = "Output",
+								},
+							},
+							ViewInfo = PipeRouterInfo { Pos = { 275, 835.601 } },
+						},
+						TextureTransform4 = TextureTransformOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["Translation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTx", },
+								["Translation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTy", },
+								["Translation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTz", },
+								["Rotation.Nest"] = Input { Value = 1, },
+								["Rotation.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.FiberTexturePlacementRo == 0) and \"UVW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 1) and \"UWV\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 2) and \"VUW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 3) and \"VWU\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 4) and \"WUV\" or \"WVU\"", },
+								["Rotation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRx", },
+								["Rotation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRy", },
+								["Rotation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRz", },
+								["Scale.U"] = Input {
+									Value = 0.03,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSx",
+								},
+								["Scale.V"] = Input {
+									Value = 0.12,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSy",
+								},
+								["Scale.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSz", },
+								MaterialInput = Input {
+									SourceOp = "CreateTexture2",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 7, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 770, 505.601 } },
+						},
+						TextureTransform3 = TextureTransformOperator {
+							CtrlWShown = false,
+							Inputs = {
+								["Translation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTx", },
+								["Translation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTy", },
+								["Translation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementTz", },
+								["Rotation.Nest"] = Input { Value = 1, },
+								["Rotation.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.FiberTexturePlacementRo == 0) and \"UVW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 1) and \"UWV\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 2) and \"VUW\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 3) and \"VWU\" or (CobaltBlueCarbonFiber.FiberTexturePlacementRo == 4) and \"WUV\" or \"WVU\"", },
+								["Rotation.U"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRx", },
+								["Rotation.V"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRy", },
+								["Rotation.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementRz", },
+								["Scale.U"] = Input {
+									Value = 0.03,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSx",
+								},
+								["Scale.V"] = Input {
+									Value = 0.12,
+									Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSy",
+								},
+								["Scale.W"] = Input { Expression = "CobaltBlueCarbonFiber.FiberTexturePlacementSz", },
+								MaterialInput = Input {
+									SourceOp = "CreateTexture1_3",
+									Source = "MaterialOutput",
+								},
+								MaterialID = Input { Value = 6, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 770, 439.601 } },
+						},
+						ChannelBooleans4 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.FiberSwitchIllum",
+								},
+								ToRed = Input { Value = 6, },
+								ToGreen = Input { Value = 5, },
+								Background = Input {
+									SourceOp = "SetDomain1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 495, 175.601 } },
+						},
+						SphereMap1_1_1 = SphereMap {
+							CtrlWShown = false,
+							Inputs = {
+								Rotation = Input { Value = 1, },
+								["Rotate.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.ReflectionPlacementRo == 0) and \"XYZ\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 1) and \"XZY\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 2) and \"YXZ\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 3) and \"YZX\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 4) and \"ZXY\" or \"ZYX\"", },
+								["Rotate.X"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRx", },
+								["Rotate.Y"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRy", },
+								["Rotate.Z"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRz", },
+								Image = Input {
+									SourceOp = "Blur4",
+									Source = "Output",
+								},
+								MaterialIDNest = Input { Value = 1, },
+								MaterialID = Input { Value = 97, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 495, 637.601 } },
+						},
+						SphereMap1_2 = SphereMap {
+							CtrlWShown = false,
+							Inputs = {
+								Rotation = Input { Value = 1, },
+								["Rotate.RotOrder"] = Input { Expression = "(CobaltBlueCarbonFiber.ReflectionPlacementRo == 0) and \"XYZ\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 1) and \"XZY\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 2) and \"YXZ\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 3) and \"YZX\" or (CobaltBlueCarbonFiber.ReflectionPlacementRo == 4) and \"ZXY\" or \"ZYX\"", },
+								["Rotate.X"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRx", },
+								["Rotate.Y"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRy", },
+								["Rotate.Z"] = Input { Expression = "CobaltBlueCarbonFiber.ReflectionPlacementRz", },
+								Image = Input {
+									SourceOp = "ReflectionTextureInput",
+									Source = "Output",
+								},
+								MaterialID = Input { Value = 97, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 495, 670.601 } },
+						},
+						CreateTexture2 = Texture2DOperator {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "ChannelBooleans6",
+									Source = "Output",
+								},
+								MaterialID = Input { Value = 3, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 660, 505.601 } },
+						},
+						CreateTexture1_3 = Texture2DOperator {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "ChannelBooleans5",
+									Source = "Output",
+								},
+								WrapMode = Input { Value = FuID { "Wrap" }, },
+								MaterialID = Input { Value = 9, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 660, 439.601 } },
+						},
+						Blur4 = Blur {
+							CtrlWShown = false,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								XBlurSize = Input {
+									Value = 27.8,
+									Expression = "CobaltBlueCarbonFiber.FiberReflectionBlur",
+								},
+								Input = Input {
+									SourceOp = "ReflectionTextureInput",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 637.601 } },
+						},
+						BrightnessContrast7 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Red = Input { Value = 0, },
+								Green = Input { Value = 0, },
+								Blue = Input { Value = 0, },
+								Alpha = Input { Value = 1, },
+								Gain = Input { Value = 0.3666667, },
+								Brightness = Input { Value = 0.6923077, },
+								ClipBlack = Input { Value = 1, },
+								ClipWhite = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "ChannelBooleans7_4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 439.601 } },
+						},
+						ChannelBooleans7_5 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToRed = Input { Value = 4, },
+								ToGreen = Input { Value = 4, },
+								ToBlue = Input { Value = 4, },
+								ToAlpha = Input { Value = 0, },
+								Background = Input {
+									SourceOp = "BrightnessContrast4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 505.601 } },
+						},
+						SetDomain1_1 = SetDomain {
+							CtrlWShown = false,
+							Inputs = {
+								Mode = Input { Value = FuID { "Set" }, },
+								Input = Input {
+									SourceOp = "Merge2_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 385, 175.601 } },
+						},
+						ReflectionTextureInput = PipeRouter {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Input = Input {
+									SourceOp = "VelvetBlueStreakMerge",
+									Source = "Output",
+								},
+							},
+							ViewInfo = PipeRouterInfo { Pos = { 275, 670.601 } },
+						},
+						ChannelBooleans7_4 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToRed = Input { Value = 4, },
+								ToGreen = Input { Value = 4, },
+								ToBlue = Input { Value = 4, },
+								ToAlpha = Input { Value = 5, },
+								Background = Input {
+									SourceOp = "SetDomain2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 275, 439.601 } },
+						},
+						BrightnessContrast4 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Brightness = Input { Value = 0.5164835, },
+								ClipBlack = Input { Value = 1, },
+								ClipWhite = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "SetDomain2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 275, 505.601 } },
+						},
+						Merge2_1 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								Background = Input {
+									SourceOp = "Background2",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Blur2_3",
+									Source = "Output",
+								},
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 275, 175.601 } },
+						},
+						SetDomain2 = SetDomain {
+							CtrlWShown = false,
+							Inputs = {
+								Mode = Input { Value = FuID { "Set" }, },
+								Input = Input {
+									SourceOp = "BrightnessContrast2_1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 165, 472.601 } },
+						},
+						BrightnessContrast2_1_1 = BrightnessContrast {
+							CtrlWShown = false,
+							Inputs = {
+								Low = Input { Value = 0.3576159, },
+								High = Input { Value = 0.7086093, },
+								ClipBlack = Input { Value = 1, },
+								ClipWhite = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "Merge4",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 472.601 } },
+						},
+						Blur2_3 = Blur {
+							CtrlWShown = false,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								Blue = Input { Value = 0, },
+								Alpha = Input { Value = 0, },
+								XBlurSize = Input {
+									Value = 9.83,
+									Expression = "CobaltBlueCarbonFiber.FiberEdgeBlur",
+								},
+								Input = Input {
+									SourceOp = "UnsharpMask1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 175.601 } },
+						},
+						UnsharpMask1 = UnsharpMask {
+							CtrlWShown = false,
+							Inputs = {
+								Blue = Input { Value = 0, },
+								Alpha = Input { Value = 0, },
+								XSize = Input {
+									Value = 28.63,
+									Expression = "CobaltBlueCarbonFiber.FiberEdgeSize",
+								},
+								Gain = Input {
+									Value = 0.385,
+									Expression = "CobaltBlueCarbonFiber.FiberEdgeGain",
+								},
+								Input = Input {
+									SourceOp = "CustomTool3_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -55, 175.601 } },
+						},
+						Blur1_1_1 = Blur {
+							CtrlWShown = false,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								XBlurSize = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.MicroStructureBlur",
+								},
+								Input = Input {
+									SourceOp = "DirectionalBlur1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -110, 439.601 } },
+						},
+						DirectionalBlur1_1 = DirectionalBlur {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0.98,
+									Expression = "1 - CobaltBlueCarbonFiber.MicroStructureNoise",
+								},
+								Type = Input { Value = 2, },
+								Length = Input { Value = 0.1, },
+								Angle = Input { Value = -45, },
+								Input = Input {
+									SourceOp = "CustomTool3",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -110, 406.601 } },
+						},
+						Bitmap2 = BitmapMask {
+							CtrlWShown = false,
+							Inputs = {
+								MaskWidth = Input { Value = 1280, },
+								MaskHeight = Input { Value = 720, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Image = Input {
+									SourceOp = "SetDomain1",
+									Source = "Output",
+								},
+								Channel = Input { Value = FuID { "Red" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -165, 241.601 } },
+						},
+						CustomTool3 = Custom {
+							CtrlWShown = false,
+							Inputs = {
+								LUTIn1 = Input {
+									SourceOp = "CustomTool3LUTIn1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CustomTool3LUTIn2",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CustomTool3LUTIn3",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CustomTool3LUTIn4",
+									Source = "Value",
+								},
+								RedExpression = Input { Value = "getr2w(x*3,y*3)", },
+								GreenExpression = Input { Value = "getg2w(x*3,y*3)", },
+								BlueExpression = Input { Value = "getb2w(x*3,y*3)", },
+								Image1 = Input {
+									SourceOp = "Background2_1",
+									Source = "Output",
+								},
+								Image2 = Input {
+									SourceOp = "AutoGain1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -165, 373.601 } },
+						},
+						Blur1_2 = Blur {
+							CtrlWShown = false,
+							Inputs = {
+								Filter = Input { Value = FuID { "Gaussian" }, },
+								XBlurSize = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.MicroStructureBlur",
+								},
+								Input = Input {
+									SourceOp = "DirectionalBlur2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -220, 439.601 } },
+						},
+						Merge4 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								EffectMask = Input {
+									SourceOp = "Bitmap2",
+									Source = "Mask",
+								},
+								Background = Input {
+									SourceOp = "Merge3",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Blur1_1_1",
+									Source = "Output",
+								},
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -165, 472.601 } },
+						},
+						DirectionalBlur2 = DirectionalBlur {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0.98,
+									Expression = "1 - CobaltBlueCarbonFiber.MicroStructureNoise",
+								},
+								ProcessAlpha = Input { Value = 0, },
+								Type = Input { Value = 2, },
+								Length = Input { Value = 0.1, },
+								Angle = Input { Value = 45, },
+								Input = Input {
+									SourceOp = "CustomTool3",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -220, 406.601 } },
+						},
+						Merge3 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								EffectMask = Input {
+									SourceOp = "Bitmap2_1",
+									Source = "Mask",
+								},
+								Background = Input {
+									SourceOp = "Background2",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Blur1_2",
+									Source = "Output",
+								},
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -275, 472.601 } },
+						},
+						Bitmap2_1 = BitmapMask {
+							CtrlWShown = false,
+							Inputs = {
+								MaskWidth = Input { Value = 1280, },
+								MaskHeight = Input { Value = 720, },
+								PixelAspect = Input { Value = { 1, 1 }, },
+								Image = Input {
+									SourceOp = "SetDomain1",
+									Source = "Output",
+								},
+								Channel = Input { Value = FuID { "Green" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -275, 241.601 } },
+						},
+						CustomTool3_1 = Custom {
+							CtrlWShown = false,
+							Inputs = {
+								LUTIn1 = Input {
+									SourceOp = "CustomTool3_1LUTIn1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CustomTool3_1LUTIn2",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CustomTool3_1LUTIn3",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CustomTool3_1LUTIn4",
+									Source = "Value",
+								},
+								RedExpression = Input { Value = "getr2w(x*3,y*3)", },
+								GreenExpression = Input { Value = "getg2w(x*3,y*3)", },
+								BlueExpression = Input { Value = "1", },
+								Image1 = Input {
+									SourceOp = "Background2_1",
+									Source = "Output",
+								},
+								Image2 = Input {
+									SourceOp = "SetDomain1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -275, 175.601 } },
+						},
+						Background2 = Background {
+							CtrlWShown = false,
+							Inputs = {
+								Width = Input { Value = 260, },
+								Height = Input { Value = 520, },
+								Depth = Input { Value = 2, },
+								TopLeftRed = Input { Value = 0.5, },
+								TopLeftGreen = Input { Value = 0.5, },
+								TopLeftBlue = Input { Value = 0.5, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -660, 472.601 } },
+						},
+						SetDomain1 = SetDomain {
+							CtrlWShown = false,
+							Inputs = {
+								Mode = Input { Value = FuID { "Set" }, },
+								Input = Input {
+									SourceOp = "ChannelBooleans7",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -440, 175.601 } },
+						},
+						Background2_1 = Background {
+							CtrlWShown = false,
+							Inputs = {
+								Width = Input { Value = 780, },
+								Height = Input { Value = 1560, },
+								Depth = Input { Value = 2, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -440, 241.601 } },
+						},
+						AutoGain1_1 = AutoGain {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "Filter2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -440, 373.601 } },
+						},
+						ChannelBooleans7 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								ToGreen = Input { Value = 6, },
+								ToBlue = Input { Value = 16, },
+								Background = Input {
+									SourceOp = "Merge12",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Merge10",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -550, 175.601 } },
+						},
+						Filter2 = Filter {
+							CtrlWShown = false,
+							Inputs = {
+								FilterType = Input { Value = 5, },
+								Alpha = Input { Value = 0, },
+								Power = Input { Value = 10, },
+								Animated = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "Background2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -550, 373.601 } },
+						},
+						Merge12 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								Background = Input {
+									SourceOp = "Merge11",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Transform11",
+									Source = "Output",
+								},
+								FilterMethod = Input { Value = 0, },
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -660, 175.601 } },
+						},
+						Merge11 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								Background = Input {
+									SourceOp = "Transform9",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Transform10",
+									Source = "Output",
+								},
+								FilterMethod = Input { Value = 0, },
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -770, 175.601 } },
+						},
+						Transform8 = Transform {
+							CtrlWShown = false,
+							Inputs = {
+								Center = Input { Value = { 1.5, 0.5 }, },
+								FilterMethod = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "Transform7",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -770, 10.6 } },
+						},
+						Merge10 = Merge {
+							CtrlWShown = false,
+							Inputs = {
+								Background = Input {
+									SourceOp = "Transform7",
+									Source = "Output",
+								},
+								Foreground = Input {
+									SourceOp = "Transform8",
+									Source = "Output",
+								},
+								FilterMethod = Input { Value = 0, },
+								PerformDepthMerge = Input { Value = 0, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -770, 43.6 } },
+						},
+						Transform9 = Transform {
+							CtrlWShown = false,
+							Inputs = {
+								Center = Input { Value = { 0.75, 0.125 }, },
+								Size = Input { Value = 0.707106781186547, },
+								Angle = Input { Value = -45, },
+								FilterMethod = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "SetBgColor1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -880, 175.601 } },
+						},
+						Transform10 = Transform {
+							CtrlWShown = false,
+							Inputs = {
+								Center = Input { Value = { 0.75, 1.125 }, },
+								Size = Input { Value = 0.707106781186547, },
+								Angle = Input { Value = -45, },
+								FilterMethod = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "SetBgColor1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -880, 142.601 } },
+						},
+						Transform11 = Transform {
+							CtrlWShown = false,
+							Inputs = {
+								Center = Input { Value = { -0.25, 0.125 }, },
+								Size = Input { Value = 0.707106781186547, },
+								Angle = Input { Value = -45, },
+								FilterMethod = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "SetBgColor1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -880, 109.601 } },
+						},
+						Transform7 = Transform {
+							CtrlWShown = false,
+							Inputs = {
+								Center = Input { Value = { 0.25, 0.625 }, },
+								Size = Input { Value = 0.707106781186547, },
+								Angle = Input { Value = 45, },
+								FilterMethod = Input { Value = 0, },
+								Input = Input {
+									SourceOp = "SetBgColor1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -880, 43.6 } },
+						},
+						Background7_1 = Background {
+							CtrlWShown = false,
+							Inputs = {
+								Width = Input { Value = 260, },
+								Height = Input { Value = 520, },
+								Depth = Input { Value = 2, },
+								Type = Input { Value = FuID { "Vertical" }, },
+								BottomLeftGreen = Input { Value = 1, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -1320, 175.601 } },
+						},
+						Instance_ColorSpace1 = ColorSpace {
+							CtrlWShown = false,
+							SourceOp = "ColorSpace1_1",
+							Inputs = {
+								StartEndRenderScripts = Input { },
+								EffectMask = Input { },
+								Blend = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.FiberInvertIllum"
+								},
+								ProcessRed = Input { Value = 0, },
+								ProcessGreen = Input { },
+								BWRed = Input { },
+								BWGreen = Input { },
+								BWBlue = Input { },
+								Input = Input {
+									SourceOp = "Instance_ColorCurves1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -1100, 175.601 } },
+						},
+						Instance_ColorCurves1 = ColorCurves {
+							PickColor = true,
+							CtrlWShown = false,
+							SourceOp = "ColorCurves1_1",
+							Inputs = {
+								StartEndRenderScripts = Input { },
+								EffectMask = Input { },
+								Blend = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.FiberShiftIllum"
+								},
+								MatchReference = Input { },
+								SampleReference = Input { },
+								Input = Input {
+									SourceOp = "Background7_1",
+									Source = "Output",
+								},
+								ReferenceImage = Input { },
+							},
+							ViewInfo = OperatorInfo { Pos = { -1210, 175.601 } },
+						},
+						ColorSpace1_1 = ColorSpace {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.FiberInvertIllum",
+								},
+								ProcessGreen = Input { Value = 0, },
+								ProcessBlue = Input { Value = 0, },
+								ProcessAlpha = Input { Value = 0, },
+								ColorSpaceConversion = Input { Value = 1, },
+								ColorType = Input { Value = 6, },
+								Input = Input {
+									SourceOp = "ColorCurves1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -1100, 43.6 } },
+						},
+						ColorCurves1_1 = ColorCurves {
+							PickColor = true,
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0,
+									Expression = "CobaltBlueCarbonFiber.FiberShiftIllum",
+								},
+								EditBlue = Input { Value = 0, },
+								EditAlpha = Input { Value = 0, },
+								Red = Input {
+									SourceOp = "ColorCurves1_1Red",
+									Source = "Value",
+								},
+								Green = Input {
+									SourceOp = "ColorCurves1_1Green",
+									Source = "Value",
+								},
+								Blue = Input {
+									SourceOp = "ColorCurves1_1Blue",
+									Source = "Value",
+								},
+								Alpha = Input {
+									SourceOp = "ColorCurves1_1Alpha",
+									Source = "Value",
+								},
+								Input = Input {
+									SourceOp = "Background7",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -1210, 43.6 } },
+							Tools = {
+								ColorCurves1_1Blue = LUTBezier {
+									KeyColorSplines = {
+										[0] = {
+											[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+											[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 } }
+										}
+									},
+									SplineColor = { Red = 0, Green = 0, Blue = 255 },
+									CtrlWShown = false,
+									NameSet = true,
+								},
+								ColorCurves1_1Alpha = LUTBezier {
+									KeyColorSplines = {
+										[0] = {
+											[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+											[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+										}
+									},
+									SplineColor = { Red = 204, Green = 204, Blue = 204 },
+									CtrlWShown = false,
+									NameSet = true,
+								},
+								ColorCurves1_1Green = LUTBezier {
+									KeyColorSplines = {
+										[0] = {
+											[0] = { 0, RH = { 0.106182795698925, 0.345430107526882 }, Flags = { Linear = true } },
+											[0.5] = { 1, LH = { 0.333333333333333, 1 }, RH = { 0.666666666666667, 1 } },
+											[1] = { 0, LH = { 0.877688172043011, 0.369623655913979 } }
+										}
+									},
+									SplineColor = { Red = 0, Green = 255, Blue = 0 },
+									CtrlWShown = false,
+									NameSet = true,
+								},
+								ColorCurves1_1Red = LUTBezier {
+									KeyColorSplines = {
+										[0] = {
+											[0] = { 0, RH = { 0.0918925773510863, 0.328736010127291 }, Flags = { Linear = true } },
+											[0.504032258064516] = { 1, LH = { 0.334655564297579, 1 }, RH = { 0.668032258064516, 1 } },
+											[1] = { 0, LH = { 0.8904149285529, 0.362630818633022 } }
+										}
+									},
+									SplineColor = { Red = 255, Green = 0, Blue = 0 },
+									CtrlWShown = false,
+									NameSet = true,
+								}
+							},
+						},
+						Background7 = Background {
+							CtrlWShown = false,
+							Inputs = {
+								Width = Input { Value = 260, },
+								Height = Input { Value = 520, },
+								Depth = Input { Value = 2, },
+								Type = Input { Value = FuID { "Vertical" }, },
+								BottomLeftRed = Input { Value = 1, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -1320, 43.6 } },
+						},
+						ChannelBooleans5 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0,
+									Expression = "1 - CobaltBlueCarbonFiber.MicroStructureLevel",
+								},
+								ToRed = Input { Value = 17, },
+								ToGreen = Input { Value = 17, },
+								ToBlue = Input { Value = 17, },
+								ToAlpha = Input { Value = 17, },
+								Background = Input {
+									SourceOp = "BrightnessContrast7",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 495, 439.601 } },
+						},
+						ChannelBooleans6 = ChannelBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Blend = Input {
+									Value = 0,
+									Expression = "1 - CobaltBlueCarbonFiber.MicroStructureLevel",
+								},
+								ToRed = Input { Value = 16, },
+								ToGreen = Input { Value = 16, },
+								ToBlue = Input { Value = 16, },
+								ToAlpha = Input { Value = 16, },
+								Background = Input {
+									SourceOp = "ChannelBooleans7_5",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 495, 505.601 } },
+						},
+						BumpMap1_1 = BumpMap {
+							CtrlWShown = false,
+							Inputs = {
+								SourceImageType = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "Merge1_2",
+									Source = "Output",
+								},
+								WrapMode = Input { Value = FuID { "Wrap" }, },
+								MaterialID = Input { Value = 1, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 274.601 } },
+						},
+						BumpMap2_1 = BumpMap {
+							CtrlWShown = false,
+							Inputs = {
+								SourceImageType = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "ChannelBooleans3_1_1",
+									Source = "Output",
+								},
+								WrapMode = Input { Value = FuID { "Wrap" }, },
+								MaterialID = Input { Value = 3, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 1265, 406.601 } },
+						},
+						CreateBumpMap1 = CreateBumpMap {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "SetDomain2",
+									Source = "Output",
+								},
+								WrapMode = Input { Value = FuID { "Wrap" }, },
+								HeightScale = Input { Value = 2, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 605, 340.601 } },
+						},
+						SetBgColor1 = SetCanvasColor {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "ColorSpace1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -990, 43.6 } },
+						},
+						SetBgColor1_1 = SetCanvasColor {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_ColorSpace1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { -990, 175.601 } },
+						}
+					},
+					UserControls = ordered() {
+						FiberLayer = {
+							LINKS_Name = "Fiber Layer",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 14,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberFaceColor = {
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlGroup = 2,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = -1,
+							INP_Default = 0,
+							LINKS_Name = "Fiber Color (Face On)",
+						},
+						FiberFaceColorRed = {
+							IC_ControlGroup = 2,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							IC_ControlPage = 1,
+							INPID_InputControl = "ColorControl",
+							INP_Default = 0.14,
+						},
+						FiberFaceColorGreen = {
+							INP_Default = 0.12,
+							LINKID_DataType = "Number",
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlPage = 1,
+							CLRC_ColorSpace = 0,
+							IC_ControlGroup = 2,
+						},
+						FiberFaceColorBlue = {
+							INP_Default = 0.1,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 2,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							IC_ControlGroup = 2,
+						},
+						FiberGlancColor = {
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlGroup = 3,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = -1,
+							INP_Default = 0,
+							LINKS_Name = "Fiber Color (Glancing)",
+						},
+						FiberGlancColorRed = {
+							IC_ControlGroup = 3,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							IC_ControlPage = 1,
+							INPID_InputControl = "ColorControl",
+							INP_Default = 0.24,
+						},
+						FiberGlancColorGreen = {
+							INP_Default = 0.25,
+							LINKID_DataType = "Number",
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlPage = 1,
+							CLRC_ColorSpace = 0,
+							IC_ControlGroup = 3,
+						},
+						FiberGlancColorBlue = {
+							INP_Default = 0.26,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 2,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							IC_ControlGroup = 3,
+						},
+						FiberReflectionFaceOn = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Reflection Intensity (Face On)",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.06,
+						},
+						FiberReflectionEdge = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Reflection Intensity (Glancing)",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.25,
+						},
+						FiberReflectionBlur = {
+							LINKS_Name = "Reflection Blur",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 100,
+							INP_Default = 15,
+						},
+						FiberEdgeSize = {
+							LINKS_Name = "Fiber Edge Size",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 50,
+							INP_Default = 10,
+						},
+						FiberEdgeGain = {
+							LINKS_Name = "Fiber Edge Gain",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 5,
+							INP_Default = 1,
+						},
+						FiberEdgeBlur = {
+							LINKS_Name = "Fiber Edge Blur",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 50,
+							INP_Default = 2,
+						},
+						FiberIllumination = {
+							LINKS_Name = "Fiber Illumination",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 15,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberSpecFaceColor = {
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlGroup = 4,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = -1,
+							INP_Default = 0,
+							LINKS_Name = "Specular Color (Face On)",
+						},
+						FiberSpecFaceColorRed = {
+							IC_ControlGroup = 4,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							IC_ControlPage = 1,
+							INPID_InputControl = "ColorControl",
+							INP_Default = 0.95,
+						},
+						FiberSpecFaceColorGreen = {
+							INP_Default = 0.97,
+							LINKID_DataType = "Number",
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlPage = 1,
+							CLRC_ColorSpace = 0,
+							IC_ControlGroup = 4,
+						},
+						FiberSpecFaceColorBlue = {
+							INP_Default = 1,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 2,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							IC_ControlGroup = 4,
+						},
+						FiberSpecGlancColor = {
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlGroup = 5,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = -1,
+							INP_Default = 0,
+							LINKS_Name = "Specular Color (Glancing)",
+						},
+						FiberSpecGlancColorRed = {
+							IC_ControlGroup = 5,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							IC_ControlPage = 1,
+							INPID_InputControl = "ColorControl",
+							INP_Default = 1,
+						},
+						FiberSpecGlancColorGreen = {
+							INP_Default = 0.9,
+							LINKID_DataType = "Number",
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlPage = 1,
+							CLRC_ColorSpace = 0,
+							IC_ControlGroup = 5,
+						},
+						FiberSpecGlancColorBlue = {
+							INP_Default = 0.77,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 2,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							IC_ControlGroup = 5,
+						},
+						FiberEffect = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Fiber Strength",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.13,
+						},
+						FiberShiftIllum = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Shift Illumination",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+						},
+						FiberInvertIllum = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Invert Illumination",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+						},
+						FiberSwitchIllum = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Switch Illumination",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+						},
+						FiberSpecularIntensity = {
+							LINKS_Name = "Specular Intensity",
+							INP_MinAllowed = 0,
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 3,
+							INP_Default = 2,
+						},
+						FiberSpecularRoughness = {
+							LINKS_Name = "Roughness",
+							INP_MinAllowed = 0.1,
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 3,
+							INP_Default = 0.32,
+						},
+						FiberRefractiveIndex = {
+							LINKS_Name = "Refractive Index",
+							INP_MinAllowed = 0,
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 5,
+							INP_Default = 2.25,
+						},
+						MicroStructure = {
+							LINKS_Name = "Micro Structure",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						MicroStructureLevel = {
+							LINKS_Name = "Intensity",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 2,
+							INP_Default = 1,
+						},
+						MicroStructureBump = {
+							LINKS_Name = "Bump Strength",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 2,
+							INP_Default = 1,
+						},
+						MicroStructureNoise = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Noise Intensity",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.02,
+						},
+						MicroStructureBlur = {
+							LINKS_Name = "Blur",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 5,
+							INP_Default = 0,
+						},
+						CoatingLayer = {
+							LINKS_Name = "Coating Layer",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 9,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						CoatingSpecularColor = {
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlGroup = 6,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = -1,
+							INP_Default = 0,
+							LINKS_Name = "Specular Color",
+						},
+						CoatingSpecularColorRed = {
+							IC_ControlGroup = 6,
+							IC_ControlID = 0,
+							CLRC_ShowWheel = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 1,
+						},
+						CoatingSpecularColorGreen = {
+							INP_Default = 0.96,
+							INPID_InputControl = "ColorControl",
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = 0,
+							IC_ControlPage = 1,
+							IC_ControlID = 1,
+							IC_ControlGroup = 6,
+						},
+						CoatingSpecularColorBlue = {
+							IC_ControlGroup = 6,
+							CLRC_ColorSpace = 0,
+							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							IC_ControlPage = 1,
+							INPID_InputControl = "ColorControl",
+							INP_Default = 0.89,
+						},
+						CoatingSpecularIntensity = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Specular Intensity",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+						},
+						CoatingSpecularExponent = {
+							INP_MinScale = 1,
+							LINKS_Name = "Specular Exponent",
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+							INP_MaxScale = 800,
+							INP_Default = 100,
+						},
+						CoatingReflectionFaceOn = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Reflection Intensity (Face On)",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.07,
+						},
+						CoatingReflectionEdge = {
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Reflection Intensity (Glancing)",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0.55,
+						},
+						CoatingStructureLevel = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Micro Structure Strength",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+						},
+						DirtTex = {
+							LINKS_Name = "Dirt Texture",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtStrength = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Dirt Texture Strength",
+							IC_ControlPage = 1,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+						},
+						FiberTexturePlacement = {
+							LINKS_Name = "Fiber Texture Transform",
+							IC_ControlPage = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 10,
+							LBLC_NestLevel = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementTx = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "U Translation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementTy = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "V Translation",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementTz = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "W Translation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementRo = {
+							{ MBTNC_AddButton = "UVW" },
+							{ MBTNC_AddButton = "UWV" },
+							{ MBTNC_AddButton = "VUW" },
+							{ MBTNC_AddButton = "VWU" },
+							{ MBTNC_AddButton = "WUV" },
+							{ MBTNC_AddButton = "WVU" },
+							INP_Integer = true,
+							LINKS_Name = "Rotation Order",
+							LINKID_DataType = "Number",
+							MBTNC_StretchToFit = true,
+							IC_ControlPage = 1,
+							INPID_InputControl = "MultiButtonControl",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementRx = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "U Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementRy = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "V Rotation",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementRz = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "W Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						FiberTexturePlacementSx = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "U Scale",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0.03,
+						},
+						FiberTexturePlacementSy = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "V Scale",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0.12,
+						},
+						FiberTexturePlacementSz = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "W Scale",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 1,
+						},
+						ReflectionPlacement = {
+							LINKS_Name = "Reflection Transform",
+							LBLC_NestLevel = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						ReflectionPlacementRo = {
+							{ MBTNC_AddButton = "XYZ" },
+							{ MBTNC_AddButton = "XZY" },
+							{ MBTNC_AddButton = "YXZ" },
+							{ MBTNC_AddButton = "YZX" },
+							{ MBTNC_AddButton = "ZXY" },
+							{ MBTNC_AddButton = "ZYX" },
+							INP_Integer = true,
+							LINKS_Name = "Rotation Order",
+							LINKID_DataType = "Number",
+							MBTNC_StretchToFit = true,
+							IC_ControlPage = 1,
+							INPID_InputControl = "MultiButtonControl",
+							INP_Default = 0,
+						},
+						ReflectionPlacementRx = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "X Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						ReflectionPlacementRy = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "Y Rotation",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0,
+						},
+						ReflectionPlacementRz = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "Z Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacement = {
+							LINKS_Name = "Dirt Texture Transform",
+							IC_ControlPage = 1,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 10,
+							LBLC_NestLevel = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementTx = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "U Translation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementTy = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "V Translation",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementTz = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "W Translation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementRo = {
+							{ MBTNC_AddButton = "UVW" },
+							{ MBTNC_AddButton = "UWV" },
+							{ MBTNC_AddButton = "VUW" },
+							{ MBTNC_AddButton = "VWU" },
+							{ MBTNC_AddButton = "WUV" },
+							{ MBTNC_AddButton = "WVU" },
+							INP_Integer = true,
+							LINKS_Name = "Rotation Order",
+							LINKID_DataType = "Number",
+							MBTNC_StretchToFit = true,
+							IC_ControlPage = 1,
+							INPID_InputControl = "MultiButtonControl",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementRx = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "U Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementRy = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "V Rotation",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementRz = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "W Rotation",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+						},
+						DirtTexturePlacementSx = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "U Scale",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 1,
+						},
+						DirtTexturePlacementSy = {
+							INPID_InputControl = "ScrewControl",
+							LINKS_Name = "V Scale",
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+							INP_Default = 1,
+						},
+						DirtTexturePlacementSz = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "W Scale",
+							IC_ControlPage = 1,
+							INPID_InputControl = "ScrewControl",
+							INP_Default = 1,
+						}
+					}
+				},
+				CabronFiberFastNoise = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1280, },
+						Height = Input { Value = 720, },
+						Detail = Input { Value = 6.4088398, },
+						Contrast = Input { Value = 2.9340659, },
+						XScale = Input { Value = 20, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1815, 280.5 } },
+				},
+				VelvetBlueStreakMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "StreakDisplace",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 445.5 } },
+				},
+				VelvetBlueBumpBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Gain = Input { Value = 10, },
+						Brightness = Input { Value = -5.7263158, },
+						Input = Input {
+							SourceOp = "VelvetBlueCreateBumpMap",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 412.5 } },
+				},
+				VelvetBlueBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Contrast = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 346.5 } },
+				},
+				VelvetBlueCreateBumpMap = CreateBumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "VelvetBlueBrightnessContrast",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 200, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 379.5 } },
+				},
+				StreakDisplace = Displace {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Type = Input { Value = 1, },
+						XRefraction = Input { Value = 0.1, },
+						YRefraction = Input { Value = 0.1, },
+						Input = Input {
+							SourceOp = "WhiteStreaksPipeRouter",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "VelvetBlueBumpBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 445.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 346.5 } },
+				},
+				VelvetBlueDaySky = DaySky {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 2048, },
+						Height = Input { Value = 1024, },
+						Depth = Input { Value = 4, },
+						Latitude = Input { Value = 28.3425414, },
+						Longitude = Input { Value = 32.8176796, },
+						Month = Input { Value = FuID { "August" }, },
+						Time = Input { Value = 16.3093923, },
+						Turbidity = Input { Value = 0.1727749, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 280.5 } },
+				},
+				WhiteStreaksFastNoise = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 2048, },
+						Height = Input { Value = 1024, },
+						Depth = Input { Value = 4, },
+						Detail = Input { Value = 3.2984293, },
+						LockXY = Input { Value = 0, },
+						XScale = Input { Value = 0.7329843, },
+						YScale = Input { Value = 11.2041885, },
+						GradientType = Input { Value = 6, },
+						Start = Input { Value = { 0.505285412262156, 0.504237288135593 }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 280.5 } },
+				},
+				WhiteStreaksPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "TextureInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1485, 445.5 } },
+				},
+				NoiseTextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "CabronFiberFastNoise",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1815, 313.5 } },
+					Version = 100
+				}
+			},
+		},
+		CustomTool3LUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3LUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3LUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3LUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3_1LUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3_1LUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3_1LUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		},
+		CustomTool3_1LUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+		}
+	},
+	ActiveTool = "kas_CobaltBlueCarbonFibre"
+}

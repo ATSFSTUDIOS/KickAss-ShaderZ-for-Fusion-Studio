@@ -1,0 +1,155 @@
+{
+	Tools = ordered() {
+		kas_TransformTexCoord3D = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "The TransformTexCoord3D macro allows you to offset a polygon model's UDIM texture coordinates to allow you to texture map a specific UV Layout region.", },
+				Input1 = InstanceInput {
+					SourceOp = "TransformTexCoord",
+					Source = "SceneInput",
+				}
+			},
+			Outputs = {
+				SceneOutput = InstanceOutput {
+					SourceOp = "TransformTexCoord",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 330, 182.735 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 141.524, 88.2334, 70.7622, 11.0036 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -381.072, -106.533 }
+			},
+			Tools = ordered() {
+				TransformTexCoord = CustomVertex3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Position.Nest"] = Input { Value = 0, },
+						["TexCoord.Nest"] = Input { Value = 1, },
+						["TexCoord.U"] = Input { Value = "tu - n1", },
+						["TexCoord.V"] = Input { Value = "tv - n2", },
+						Number1 = Input { Expression = "TransformTexCoord3D.UOffset", },
+						Number2 = Input { Expression = "TransformTexCoord3D.VOffset", },
+						["Point2.Nest"] = Input { Value = 1, },
+						LUT1 = Input {
+							SourceOp = "TransformTexCoordLUT1",
+							Source = "Value",
+						},
+						LUT2 = Input {
+							SourceOp = "TransformTexCoordLUT2",
+							Source = "Value",
+						},
+						LUT3 = Input {
+							SourceOp = "TransformTexCoordLUT3",
+							Source = "Value",
+						},
+						LUT4 = Input {
+							SourceOp = "TransformTexCoordLUT4",
+							Source = "Value",
+						},
+						NumberControls = Input { Value = 1, },
+						NameForNumber1 = Input { Value = "U Offset", },
+						NameForNumber2 = Input { Value = "V Offset", },
+						ShowNumber3 = Input { Value = 0, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						ShowPoint5 = Input { Value = 0, },
+						ShowPoint6 = Input { Value = 0, },
+						ShowPoint7 = Input { Value = 0, },
+						ShowPoint8 = Input { Value = 0, },
+						ShowImage1 = Input { Value = 0, },
+						ShowImage2 = Input { Value = 0, },
+						ShowImage3 = Input { Value = 0, },
+						ShowLUT1 = Input { Value = 0, },
+						ShowLUT2 = Input { Value = 0, },
+						ShowLUT3 = Input { Value = 0, },
+						ShowLUT4 = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385.6, 144.4 } },
+				}
+			},
+			UserControls = ordered() {
+				UOffset = {
+					INP_Default = 0,
+					INP_MinScale = -10,
+					INPID_InputControl = "ScrewControl",
+					LINKID_DataType = "Number",
+					IC_Steps = 1,
+					INP_Integer = true,
+					INP_MaxScale = 10,
+					LINKS_Name = "U Offset",
+				},
+				VOffset = {
+					INP_Default = 0,
+					INP_MinScale = -10,
+					INPID_InputControl = "ScrewControl",
+					LINKID_DataType = "Number",
+					IC_Steps = 1,
+					INP_Integer = true,
+					INP_MaxScale = 10,
+					LINKS_Name = "V Offset",
+				}
+			}
+		},
+		TransformTexCoordLUT1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 0, Blue = 0 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 204, Blue = 0 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 204 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 204, Blue = 204 },
+			CtrlWShown = false,
+		}
+	},
+	ActiveTool = "kas_TransformTexCoord3D"
+}

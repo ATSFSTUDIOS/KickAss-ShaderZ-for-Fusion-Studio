@@ -1,0 +1,793 @@
+{
+	Tools = ordered() {
+		kas_ShaderPreview = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderPreview\" is has a Renderer3D node inside is that renders a preview shader swatch with a baked-in grey checker background.\n\nThis node is supposed to be connected directly to the \"kas_ShaderBall.Output\" node's output connection. ", },
+				SceneInput3D = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "SceneInput",
+				},
+				RendererType = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "RendererType",
+					Name = "Renderer",
+				},
+				Width = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "Width",
+					Default = 1920,
+				},
+				Height = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "Height",
+					Default = 1080,
+				}
+			},
+			Outputs = {
+				IconOutput = InstanceOutput {
+					SourceOp = "GreyCheckerboardMerge",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 770, -82.0104 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 300.041, 110, 279.273, 46.63 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -975.239, 145.242 }
+			},
+			Tools = ordered() {
+				IconRenderer3D = Renderer3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									Renderer3D1_1 = Renderer3D {
+										Inputs = {
+											SceneInput = Input {
+												SourceOp = "Merge3D1_1",
+												Source = "Output"
+											},
+											Width = Input { Value = 160 },
+											["RendererOpenGL.LightingEnabled"] = Input { Value = 1 },
+											["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+											RendererType = Input { Value = FuID { "RendererOpenGL" } },
+											GlobalOut = Input { Value = 119 },
+											Depth = Input { Value = 4 },
+											["RendererSoftware.LightingEnabled"] = Input { Value = 1 },
+											Height = Input { Value = 100 }
+										},
+										Name = "Renderer3D1_1",
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { -11385.5, 24.4024 } },
+										CustomData = {
+											ToolVersion = 2
+										}
+									}
+								}
+							}
+						},
+						ToolVersion = 2
+					},
+					Inputs = {
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererSoftware.LightingEnabled"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, },
+						["RendererOpenGL.TransparencySorting"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, -148.5 } },
+				},
+				GreyCheckerboardMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IconRenderer3D",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, -115.5 } },
+				},
+				GreyCheckerboard = GroupOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 3,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Default = 17,
+												SourceOp = "CheckerCustomTool",
+												Source = "CheckerSize"
+											},
+											Width = InstanceInput {
+												Default = 1300,
+												SourceOp = "CheckerBackground",
+												Source = "Width"
+											},
+											Height = InstanceInput {
+												Default = 1000,
+												SourceOp = "CheckerBackground",
+												Source = "Height"
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 100 },
+													Width = Input { Value = 130 }
+												}
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													},
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													ShowPoint4 = Input { Value = 0 },
+													ShowLUT3 = Input { Value = 0 },
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													CheckerSize = Input { Value = 17 },
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowNumber4 = Input { Value = 0 },
+													ShowLUT4 = Input { Value = 0 },
+													ShowNumber3 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													ShowNumber2 = Input { Value = 0 },
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" }
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_Integer = true,
+														INP_MinScale = 0,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 0, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 0, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 204, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 204, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Size = { 417.864, 118.382, 63, 22 },
+											PipeStyle = "Direct",
+											Scale = 1,
+											Offset = { 66.6667, 28.3333 },
+											Pos = { 880, -114.506 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							},
+							[2] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Source = "CheckerSize",
+												SourceOp = "CheckerCustomTool",
+												Default = 17
+											},
+											Width = InstanceInput {
+												Source = "Width",
+												SourceOp = "CheckerBackground",
+												Default = 1300
+											},
+											Height = InstanceInput {
+												Source = "Height",
+												SourceOp = "CheckerBackground",
+												Default = 1000
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										NameSet = true,
+										CtrlWZoom = false,
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 1000 },
+													Width = Input { Value = 1300 }
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } }
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" },
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													CheckerSize = Input { Value = 17 },
+													ShowNumber2 = Input { Value = 0 },
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowNumber4 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													ShowNumber3 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													ShowLUT4 = Input { Value = 0 },
+													ShowLUT3 = Input { Value = 0 },
+													ShowPoint4 = Input { Value = 0 },
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													}
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_Integer = true,
+														INP_MinScale = 0,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 0, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 0, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 204, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 204, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } }
+											}
+										},
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Pos = { 880, -114.506 },
+											PipeStyle = "Direct",
+											Offset = { 66.6667, 28.3333 },
+											Scale = 1,
+											Size = { 417.864, 118.382, 63, 22 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							},
+						}
+					},
+					Inputs = ordered() {
+						Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com", },
+						Center = InstanceInput {
+							SourceOp = "CheckerCustomTool",
+							Source = "PointIn1",
+						},
+						CheckerSize = InstanceInput {
+							SourceOp = "CheckerCustomTool",
+							Source = "CheckerSize",
+							Default = 17,
+						},
+						Width = InstanceInput {
+							SourceOp = "CheckerBackground",
+							Source = "Width",
+							Expression = "IconRenderer3D.Width",
+							Default = 1300,
+						},
+						Height = InstanceInput {
+							SourceOp = "CheckerBackground",
+							Source = "Height",
+							Expression = "IconRenderer3D.Height",
+							Default = 1000,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "MasterRGBOutputLow",
+							Name = "Checker Low Grey",
+							ControlGroup = 2,
+							Default = 0.2093,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "MasterRGBOutputHigh",
+							Name = "Checker High Grey",
+							ControlGroup = 2,
+							Default = 0.3137,
+						}
+					},
+					Outputs = {
+						Output = InstanceOutput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { 770, -115.5 },
+						Flags = {
+							AllowPan = false,
+							AutoSnap = true
+						},
+						Size = { 417.864, 118.382, 63, 22 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 66.6667, 28.3333 }
+					},
+					Tools = ordered() {
+						CheckerBackground = Background {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Width = Input {
+									Value = 1920,
+									Expression = "IconRenderer3D.Width",
+								},
+								Height = Input {
+									Value = 1080,
+									Expression = "IconRenderer3D.Height",
+								},
+								["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+						},
+						CheckerCustomTool = Custom {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								PointIn1 = Input { Value = { 0.496, 0.5 }, },
+								NumberIn1 = Input {
+									Value = 170,
+									Expression = "CheckerSize",
+								},
+								NumberIn2 = Input { Value = 0.20392, },
+								LUTIn1 = Input {
+									SourceOp = "CheckerCustomToolLUTIn1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CheckerCustomToolLUTIn2",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CheckerCustomToolLUTIn3",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CheckerCustomToolLUTIn4",
+									Source = "Value",
+								},
+								Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)", },
+								Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)", },
+								RedExpression = Input { Value = "abs(i1-i2) ", },
+								GreenExpression = Input { Value = "abs(i1-i2)", },
+								BlueExpression = Input { Value = "abs(i1-i2)", },
+								NumberControls = Input { Value = 1, },
+								NameforNumber1 = Input { Value = "SquareSize", },
+								ShowNumber2 = Input { Value = 0, },
+								ShowNumber3 = Input { Value = 0, },
+								ShowNumber4 = Input { Value = 0, },
+								ShowNumber5 = Input { Value = 0, },
+								ShowNumber6 = Input { Value = 0, },
+								ShowNumber7 = Input { Value = 0, },
+								ShowNumber8 = Input { Value = 0, },
+								NameforPoint1 = Input { Value = "Center", },
+								ShowPoint2 = Input { Value = 0, },
+								ShowPoint3 = Input { Value = 0, },
+								ShowPoint4 = Input { Value = 0, },
+								ShowLUT1 = Input { Value = 0, },
+								ShowLUT2 = Input { Value = 0, },
+								ShowLUT3 = Input { Value = 0, },
+								ShowLUT4 = Input { Value = 0, },
+								Image1 = Input {
+									SourceOp = "CheckerBackground",
+									Source = "Output",
+								},
+								CheckerSize = Input { Value = 170, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 16.5 } },
+							UserControls = ordered() {
+								CheckerSize = {
+									INP_Integer = true,
+									INP_MinScale = 0,
+									INP_MinAllowed = 0,
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+									IC_ControlPage = 0,
+									INP_MaxScale = 100,
+									INP_Default = 64,
+								}
+							}
+						},
+						CheckerCustomToolLUTIn1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn2 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn3 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn4 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						},
+						MakeGreyLevelsColorCorrector = ColorCorrector {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Menu = Input { Value = 1, },
+								MasterRGBOutputLow = Input { Value = 0.2093, },
+								MasterRGBOutputHigh = Input { Value = 0.3137, },
+								ColorRanges = Input {
+									Value = ColorCurves {
+										Curves = {
+											{
+												Points = {
+													{ 0, 1 },
+													{ 0.4, 0.2 },
+													{ 0.6, 0 },
+													{ 1, 0 }
+												}
+											},
+											{
+												Points = {
+													{ 0, 0 },
+													{ 0.4, 0 },
+													{ 0.6, 0.2 },
+													{ 1, 1 }
+												}
+											}
+										}
+									},
+								},
+								HistogramIgnoreTransparent = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "CheckerCustomTool",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+						}
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_ShaderPreview"
+}

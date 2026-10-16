@@ -1,0 +1,983 @@
+Composition {
+	CurrentTime = 0,
+	RenderRange = { 0, 1000 },
+	GlobalRange = { 0, 1000 },
+	CurrentID = 88,
+	PlaybackUpdateMode = 0,
+	Version = "Fusion Studio 17.0 build 43",
+	SavedOutputs = 2,
+	HeldTools = 0,
+	DisabledTools = 0,
+	LockedTools = 0,
+	AudioOffset = 0,
+	AutoRenderRange = true,
+	Resumable = true,
+	OutputClips = {
+	},
+	Tools = {
+		Normal = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/PreviewSphere_Sphere_Normal.png",
+					FormatID = "PNGFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			ViewInfo = OperatorInfo { Pos = { 275, 445.5 } },
+		},
+		Height = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/PreviewSphere_Sphere_Height.png",
+					FormatID = "PNGFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			ViewInfo = OperatorInfo { Pos = { 275, 412.5 } },
+		},
+		Metallic = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/PreviewSphere_Sphere_Metallic.png",
+					FormatID = "PNGFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			ViewInfo = OperatorInfo { Pos = { 275, 379.5 } },
+		},
+		Roughness = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/PreviewSphere_Sphere_Roughness.png",
+					FormatID = "PNGFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			ViewInfo = OperatorInfo { Pos = { 275, 346.5 } },
+		},
+		BaseColor = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/PreviewSphere_Sphere_BaseColor.png",
+					FormatID = "PNGFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			ViewInfo = OperatorInfo { Pos = { 275, 313.5 } },
+		},
+		IBL = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/kas_Simons_Town_Rocks_CapeTown_SouthAfrica_IBL.exr",
+					FormatID = "OpenEXRFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			NameSet = true,
+			Inputs = {
+				["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+				["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+				["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+				["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+				Comments = Input { Value = "Simon's Town Rocks, Cape Town, South Africa IBL \n\nCreative Commons:\nSimon's Town Rocks \n\nBy:\nhttps://hdrihaven.com/ \n\nIs licensed under:\nCC0 (Public Domain)", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 275, 280.5 } },
+		},
+		PBRNote = Note {
+			Inputs = {
+				Comments = Input { Value = "[Substance Export Type] PBR Metal Rough\n[Material Node] Cook Torrance/Reflect\n[Images]\n  PreviewSphere_Sphere_BaseColor.png\n  PreviewSphere_Sphere_Roughness.png\n  PreviewSphere_Sphere_Metallic.png\n  PreviewSphere_Sphere_Height.png\n  PreviewSphere_Sphere_Normal.png\n[Environment]\nMacros:/KickAss ShaderZ/Assets/kas_Simons_Town_Rocks_CapeTown_SouthAfrica_IBL.exr\n", }
+			},
+			ViewInfo = StickyNoteInfo {
+				Pos = { 275, 82.5 },
+				Flags = {
+					Expanded = true
+				},
+				Size = { 650, 180 }
+			},
+		},
+		kas_ShaderBall = GroupOperator {
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderBall\"  adds a shader ball model to your Fusion 3D system scene. It is used to apply and preview the look of surface materials. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n \nThis node's output is supposed to be connected directly to the \"kas_ShaderPreview\" nodes input connection so you can see a high-quality preview of your surface material. ", },
+				LightingControls = Input { Value = 1, },
+				MaterialInput = InstanceInput {
+					SourceOp = "ShaderBallFBXMesh3D",
+					Source = "MaterialInput",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 715, 313.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 545.667, 172.813, 228, 20.7546 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -483.6, 302.428 }
+			},
+			Tools = ordered() {
+				ShaderBallCamera3D = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							{
+								Tools = ordered() {
+									PreviewCamera3D = Camera3D {
+										ViewInfo = OperatorInfo { Pos = { 550, -246.894 } },
+										CtrlWZoom = false,
+										NameSet = true,
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = -8.19999504089355 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4 },
+											["Transform3DOp.Translate.Z"] = Input { Value = 2.30316502834493 },
+											FLength = Input { Value = 22.3900912079698 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 17 },
+											AoV = Input { Value = 37.24 },
+											["Stereo.Mode"] = Input { Value = FuID { "OffAxis" } },
+											["Transform3DOp.Rotate.Y"] = Input { Value = -45.0000267028809 },
+											["Transform3DOp.Translate.Y"] = Input { Value = 0.444355502984551 },
+											FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" } },
+											["Transform3DOp.Translate.X"] = Input { Value = -2.39945639043846 }
+										},
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input {
+							Value = -2.4,
+							Expression = "-2.4",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.47,
+							Expression = "0.47",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							Value = 2.3,
+							Expression = "2.3",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -8.2,
+							Expression = "-8.2",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = -45,
+							Expression = "-45.0",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "0.0", },
+						AoV = Input { Value = 37.24, },
+						FLength = Input { Value = 22.3900912079698, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						IDepth = Input { Value = 300, },
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.BlendMode.GL.BlendMode"] = Input { Value = FuID { "Replace" }, },
+						["SurfacePlaneInputs.BlendMode.SW.BlendMode"] = Input { Value = FuID { "SolidMatte" }, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 17, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -247.5 } },
+				},
+				ShaderBallReplaceNormals3D = ReplaceNormals3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallFBXMesh3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -280.5 } },
+				},
+				ShaderBallDirectionalLight = LightDirectional {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LightingControls = Input { Value = 1, },
+						["Transform3DOp.Rotate.X"] = Input { Expression = "kas_ShaderBall.RotateXInput", },
+						["Transform3DOp.Rotate.Y"] = Input { Expression = "kas_ShaderBall.RotateYInput", },
+						["Transform3DOp.Rotate.Z"] = Input {
+							Value = 35,
+							Expression = "kas_ShaderBall.RotateZInput",
+						},
+						Enabled = Input { Expression = "kas_ShaderBall.LightEnabled", },
+						Intensity = Input { Expression = "kas_ShaderBall.LightIntensityInput", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -181.5 } },
+				},
+				ShaderBallMerge3D = Merge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "ShaderBallCamera3D",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ShaderBallReplaceNormals3D",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ShaderBallDirectionalLight",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -247.5 } },
+				},
+				ShaderBallFBXMesh3D = SurfaceFBXMesh {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						NumMtlSlots = 0
+					},
+					Inputs = {
+						ImportFile = Input { Value = "Macros:/KickAss ShaderZ/Assets/kas_ShaderBall.obj", },
+						ObjName = Input { Value = "ShaderBall", },
+						TransformToWorld = Input { Value = 0, },
+						EnableAxisConversion = Input { Value = 1, },
+						EnableUnitConversion = Input { Value = 1, },
+						Triangulate = Input { Value = 0, },
+						ImportVertexColors = Input { Value = 0, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "PBRReflect",
+							Source = "MaterialOutput",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				LightEnabled = {
+					CBC_TriState = false,
+					INP_Integer = false,
+					INPID_InputControl = "CheckboxControl",
+					LINKS_Name = "Light Enabled",
+					IC_ControlPage = 1,
+					LINKID_DataType = "Number",
+					INP_Default = 1,
+				},
+				LightingControls = {
+					INP_Integer = false,
+					LBLC_DropDownButton = true,
+					INPID_InputControl = "LabelControl",
+					LBLC_NumInputs = 6,
+					IC_ControlPage = 1,
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					LBLC_NestLevel = 1,
+					LINKS_Name = "Lighting Controls",
+				},
+				LightIntensityInput = {
+					INP_MaxAllowed = 100,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_ControlPage = 1,
+					ICD_Center = 0.5,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = 0,
+					LINKID_DataType = "Number",
+					INP_MaxScale = 2,
+					LINKS_Name = "Light Intensity",
+				},
+				RotateXInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate X",
+				},
+				RotateYInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Y",
+				},
+				RotateZInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 35,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Z",
+				},
+				LightColorRedInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					ICD_Center = 1,
+					INP_Default = 1,
+					INP_MinScale = -1,
+					CLRC_ShowWheel = true,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					IC_ControlGroup = 2,
+					INP_MaxScale = 5,
+					LINKS_Name = "Light Color",
+				},
+				LightColorGreenInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					ICD_Center = 1,
+					INP_Default = 1,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+				},
+				LightColorBlueInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					ICD_Center = 1,
+					INP_Default = 1,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 2,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+				}
+			}
+		},
+		PBRBumpMap = BumpMap {
+			Inputs = {
+				SourceImageType = Input { Value = 1, },
+				Input = Input {
+					SourceOp = "Normal",
+					Source = "Output",
+				},
+				MaterialID = Input { Value = 2, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 385, 445.5 } },
+		},
+		PBRReflect = MtlReflect {
+			Inputs = {
+				BackgroundMaterial = Input {
+					SourceOp = "PBRCookTorrance",
+					Source = "MaterialOutput",
+				},
+				["Reflection.FaceOnStrength"] = Input { Value = 0.1, },
+				["Reflection.Color.Material"] = Input {
+					SourceOp = "IBLSphereMap",
+					Source = "MaterialOutput",
+				},
+				["Refraction.RefractiveIndex.RGB"] = Input { Value = 1, },
+				["Refraction.Tint.Red"] = Input { Value = 0, },
+				["Refraction.Tint.Green"] = Input { Value = 0, },
+				["Refraction.Tint.Blue"] = Input { Value = 0, },
+				["Bumpmap.Material"] = Input {
+					SourceOp = "PBRBumpMap",
+					Source = "MaterialOutput",
+				},
+				MaterialID = Input { Value = 3, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 605, 313.5 } },
+		},
+		PBRCookTorrance = MtlCookTorrance {
+			Inputs = {
+				["Diffuse.Color.Material"] = Input {
+					SourceOp = "BaseColor",
+					Source = "Output",
+				},
+				["Specular.Nest"] = Input { Value = 1, },
+				["Specular.Roughness"] = Input { Value = 0.2, },
+				["Specular.Roughness.Material"] = Input {
+					SourceOp = "Roughness",
+					Source = "Output",
+				},
+				["Bumpmap.Material"] = Input {
+					SourceOp = "PBRBumpMap",
+					Source = "MaterialOutput",
+				},
+				MaterialID = Input { Value = 1, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 495, 313.5 } },
+		},
+		IBLSphereMap = SphereMap {
+			Inputs = {
+				Rotation = Input { Value = 1, },
+				Image = Input {
+					SourceOp = "IBL",
+					Source = "Output",
+				},
+				MaterialIDNest = Input { Value = 1, },
+				MaterialID = Input { Value = 6, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 605, 280.5 } },
+		}
+	},
+	Frames = {
+		{
+			FrameTypeID = "ChildFrame",
+			Mode = 3,
+			LayoutPreset = 0,
+			PresetName = "Default",
+			Left = 0,
+			Top = 27,
+			Width = 1720,
+			Height = 1200,
+			ZoneInfo = {
+				["!Right"] = {
+				},
+				["!Left"] = {
+				},
+				AuxLeft = { Expanded = true },
+				Right = { Expanded = true, },
+				Left = { Expanded = false, },
+				AuxRight = { Expanded = true }
+			},
+			ViewInfo = {
+				Viewer1 = { Show = true, RatioY = 0.01, RatioX = 1.05246913580247, },
+				InnerLeft = {
+				},
+				MainSplit = {
+					RatioX = 100,
+					RatioY = 1.00090171325518,
+				},
+				CenterSplit = {
+					RatioX = 1,
+					RatioY = 100,
+				},
+				Viewer2 = { Show = true, RatioY = 0.01, RatioX = 0.947530864197531, },
+				Comments = { Show = false },
+				Time = { Show = true, PixelY = 83, RatioX = 100, },
+				InnerColumns = {
+					RatioX = 100,
+					RatioY = 1.99909828674482,
+				},
+				Keyframes = { Show = false, },
+				LayoutStrip = { Show = true, RatioX = 100, },
+				Inspector = { Show = true, RatioY = 1, RatioX = 100, },
+				InnerRight = {
+				},
+				OuterLeft = {
+				},
+				OuterColumns = {
+					RatioX = 100,
+					RatioY = 1,
+				},
+				Effects = { Show = false, },
+				Clips = { Show = false, },
+				Metadata = { Show = false, },
+				ActionStrip = { Show = true, RatioX = 100, },
+				ViewerSplit = {
+					RatioX = 100,
+					RatioY = 1,
+				},
+				Nodes = { Show = true, RatioY = 99.9098286744815, RatioX = 1, },
+				OuterRight = {
+					RatioY = 100,
+					PixelX = 420,
+				},
+				MediaPool = { Show = false, },
+				Spline = { Show = false, }
+			},
+			Views = ordered() {
+				Effects = MultiView {
+					Active = "EffectView",
+					ViewList = ordered() {
+						EffectView = "EffectView"
+					},
+				},
+				Nodes = MultiView {
+					Active = "FlowView",
+					ViewList = ordered() {
+						FlowView = "FlowView"
+					},
+					Names = {
+						FlowView = "FlowView"
+					},
+					FlowView = FlowView {
+						Flags = {
+							Navigator = true,
+							AutoHideNavigator = true,
+							AutoSnap = true
+						},
+						NavigatorSize = { 200, 140 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						RootScale = 1,
+						RootOffset = { 21.3333, -252.818 }
+					}
+				},
+				Keyframes = MultiView {
+					Active = "TimelineView",
+					ViewList = ordered() {
+						TimelineView = "TimelineView"
+					},
+					Names = {
+						TimelineView = "TimelineView"
+					},
+					TimelineView = TimelineView {
+						TreeControlState = {
+						},
+						DisplayMode = "All Tools",
+						ShowCurrentTimeTools = false,
+						Filter = "Show All",
+						ShowSelectedTools = false,
+						ShowAnimatedToolsOnly = false,
+						ShowEditBoxes = false,
+						KeyFrameView = {
+							Position = { Left = 232, Bottom = 320 },
+							ScaleX = 2.14424951267057,
+							OffsetX = -51.4619883040936,
+							OffsetY = 0,
+							AutoScaling = "scroll",
+							AutoSnapTo = "frame",
+							AutoSnapToGuidelines = false,
+							GuidelinesGrabEnabled = true,
+							GuidelinesSnapTo = "frame"
+						},
+						Spreadsheet = { LeftPos = 232, Visible = false }
+					}
+				},
+				Spline = MultiView {
+					Active = "SplineView",
+					ViewList = ordered() {
+						SplineView = "SplineEditorView"
+					},
+					Names = {
+						SplineView = "SplineView"
+					},
+					SplineView = SplineEditorView {
+						LeftPos = 264,
+						ScaleX = 0.2,
+						ScaleY = 0.00338983050847458,
+						OffsetX = -3.4,
+						OffsetY = 0,
+						AutoScaling = "scroll",
+						AutoSnapTo = "frame",
+						AutoSnapToGuidelines = false,
+						GuidelinesSnapTo = "frame",
+						ShowKeyMarkers = false,
+						IndependentHandles = false,
+						ShowNonSplineModifiers = false,
+						GuidelinesGrabEnabled = true,
+						ShowOneToolOnly = false,
+						ShowSelectedTools = false,
+						ShowAllInputs = false,
+						Filter = "Show All"
+					}
+				},
+				Inspector = MultiView {
+					Active = "Tools",
+					ViewList = ordered() {
+						Tools = "ControlView",
+						Modifiers = "ModifierView"
+					},
+				},
+				Viewer1 = MultiView {
+					Active = "LeftView",
+					ViewList = ordered() {
+						LeftView = "PreviewContainer"
+					},
+					Names = {
+						LeftView = "LeftView"
+					},
+				},
+				Viewer2 = MultiView {
+					Active = "RightView",
+					ViewList = ordered() {
+						RightView = "PreviewContainer"
+					},
+					Names = {
+						RightView = "RightView"
+					},
+				},
+				Time = "TimeView",
+				ActionStrip = "ActionStripView",
+				LayoutStrip = "LayoutStripView"
+			},
+			Layout = {
+				Rows = 2,
+				RatioX = 1,
+				RatioY = 1,
+				{ ID = "LayoutStrip", RatioX = 100, FixedY = 36, Flat = true },
+				{
+					Columns = 2,
+					RatioY = 1,
+					{
+						Rows = 3,
+						RatioX = 1,
+						RatioY = 100,
+						{
+							Rows = 2,
+							RatioX = 1,
+							RatioY = 100,
+							{
+								Columns = 2,
+								RatioX = 100,
+								RatioY = 1,
+								{ ID = "Viewer1", RatioX = 1.05246913580247, RatioY = 0.01 },
+								{ ID = "Viewer2", RatioX = 0.947530864197531 }
+							},
+							{ ID = "Time", FixedY = 83, Flat = true }
+						},
+						{ ID = "ActionStrip", FixedY = 50, Flat = true },
+						{ ID = "Nodes", RatioX = 1, RatioY = 99.9098286744815 }
+					},
+					{ ID = "Inspector", RatioX = 100, RatioY = 1 }
+				}
+			}
+		}
+	},
+	Prefs = {
+		Comp = {
+			Views = {
+				RightView = {
+					SideB = {
+						PrevCtrlInactiveColor = 4278255360,
+						PickW = 1,
+						PickH = 1,
+						PrevCtrlActiveColor = 4278190335,
+						Viewer = {
+							EnableLUTs = false,
+							LUTPlugin = "FusionViewLUT",
+							FitMarginY = 0,
+							FitMarginX = 0,
+							FitMarginType = 0,
+							FarZ = -1000,
+							NearZ = 0
+						}
+					},
+				},
+				LeftView = {
+					Viewer = {
+						ScaleMode = 1,
+					},
+					SideB = {
+						PrevCtrlInactiveColor = 4278255360,
+						PickW = 1,
+						PickH = 1,
+						PrevCtrlActiveColor = 4278190335,
+						Viewer = {
+							EnableLUTs = false,
+							LUTPlugin = "FusionViewLUT",
+							FitMarginY = 0,
+							FitMarginX = 0,
+							FitMarginType = 0,
+							FarZ = -1000,
+							NearZ = 0
+						}
+					},
+					View3D = {
+						Options = {
+							Lighting = true,
+							ShowCameras = false,
+						},
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 27.5999984741211,
+								X = 25.4000015258789,
+								Z = 0
+							},
+							Scale = 0.598048031330109,
+							Position = {
+								Y = -0.0116435866802931,
+								X = 0.00473883002996445,
+								Z = 0.000594817101955414
+							}
+						},
+						CameraName = "Perspective",
+					},
+				},
+				View1 = {
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = -20,
+								X = 15,
+								Z = 0
+							}
+						}
+					},
+					PrevCtrlInactiveColor = 0,
+					PickW = 1,
+					SideB = {
+						PrevCtrlInactiveColor = 4278255360,
+						PickW = 1,
+						PickH = 1,
+						PrevCtrlActiveColor = 4278190335,
+						Viewer = {
+							EnableLUTs = false,
+							LUTPlugin = "FusionViewLUT",
+							FitMarginY = 0,
+							FitMarginX = 0,
+							FitMarginType = 0,
+							FarZ = -1000,
+							NearZ = 0
+						}
+					},
+					FullScreen = false,
+					PickH = 1,
+					AlwaysOnTop = true,
+					PrevCtrlActiveColor = 0,
+					View3D = {
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 11.3999996185303,
+								X = 11.5999984741211,
+								Z = 0
+							},
+							Scale = 1.07798218727112,
+							Position = {
+								Y = -0.746784567832947,
+								X = 0.033829040825367,
+								Z = -0.145240396261215
+							}
+						},
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						}
+					}
+				},
+			},
+			FrameFormat = {
+				Width = 3840,
+				Height = 1920,
+				Rate = 24,
+				GuideRatio = 1.77777777777778,
+				DepthFull = 3,
+				DepthPreview = 3,
+				DepthInteractive = 3,
+			},
+			Tweaks = {
+				GPU = {
+					Enable = 1,
+				},
+				OpenCL = {
+					Enable = 1,
+					Caching = 0
+				}
+			},
+			Paths = {
+			},
+			FlowView = {
+				RemoveRouters = false
+			},
+			QuickTime = {
+			},
+		}
+	},
+}
+

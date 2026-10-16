@@ -1,0 +1,182 @@
+{
+	Tools = ordered() {
+		kas_Chrome = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_Chrome\" creates a super shiny metallic surface.\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "GreenEctoplasmPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -165, -214.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 378.294, 163.457, -186.719, 22 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1344.17, -269.8 }
+			},
+			Tools = ordered() {
+				kas_ParklandLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Copyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 280.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "kas_ParklandLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 313.5 } },
+					Version = 100
+				},
+				GreenEctoplasmPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "ChromeReflect",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1870, 379.5 } },
+				},
+				ParklandSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Rotation = Input { Value = 1, },
+						["Rotate.Y"] = Input { Value = -65, },
+						Image = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 15, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 346.5 } },
+				},
+				ChromeReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "ChromeFalloff",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 1, },
+						["Reflection.FaceOnStrength"] = Input { Value = 0.173, },
+						["Reflection.Falloff"] = Input { Value = 0, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "ParklandSphereMap",
+							Source = "MaterialOutput",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 0.553, },
+						["Refraction.Tint.Red"] = Input { Value = 0.182, },
+						["Refraction.Tint.Green"] = Input { Value = 0.188402057523773, },
+						["Refraction.Tint.Blue"] = Input { Value = 0.2, },
+						MaterialID = Input { Value = 8, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 379.5 } },
+				},
+				ChromeFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["FaceOn.Red"] = Input { Value = 0.486386208, },
+						["FaceOn.Green"] = Input { Value = 0.479556, },
+						["FaceOn.Blue"] = Input { Value = 0.693, },
+						["FaceOn.Opacity"] = Input { Value = 1, },
+						["Glancing.Red"] = Input { Value = 0, },
+						["Glancing.Green"] = Input { Value = 0.416928, },
+						["Glancing.Blue"] = Input { Value = 0.606, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0, 0.039443967745417, 1, 1 },
+									[1] = { 0, 0.659061437278699, 1, 1 }
+								}
+							},
+						},
+						Falloff = Input { Value = 0.304, },
+						FaceOnMaterial = Input {
+							SourceOp = "ChromeBlinn",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 14, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 379.5 } },
+				},
+				ChromeBlinn = MtlBlinn {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Red"] = Input { Value = 0.05448, },
+						["Diffuse.Color.Green"] = Input { Value = 0.103708859172534, },
+						["Diffuse.Color.Blue"] = Input { Value = 0.227, },
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 0, },
+						["Transmittance.Color.Red"] = Input { Value = 0.5, },
+						["Transmittance.Color.Green"] = Input { Value = 0.733288473265971, },
+						["Transmittance.Color.Blue"] = Input { Value = 1, },
+						["Transmittance.ColorDetail"] = Input { Value = 1, },
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 346.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_Chrome"
+}

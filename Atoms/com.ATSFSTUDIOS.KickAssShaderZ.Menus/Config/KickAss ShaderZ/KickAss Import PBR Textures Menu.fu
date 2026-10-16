@@ -1,0 +1,76 @@
+--[[--
+==============================================================================
+KickAss ShaderZ - v1.2 2022-11-28 01.36 AM -4
+Import PBR Textures Menu
+==============================================================================
+Requires    : Fusion v9.0.2-18.1+ or Resolve v15.1-18.1+
+Created by  : andromeda_girl
+              Andrew Hazelden <andrew@andrewhazelden.com>
+
+Adds a "File > Import > PBR Textures..." menu.
+--]]--
+
+{
+	Action
+	{
+		ID = "KAS_Import_PBR_TexturesFu9",
+		Category = "KickAss ShaderZ",
+		Name = "PBR Textures...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local scriptPath = app:MapPath("Scripts:/Tool/KickAss ShaderZ/Substance PBR Import.lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[Reactor Error] Open the Reactor window and update/re-install KickAss ShaderZ to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath, {SelectAFile = true})
+end
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Import_PBR_TexturesFu16",
+		Category = "KickAss ShaderZ",
+		Name = "PBR Textures…",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local scriptPath = app:MapPath("Scripts:/Tool/KickAss ShaderZ/Substance PBR Import.lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[Reactor Error] Open the Reactor window and update/re-install KickAss ShaderZ to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath, {SelectAFile = true})
+end
+				]=],
+			},
+		},
+	},
+	-- Fusion 9 menus with three period characters
+	Menus
+	{
+		Target = "ChildFrame",
+
+		Before "File\\Import\\PSD..."
+		{
+			"KAS_Import_PBR_TexturesFu9{}",
+		},
+	},
+	-- Fusion 16 menus with a Unicode elipsis character
+	Menus
+	{
+		Target = "ChildFrame",
+
+		Before "File\\Import\\PSD…"
+		{
+			"KAS_Import_PBR_TexturesFu16{}",
+		},
+	},
+}

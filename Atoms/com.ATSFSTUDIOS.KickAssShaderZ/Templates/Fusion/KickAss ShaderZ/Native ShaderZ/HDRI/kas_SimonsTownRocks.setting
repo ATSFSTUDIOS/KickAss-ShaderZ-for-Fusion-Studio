@@ -1,0 +1,66 @@
+{
+	Tools = ordered() {
+		ChromeReflect = MtlReflect {
+			NameSet = true,
+			Inputs = {
+				["Reflection.GlancingStrength"] = Input { Value = 1, },
+				["Reflection.Falloff"] = Input { Value = 0, },
+				["Reflection.Color.Material"] = Input {
+					SourceOp = "SimonsTownRocksSphereMap",
+					Source = "MaterialOutput",
+				},
+				["Refraction.RefractiveIndex.RGB"] = Input { Value = 1, },
+				["Refraction.Tint.Red"] = Input { Value = 0, },
+				["Refraction.Tint.Green"] = Input { Value = 0, },
+				["Refraction.Tint.Blue"] = Input { Value = 0, },
+				MaterialID = Input { Value = 8, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 440, -48.8939 } },
+		},
+		SimonsTownRocksSphereMap = SphereMap {
+			NameSet = true,
+			Inputs = {
+				Rotation = Input { Value = 1, },
+				Image = Input {
+					SourceOp = "kas_SimonsTownRocks",
+					Source = "Output",
+				},
+				MaterialIDNest = Input { Value = 1, },
+				MaterialID = Input { Value = 15, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 330.667, -49.5 } },
+		},
+		kas_SimonsTownRocks = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/kas_Simons_Town_Rocks_CapeTown_SouthAfrica_IBL.exr",
+					FormatID = "OpenEXRFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+				["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+				["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+				["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+				Comments = Input { Value = "Simon's Town Rocks, Cape Town, South Africa IBL \n\nCreative Commons:\nSimon's Town Rocks \n\nBy:\nhttps://hdrihaven.com/ \n\nIs licensed under:\nCC0 (Public Domain) ", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 220.667, -49.5 } },
+		}
+	}
+}

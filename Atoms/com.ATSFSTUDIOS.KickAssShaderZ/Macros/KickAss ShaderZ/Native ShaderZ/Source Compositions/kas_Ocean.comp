@@ -1,0 +1,3060 @@
+Composition {
+	CurrentTime = 0,
+	RenderRange = { 0, 144 },
+	GlobalRange = { 0, 144 },
+	CurrentID = 634,
+	HiQ = true,
+	PlaybackUpdateMode = 0,
+	Version = "Fusion Studio 16.1.1 build 5",
+	SavedOutputs = 2,
+	HeldTools = 0,
+	DisabledTools = 0,
+	LockedTools = 0,
+	AudioOffset = 0,
+	Resumable = true,
+	OutputClips = {
+	},
+	Tools = {
+		WaveMeshGenerator = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "You can change the ocean state by selecting the \"WavesMeshGenerator\" group and modifying the UserControls on this node. These controls are linked directly to the \"WavesSetDomain\" node which is packaged inside the group.\n\nThe current settings are for a rougher water surface.\n\nWavesMeshGenerator Parameters:\n\nMap Resolution\nSets the resolution of the 2D displacement map. \n\nNoise Scale Multiplier\nSets the scale of the waves. A higher value means smaller waves. \n\nNoise Seethe Rate Multiplier\nSets the frequency of the waves. \n\nNoise Speed Multiplier\nSets the speed of the flow of the water.\n\n3D Image Plane Resolution\nSets the polygon count of the 3D image plane being rendered (also the test plane, relatively to the DoD). If this is equal to the Map Resolution it means that every pixel displaces 1 point in space. \n\n3D Displace Scale\nSets the amount with which the noise displaces the 3D Image Plane.\n\nWater Elevation\nBasically sets the brightness of the displacement map. Some noise setups can cause the water to be higher or lower than the image plane overall. Use this to compensate. \n\nOverall Smoothness\nSets the smoothness of the water, by blurring the noise maps before displacing.\n\nNoise Angle\nThe angle of the individual waves. They don't have a square aspect by default so the look and feel changes when using this slider - might help with repetitions in the overall pattern as well. \n\nWater Flow Angle\nChanges the direction in which the water flows. This setting has an angle control in the viewer as well. \n\nWave Sharpness\nPinches the tips of the waves together. Special Thanks to Robert Z!\n\nCopyright Credits:\n\nAnonymous Water Template \n\nThe Anonymous Water Template is the actual Fusion 3D water setup as it was used on Roland Emmerich's Anonymous (2011) film, courtesy of Uncharted Territory.\n\nSIGGRAPH 2012 Presentation on Anonymous:\nhttps://www.youtube.com/watch?v=mOpN6C3ZrjY", },
+				TextureMapInput = InstanceInput {
+					SourceOp = "WaveNoiseInputPipeRouter",
+					Source = "Input",
+					Name = "TextureMapInput",
+				},
+				MapResolution = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "MapResolution",
+					Default = 3024,
+				},
+				DoDScale = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "DoDScale",
+					Default = 0.25,
+				},
+				DoDCenter = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "DoDCenter",
+				},
+				NoiseScaleMultiplier = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "NoiseScaleMultiplier",
+					Default = 1,
+				},
+				NoiseSeetheRateMultiplier = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "NoiseSeetheRateMultiplier",
+					Default = 2.86,
+				},
+				NoiseSpeedMultiplier = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "NoiseSpeedMultiplier",
+					Default = 0.08,
+				},
+				DImagePlaneResolution = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "DImagePlaneResolution",
+					Default = 4024,
+				},
+				DDisplaceScale = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "DDisplaceScale",
+					Default = 3.5,
+				},
+				WaterElevation = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "WaterElevation",
+				},
+				OverallSmoothness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "OverallSmoothness",
+					Default = 0,
+				},
+				NoiseAngle = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "NoiseAngle",
+					Default = 33.4,
+				},
+				WaterFlowAngle = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "WaterFlowAngle",
+					Default = -158.6,
+				},
+				WaveSharpness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "WaveSharpness",
+					Default = 4,
+				},
+				HumongousWavesInfluence = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "HumongousWavesInfluence",
+					Default = 1,
+				},
+				HumongousWavesSmoothness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "HumongousWavesSmoothness",
+					Default = 0,
+				},
+				BigWavesInfluence = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "BigWavesInfluence",
+					Default = 1,
+				},
+				BigWavesSmoothness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "BigWavesSmoothness",
+					Default = 0,
+				},
+				MediumWavesInfluence = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "MediumWavesInfluence",
+					Default = 1,
+				},
+				MediumWavesSmoothness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "MediumWavesSmoothness",
+					Default = 3.14,
+				},
+				SmallWavesInfluence = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "SmallWavesInfluence",
+					Default = 0.23,
+				},
+				SmallWavesSmoothness = InstanceInput {
+					SourceOp = "WavesSetDomain",
+					Source = "SmallWavesSmoothness",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				WaveTextureBumpOutput = InstanceOutput {
+					SourceOp = "SetDomainPipeRouter",
+					Source = "Output",
+					Name = "WaveTextureBumpOutput",
+				},
+				DisplacedMeshOutput = InstanceOutput {
+					SourceOp = "WaveSurfaceOutputPipeRouter",
+					Source = "Output",
+					Name = "DisplacedMeshOutput",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 330, 49.5 },
+				Flags = {
+					AllowPan = false,
+					GridSnap = true,
+					PipesAlways = true,
+					AutoSnap = true,
+					FullIndicator = true,
+					RemoveRouters = true
+				},
+				Size = { 443.275, 302.212, 221.637, 29.0909 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -249.544, 216.279 }
+			},
+			Tools = ordered() {
+				WaveNoiseInputPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "OceanGeneratorPipeRouter",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 55, -214.5 } },
+				},
+				OceanSurfaceImagePlane3D = ImagePlane3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							{
+								Tools = ordered() {
+									ImagePlane3D1_3_1 = ImagePlane3D {
+										ViewInfo = OperatorInfo { Pos = { 275, -16.5 } },
+										Name = "ImagePlane3D1_3_1",
+										CtrlWZoom = false,
+										Inputs = {
+											["MtlStdInputs.Diffuse.Color.Green"] = Input { Value = 0.357340437220007 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1 },
+											["MtlStdInputs.Specular.Nest"] = Input { Value = 1 },
+											["SurfacePlaneInputs.SubdivisionWidth"] = Input {
+												Value = 1024,
+												Expression = "WavesSetDomain.DImagePlaneResolution"
+											},
+											["MtlStdInputs.Specular.Exponent"] = Input { Value = 18.8666667 },
+											["Transform3DOp.Scale.Y"] = Input { Value = 24 },
+											["MtlStdInputs.Specular.Color.Green"] = Input { Value = 0.688858811786 },
+											["Transform3DOp.Scale.X"] = Input { Value = 14 },
+											MaterialInput = Input {
+												SourceOp = "Blinn1",
+												Source = "MaterialOutput"
+											},
+											["Transform3DOp.ScaleLock"] = Input { Value = 0 },
+											["SurfacePlaneInputs.ObjectID.Nest"] = Input { Value = 1 },
+											["MtlStdInputs.Diffuse.Color.Blue"] = Input { Value = 0.303688296296296 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 1 },
+											["MtlStdInputs.Diffuse.Color.Red"] = Input { Value = 0.393333333333333 },
+											["MtlStdInputs.Specular.Color.Blue"] = Input { Value = 0.539022222222222 },
+											["MtlStdInputs.Specular.Intensity"] = Input { Value = 0.3480663 }
+										},
+										CustomData = {
+										}
+									}
+								}
+							},
+							{
+								Tools = ordered() {
+									ImagePlane3D1_3_1 = ImagePlane3D {
+										Inputs = {
+											["MtlStdInputs.Diffuse.Color.Green"] = Input { Value = 0.357340437220007 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1 },
+											["MtlStdInputs.Specular.Nest"] = Input { Value = 1 },
+											["SurfacePlaneInputs.SubdivisionWidth"] = Input {
+												Value = 1024,
+												Expression = "WavesSetDomain.DImagePlaneResolution"
+											},
+											["MtlStdInputs.Specular.Exponent"] = Input { Value = 18.8666667 },
+											["Transform3DOp.Scale.Y"] = Input { Value = 10 },
+											["MtlStdInputs.Specular.Color.Green"] = Input { Value = 0.688858811786 },
+											["Transform3DOp.Scale.X"] = Input { Value = 10 },
+											MaterialInput = Input {
+												SourceOp = "CookTorrance1_3_1_1",
+												Source = "MaterialOutput"
+											},
+											["Transform3DOp.ScaleLock"] = Input { Value = 0 },
+											["SurfacePlaneInputs.ObjectID.Nest"] = Input { Value = 1 },
+											["MtlStdInputs.Diffuse.Color.Blue"] = Input { Value = 0.303688296296296 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 1 },
+											["MtlStdInputs.Diffuse.Color.Red"] = Input { Value = 0.393333333333333 },
+											["MtlStdInputs.Specular.Color.Blue"] = Input { Value = 0.539022222222222 },
+											["MtlStdInputs.Specular.Intensity"] = Input { Value = 0.3480663 }
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 275, -16.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.ScaleLock"] = Input { Value = 0, },
+						["Transform3DOp.Scale.X"] = Input { Value = 14, },
+						["Transform3DOp.Scale.Y"] = Input { Value = 24, },
+						["SurfacePlaneInputs.SubdivisionWidth"] = Input {
+							Value = 4024,
+							Expression = "WavesSetDomain.DImagePlaneResolution",
+						},
+						["SurfacePlaneInputs.Lighting.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.Lighting.IsShadowCaster"] = Input { Value = 0, },
+						["SurfacePlaneInputs.ObjectID.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "WavesCookTorrance",
+							Source = "MaterialOutput",
+						},
+						["MtlStdInputs.Diffuse.Color.Red"] = Input { Value = 0.393333333333333, },
+						["MtlStdInputs.Diffuse.Color.Green"] = Input { Value = 0.357340437220007, },
+						["MtlStdInputs.Diffuse.Color.Blue"] = Input { Value = 0.303688296296296, },
+						["MtlStdInputs.Specular.Nest"] = Input { Value = 1, },
+						["MtlStdInputs.Specular.Color.Green"] = Input { Value = 0.688858811786, },
+						["MtlStdInputs.Specular.Color.Blue"] = Input { Value = 0.539022222222222, },
+						["MtlStdInputs.Specular.Intensity"] = Input { Value = 0.3480663, },
+						["MtlStdInputs.Specular.Exponent"] = Input { Value = 18.8666667, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, -82.5 } },
+				},
+				WavesCookTorrance = MtlCookTorrance {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SpecularNest = Input { Value = 1, },
+						["Diffuse.Nest"] = Input { Value = 0, },
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Color.Red"] = Input { Value = 0.995407044887543, },
+						["Specular.Color.Green"] = Input { Value = 0.879947493863195, },
+						["Specular.Color.Blue"] = Input { Value = 0.497703522443771, },
+						["Specular.Intensity"] = Input { Value = 0.29, },
+						["Specular.Roughness"] = Input { Value = 2, },
+						["Specular.RefractiveIndex"] = Input { Value = 2.346, },
+						["Transmittance.Color.Red"] = Input { Value = 0.73, },
+						["Transmittance.Color.Green"] = Input { Value = 0.921134942318248, },
+						["Transmittance.Color.Blue"] = Input { Value = 1, },
+						MaterialID = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, -115.5 } },
+				},
+				OceanSurfaceTransform3D = Transform3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "OceanSurfaceImagePlane3D",
+							Source = "Output",
+						},
+						["Transform3DOp.Rotate.X"] = Input { Value = -90, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, -49.5 } },
+				},
+				SurfaceDisplace3D = Displace3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "OceanSurfaceTransform3D",
+							Source = "Output",
+						},
+						Scale = Input {
+							Value = 3.5,
+							Expression = "WavesSetDomain.DDisplaceScale",
+						},
+						Input = Input {
+							SourceOp = "SetDomainPipeRouter",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+				},
+				WavesCreateBumpMap = CreateBumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FilterSize = Input { Value = FuID { "5" }, },
+						Input = Input {
+							SourceOp = "SetDomainPipeRouter",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 4.98, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -115.5 } },
+				},
+				WavesBumpBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blue = Input { Value = 0, },
+						Brightness = Input { Value = -0.5, },
+						Input = Input {
+							SourceOp = "WavesCreateBumpMap",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -82.5 } },
+				},
+				WavesDisplace3D = Displace3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "SurfaceDisplace3D",
+							Source = "Output",
+						},
+						Channel = Input { Value = 6, },
+						Scale = Input {
+							Value = 4,
+							Expression = "WavesSetDomain.WaveSharpness",
+						},
+						Input = Input {
+							SourceOp = "WavesRemappedBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 16.5 } },
+				},
+				WavesRemappedBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+						}
+					},
+					Inputs = {
+						Blue = Input { Value = 0, },
+						Gain = Input { Value = -1, },
+						Input = Input {
+							SourceOp = "WavesBumpChannelBooleans",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -16.5 } },
+				},
+				WavesBumpChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ToGreen = Input { Value = 15, },
+						ToBlue = Input { Value = 1, },
+						EnableExtraChannels = Input { Value = 1, },
+						ToUTexture = Input { Value = 22, },
+						ToVTexture = Input { Value = 23, },
+						Background = Input {
+							SourceOp = "WavesBumpBrightnessContrast",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"WavesBumpChannelBooleans\" node is responsible for creating the UVs.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -49.5 } },
+				},
+				WaveSurfaceOutputPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "WavesDisplace3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 440, 16.5 } },
+				},
+				WavesSetDomain = SetDomain {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							[2] = {
+								Tools = ordered() {
+									WavesSetDomain = SetDomain {
+										Inputs = {
+											AdjustLeft = Input { Expression = "0.0" },
+											DImagePlaneResolution = Input { Value = 5120 },
+											Right = Input {
+												Value = 0.574477665615179,
+												Expression = "DoDCenter.X+DoDScale/2"
+											},
+											Left = Input {
+												Value = 0.474477665615179,
+												Expression = "DoDCenter.X-DoDScale/2"
+											},
+											Comments = Input { Value = "The \"WavesSetDomain\" node has the main controls for the water displacement. The current settings are for a rougher water surface.\n\nSee comments on the \"SpectralNoiseGenerator\" group for a more detailed tool settings explanation." },
+											BigWavesSmoothness = Input { Value = 0 },
+											DoDCenter = Input { Value = { 0.524477665615179, 0.500413483245084 } },
+											NoiseSeetheRateMultiplier = Input { Value = 2.86 },
+											HumongousWavesSmoothness = Input { Value = 0 },
+											MapResolution = Input { Value = 3024 },
+											Bottom = Input {
+												Value = 0.450413483245084,
+												Expression = "DoDCenter.Y-DoDScale/2"
+											},
+											DDisplaceScale = Input { Value = 2 },
+											WaveSharpness = Input { Value = 3 },
+											Top = Input {
+												Value = 0.550413483245084,
+												Expression = "DoDCenter.Y+DoDScale/2"
+											},
+											NoiseSpeedMultiplier = Input { Value = 0.08 },
+											Input = Input {
+												SourceOp = "BackDODSetCanvasColor",
+												Source = "Output"
+											},
+											SmallWavesInfluence = Input { Value = 0.352 },
+											DoDScale = Input { Value = 0.1 },
+											NoiseAngle = Input { Value = 20 }
+										},
+										CtrlWZoom = false,
+										UserControls = ordered() {
+											MapResolution = {
+												INP_Integer = true,
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												INP_Default = 1024,
+												INP_MinScale = 2,
+												INP_MinAllowed = 2,
+												LINKID_DataType = "Number",
+												LINKS_Name = "Map Resolution"
+											},
+											DoDScale = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												LINKS_Name = "DoD Scale",
+												INP_Default = 0
+											},
+											DoDCenter = {
+												INPID_PreviewControl = "CrosshairControl",
+												INPID_InputControl = "OffsetControl",
+												LINKID_DataType = "Point",
+												IC_ControlPage = 0,
+												CHC_Style = 0,
+												LINKS_Name = "DoD Center"
+											},
+											NoiseScaleMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Scale Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											NoiseSeetheRateMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												LINKS_Name = "Noise Seethe Rate Multiplier"
+											},
+											NoiseSpeedMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Speed Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											DImagePlaneResolution = {
+												INP_Default = 512,
+												INP_MinScale = 1,
+												INP_MinAllowed = 1,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												LINKS_Name = "3D Image Plane Resolution"
+											},
+											DDisplaceScale = {
+												LINKID_DataType = "Number",
+												LINKS_Name = "3D Displace Scale",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												INP_Default = 0.24
+											},
+											WaterElevation = {
+												INP_MinScale = -1,
+												LINKID_DataType = "Number",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Water Elevation"
+											},
+											OverallSmoothness = {
+												INP_Default = 0,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 20,
+												LINKS_Name = "Overall Smoothness"
+											},
+											NoiseAngle = {
+												INP_MinScale = -180,
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Angle",
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaterFlowAngle = {
+												LINKID_DataType = "Number",
+												INPID_PreviewControl = "AngleControl",
+												LINKS_Name = "Water Flow Angle",
+												INPID_InputControl = "SliderControl",
+												INP_MinScale = -180,
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaveSharpness = {
+												LINKID_DataType = "Number",
+												INP_Default = 0,
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Wave Sharpness"
+											},
+											HumongousWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Humongous Waves Influence",
+												INP_Default = 1
+											},
+											HumongousWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Humongous Waves Smoothness"
+											},
+											BigWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Big Waves Influence",
+												INP_Default = 1
+											},
+											BigWavesSmoothness = {
+												INP_MaxAllowed = 100,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 12,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Big Waves Smoothness"
+											},
+											MediumWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Medium Waves Influence",
+												INP_Default = 1
+											},
+											MediumWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 3.14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Medium Waves Smoothness"
+											},
+											SmallWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Small Waves Influence",
+												INP_Default = 0.23
+											},
+											SmallWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Small Waves Smoothness"
+											}
+										},
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -660, 148.5 } },
+										CustomData = {
+										}
+									}
+								}
+							},
+							[3] = {
+								Tools = ordered() {
+									WavesSetDomain = SetDomain {
+										Inputs = {
+											AdjustLeft = Input { Expression = "0.0" },
+											DImagePlaneResolution = Input { Value = 4024 },
+											Right = Input {
+												Value = 0.649477665615179,
+												Expression = "DoDCenter.X+DoDScale/2"
+											},
+											Left = Input {
+												Value = 0.399477665615179,
+												Expression = "DoDCenter.X-DoDScale/2"
+											},
+											Comments = Input { Value = "The \"WavesSetDomain\" node has the main controls for the water displacement. The current settings are for a rougher water surface.\n\nSee comments on the \"SpectralNoiseGenerator\" group for a more detailed tool settings explanation." },
+											BigWavesSmoothness = Input { Value = 0 },
+											WaterFlowAngle = Input { Value = -158.6 },
+											NoiseSeetheRateMultiplier = Input { Value = 2.86 },
+											HumongousWavesSmoothness = Input { Value = 0 },
+											MapResolution = Input { Value = 3024 },
+											Bottom = Input {
+												Value = 0.375413483245084,
+												Expression = "DoDCenter.Y-DoDScale/2"
+											},
+											NoiseScaleMultiplier = Input { Value = 1.22 },
+											DDisplaceScale = Input { Value = 4 },
+											WaveSharpness = Input { Value = 5 },
+											Top = Input {
+												Value = 0.625413483245084,
+												Expression = "DoDCenter.Y+DoDScale/2"
+											},
+											Input = Input {
+												SourceOp = "BackDODSetCanvasColor",
+												Source = "Output"
+											},
+											NoiseSpeedMultiplier = Input { Value = 0.08 },
+											DoDCenter = Input { Value = { 0.524477665615179, 0.500413483245084 } },
+											DoDScale = Input { Value = 0.25 }
+										},
+										CtrlWZoom = false,
+										UserControls = ordered() {
+											MapResolution = {
+												INP_Integer = true,
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												INP_Default = 1024,
+												INP_MinScale = 2,
+												INP_MinAllowed = 2,
+												LINKID_DataType = "Number",
+												LINKS_Name = "Map Resolution"
+											},
+											DoDScale = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												LINKS_Name = "DoD Scale",
+												INP_Default = 0
+											},
+											DoDCenter = {
+												INPID_PreviewControl = "CrosshairControl",
+												INPID_InputControl = "OffsetControl",
+												LINKID_DataType = "Point",
+												IC_ControlPage = 0,
+												CHC_Style = 0,
+												LINKS_Name = "DoD Center"
+											},
+											NoiseScaleMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Scale Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											NoiseSeetheRateMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												LINKS_Name = "Noise Seethe Rate Multiplier"
+											},
+											NoiseSpeedMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Speed Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											DImagePlaneResolution = {
+												INP_Default = 512,
+												INP_MinScale = 1,
+												INP_MinAllowed = 1,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												LINKS_Name = "3D Image Plane Resolution"
+											},
+											DDisplaceScale = {
+												LINKID_DataType = "Number",
+												LINKS_Name = "3D Displace Scale",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												INP_Default = 0.24
+											},
+											WaterElevation = {
+												INP_MinScale = -1,
+												LINKID_DataType = "Number",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Water Elevation"
+											},
+											OverallSmoothness = {
+												INP_Default = 0,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 20,
+												LINKS_Name = "Overall Smoothness"
+											},
+											NoiseAngle = {
+												INP_MinScale = -180,
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Angle",
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaterFlowAngle = {
+												LINKID_DataType = "Number",
+												INPID_PreviewControl = "AngleControl",
+												LINKS_Name = "Water Flow Angle",
+												INPID_InputControl = "SliderControl",
+												INP_MinScale = -180,
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaveSharpness = {
+												LINKID_DataType = "Number",
+												INP_Default = 0,
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Wave Sharpness"
+											},
+											HumongousWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Humongous Waves Influence",
+												INP_Default = 1
+											},
+											HumongousWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Humongous Waves Smoothness"
+											},
+											BigWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Big Waves Influence",
+												INP_Default = 1
+											},
+											BigWavesSmoothness = {
+												INP_MaxAllowed = 100,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 12,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Big Waves Smoothness"
+											},
+											MediumWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Medium Waves Influence",
+												INP_Default = 1
+											},
+											MediumWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 3.14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Medium Waves Smoothness"
+											},
+											SmallWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Small Waves Influence",
+												INP_Default = 0.23
+											},
+											SmallWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Small Waves Smoothness"
+											}
+										},
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -660, 148.5 } },
+										CustomData = {
+										}
+									}
+								}
+							},
+							[4] = {
+								Tools = ordered() {
+									WavesSetDomain = SetDomain {
+										Inputs = {
+											AdjustLeft = Input { Expression = "0.0" },
+											DImagePlaneResolution = Input { Value = 4024 },
+											Right = Input {
+												Value = 0.649477665615179,
+												Expression = "DoDCenter.X+DoDScale/2"
+											},
+											Left = Input {
+												Value = 0.399477665615179,
+												Expression = "DoDCenter.X-DoDScale/2"
+											},
+											Comments = Input { Value = "The \"WavesSetDomain\" node has the main controls for the water displacement. The current settings are for a rougher water surface.\n\nSee comments on the \"SpectralNoiseGenerator\" group for a more detailed tool settings explanation." },
+											BigWavesSmoothness = Input { Value = 0 },
+											DoDCenter = Input { Value = { 0.524477665615179, 0.500413483245084 } },
+											NoiseSeetheRateMultiplier = Input { Value = 2.86 },
+											HumongousWavesSmoothness = Input { Value = 0 },
+											MapResolution = Input { Value = 3024 },
+											Bottom = Input {
+												Value = 0.375413483245084,
+												Expression = "DoDCenter.Y-DoDScale/2"
+											},
+											DDisplaceScale = Input { Value = 3.5 },
+											WaveSharpness = Input { Value = 4 },
+											Top = Input {
+												Value = 0.625413483245084,
+												Expression = "DoDCenter.Y+DoDScale/2"
+											},
+											NoiseSpeedMultiplier = Input { Value = 0.08 },
+											Input = Input {
+												SourceOp = "BackDODSetCanvasColor",
+												Source = "Output"
+											},
+											WaterFlowAngle = Input { Value = -158.6 },
+											DoDScale = Input { Value = 0.25 },
+											NoiseAngle = Input { Value = 33.4 }
+										},
+										CtrlWZoom = false,
+										UserControls = ordered() {
+											MapResolution = {
+												INP_Integer = true,
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												INP_Default = 1024,
+												INP_MinScale = 2,
+												INP_MinAllowed = 2,
+												LINKID_DataType = "Number",
+												LINKS_Name = "Map Resolution"
+											},
+											DoDScale = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												LINKS_Name = "DoD Scale",
+												INP_Default = 0
+											},
+											DoDCenter = {
+												INPID_PreviewControl = "CrosshairControl",
+												INPID_InputControl = "OffsetControl",
+												LINKID_DataType = "Point",
+												IC_ControlPage = 0,
+												CHC_Style = 0,
+												LINKS_Name = "DoD Center"
+											},
+											NoiseScaleMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Scale Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											NoiseSeetheRateMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												LINKS_Name = "Noise Seethe Rate Multiplier"
+											},
+											NoiseSpeedMultiplier = {
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Speed Multiplier",
+												IC_ControlPage = 0,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											DImagePlaneResolution = {
+												INP_Default = 512,
+												INP_MinScale = 1,
+												INP_MinAllowed = 1,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 8192,
+												LINKS_Name = "3D Image Plane Resolution"
+											},
+											DDisplaceScale = {
+												LINKID_DataType = "Number",
+												LINKS_Name = "3D Displace Scale",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												INP_Default = 0.24
+											},
+											WaterElevation = {
+												INP_MinScale = -1,
+												LINKID_DataType = "Number",
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Water Elevation"
+											},
+											OverallSmoothness = {
+												INP_Default = 0,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 0,
+												INP_MaxScale = 20,
+												LINKS_Name = "Overall Smoothness"
+											},
+											NoiseAngle = {
+												INP_MinScale = -180,
+												INPID_InputControl = "SliderControl",
+												LINKID_DataType = "Number",
+												LINKS_Name = "Noise Angle",
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaterFlowAngle = {
+												LINKID_DataType = "Number",
+												INPID_PreviewControl = "AngleControl",
+												LINKS_Name = "Water Flow Angle",
+												INPID_InputControl = "SliderControl",
+												INP_MinScale = -180,
+												IC_ControlPage = 0,
+												INP_MaxScale = 180,
+												INP_Default = 0
+											},
+											WaveSharpness = {
+												LINKID_DataType = "Number",
+												INP_Default = 0,
+												IC_ControlPage = 0,
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Wave Sharpness"
+											},
+											HumongousWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Humongous Waves Influence",
+												INP_Default = 1
+											},
+											HumongousWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Humongous Waves Smoothness"
+											},
+											BigWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Big Waves Influence",
+												INP_Default = 1
+											},
+											BigWavesSmoothness = {
+												INP_MaxAllowed = 100,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 12,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Big Waves Smoothness"
+											},
+											MediumWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Medium Waves Influence",
+												INP_Default = 1
+											},
+											MediumWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 3.14,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Medium Waves Smoothness"
+											},
+											SmallWavesInfluence = {
+												INP_MaxAllowed = 1,
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												LINKS_Name = "Small Waves Influence",
+												INP_Default = 0.23
+											},
+											SmallWavesSmoothness = {
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INP_Default = 1,
+												INPID_InputControl = "SliderControl",
+												INP_MaxScale = 100,
+												LINKS_Name = "Small Waves Smoothness"
+											}
+										},
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -660, 148.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						AdjustLeft = Input { Expression = "0.0", },
+						Left = Input {
+							Value = 0.3995,
+							Expression = "DoDCenter.X-DoDScale/2",
+						},
+						Bottom = Input {
+							Value = 0.375,
+							Expression = "DoDCenter.Y-DoDScale/2",
+						},
+						Right = Input {
+							Value = 0.6495,
+							Expression = "DoDCenter.X+DoDScale/2",
+						},
+						Top = Input {
+							Value = 0.625,
+							Expression = "DoDCenter.Y+DoDScale/2",
+						},
+						Input = Input {
+							SourceOp = "BackDODSetCanvasColor",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"WavesSetDomain\" node has the main controls for the water displacement. The current settings are for a rougher water surface.\n\nYou can also change the ocean state by selecting the \"WavesMeshGenerator\" group and modifying the UserControls at the group node level. \n\nWaveSetDomain Parameters:\n\nMap Resolution\nSets the resolution of the 2D displacement map. \n\nNoise Scale Multiplier\nSets the scale of the waves. A higher value means smaller waves. \n\nNoise Seethe Rate Multiplier\nSets the frequency of the waves. \n\nNoise Speed Multiplier\nSets the speed of the flow of the water.\n\n3D Image Plane Resolution\nSets the polygon count of the 3D image plane being rendered (also the test plane, relatively to the DoD). If this is equal to the Map Resolution it means that every pixel displaces 1 point in space. \n\n3D Displace Scale\nSets the amount with which the noise displaces the 3D Image Plane.\n\nWater Elevation\nBasically sets the brightness of the displacement map. Some noise setups can cause the water to be higher or lower than the image plane overall. Use this to compensate. \n\nOverall Smoothness\nSets the smoothness of the water, by blurring the noise maps before displacing.\n\nNoise Angle\nThe angle of the individual waves. They don't have a square aspect by default so the look and feel changes when using this slider - might help with repetitions in the overall pattern as well. \n\nWater Flow Angle\nChanges the direction in which the water flows. This setting has an angle control in the viewer as well. \n\nWave Sharpness\nPinches the tips of the waves together. Special Thanks to Robert Z!\n\nCopyright Credits:\n\nAnonymous Water Template \n\nThe Anonymous Water Template is the actual Fusion 3D water setup as it was used on Roland Emmerich's Anonymous (2011) film, courtesy of Uncharted Territory.\n\nSIGGRAPH 2012 Presentation on Anonymous:\nhttps://www.youtube.com/watch?v=mOpN6C3ZrjY", },
+						MapResolution = Input { Value = 3024, },
+						DoDScale = Input { Value = 0.25, },
+						DoDCenter = Input { Value = { 0.5245, 0.5 }, },
+						NoiseSeetheRateMultiplier = Input { Value = 2.86, },
+						NoiseSpeedMultiplier = Input { Value = 0.08, },
+						DImagePlaneResolution = Input { Value = 4024, },
+						DDisplaceScale = Input { Value = 3.5, },
+						NoiseAngle = Input { Value = 33.4, },
+						WaterFlowAngle = Input { Value = -158.6, },
+						WaveSharpness = Input { Value = 4, },
+						HumongousWavesSmoothness = Input { Value = 0, },
+						BigWavesSmoothness = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, -181.5 } },
+					UserControls = ordered() {
+						MapResolution = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 0,
+							INP_MaxScale = 8192,
+							INP_Default = 1024,
+							INP_MinScale = 2,
+							INP_MinAllowed = 2,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Map Resolution",
+						},
+						DoDScale = {
+							INP_MaxAllowed = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 0,
+							LINKS_Name = "DoD Scale",
+							INP_Default = 0,
+						},
+						DoDCenter = {
+							INPID_PreviewControl = "CrosshairControl",
+							INPID_InputControl = "OffsetControl",
+							LINKID_DataType = "Point",
+							IC_ControlPage = 0,
+							CHC_Style = 0,
+							LINKS_Name = "DoD Center",
+						},
+						NoiseScaleMultiplier = {
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							LINKS_Name = "Noise Scale Multiplier",
+							IC_ControlPage = 0,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						NoiseSeetheRateMultiplier = {
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							INP_Default = 1,
+							IC_ControlPage = 0,
+							INP_MaxScale = 10,
+							LINKS_Name = "Noise Seethe Rate Multiplier",
+						},
+						NoiseSpeedMultiplier = {
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							LINKS_Name = "Noise Speed Multiplier",
+							IC_ControlPage = 0,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						DImagePlaneResolution = {
+							INP_Default = 512,
+							INP_MinScale = 1,
+							INP_MinAllowed = 1,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 0,
+							INP_MaxScale = 8192,
+							LINKS_Name = "3D Image Plane Resolution",
+						},
+						DDisplaceScale = {
+							LINKID_DataType = "Number",
+							LINKS_Name = "3D Displace Scale",
+							IC_ControlPage = 0,
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.24,
+						},
+						WaterElevation = {
+							INP_MinScale = -1,
+							LINKID_DataType = "Number",
+							IC_ControlPage = 0,
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Water Elevation",
+						},
+						OverallSmoothness = {
+							INP_Default = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 0,
+							INP_MaxScale = 20,
+							LINKS_Name = "Overall Smoothness",
+						},
+						NoiseAngle = {
+							INP_MinScale = -180,
+							INPID_InputControl = "SliderControl",
+							LINKID_DataType = "Number",
+							LINKS_Name = "Noise Angle",
+							IC_ControlPage = 0,
+							INP_MaxScale = 180,
+							INP_Default = 0,
+						},
+						WaterFlowAngle = {
+							LINKID_DataType = "Number",
+							INPID_PreviewControl = "AngleControl",
+							LINKS_Name = "Water Flow Angle",
+							INPID_InputControl = "SliderControl",
+							INP_MinScale = -180,
+							IC_ControlPage = 0,
+							INP_MaxScale = 180,
+							INP_Default = 0,
+						},
+						WaveSharpness = {
+							LINKID_DataType = "Number",
+							INP_Default = 0,
+							IC_ControlPage = 0,
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Wave Sharpness",
+						},
+						HumongousWavesInfluence = {
+							INP_MaxAllowed = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Humongous Waves Influence",
+							INP_Default = 1,
+						},
+						HumongousWavesSmoothness = {
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_Default = 14,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							LINKS_Name = "Humongous Waves Smoothness",
+						},
+						BigWavesInfluence = {
+							INP_MaxAllowed = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Big Waves Influence",
+							INP_Default = 1,
+						},
+						BigWavesSmoothness = {
+							INP_MaxAllowed = 100,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_Default = 12,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							LINKS_Name = "Big Waves Smoothness",
+						},
+						MediumWavesInfluence = {
+							INP_MaxAllowed = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Medium Waves Influence",
+							INP_Default = 1,
+						},
+						MediumWavesSmoothness = {
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_Default = 3.14,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							LINKS_Name = "Medium Waves Smoothness",
+						},
+						SmallWavesInfluence = {
+							INP_MaxAllowed = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							LINKS_Name = "Small Waves Influence",
+							INP_Default = 0.23,
+						},
+						SmallWavesSmoothness = {
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_Default = 1,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							LINKS_Name = "Small Waves Smoothness",
+						}
+					}
+				},
+				BackDODSetCanvasColor = SetCanvasColor {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "WaveNoiseInputPipeRouter",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, -214.5 } },
+				},
+				SetDomainPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "WavesSetDomain",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 220, -148.5 } },
+				}
+			},
+		},
+		SpectralNoiseGenerator = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "The \"OceanSurfaceNoiseGenerator\" creates the animated multi-spectral noise by multipliying the different wave frequencies together. \n\nThe largest wave details are controlled on the left side of the group, and the finer wave details are controlled further to the right side of the group.\n\nCopyright Credits:\n\nAnonymous Water Template \n\nThe Anonymous Water Template is the actual Fusion 3D water setup as it was used on Roland Emmerich's Anonymous (2011) film, courtesy of Uncharted Territory.\n\nSIGGRAPH 2012 Presentation on Anonymous:\nhttps://www.youtube.com/watch?v=mOpN6C3ZrjY", }
+			},
+			Outputs = {
+				WaveMapOutput = InstanceOutput {
+					SourceOp = "OceanGeneratorPipeRouter",
+					Source = "Output",
+					Name = "WaveMap Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -275, 49.5 },
+				Flags = {
+					AllowPan = false,
+					GridSnap = true,
+					PipesAlways = true,
+					AutoSnap = true,
+					FullIndicator = true,
+					RemoveRouters = true
+				},
+				Size = { 548.22, 225.805, 228, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 827.145, 62.5504 }
+			},
+			Tools = ordered() {
+				HumongousWavesChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "1-WavesSetDomain.HumongousWavesInfluence",
+						},
+						Operation = Input { Value = 11, },
+						Background = Input {
+							SourceOp = "HumongousWavesBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -990, 16.5 } },
+				},
+				HumongousWavesBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input {
+							Value = 0,
+							Expression = "WavesSetDomain.HumongousWavesSmoothness",
+						},
+						Input = Input {
+							SourceOp = "HumongousWavesFN",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -990, -16.5 } },
+				},
+				HumongousWavesFN = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							{
+								Tools = ordered() {
+									HUMONGOUS_WAVES = FastNoise {
+										Inputs = {
+											Inverted = Input { Value = 1 },
+											Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution." },
+											GlobalIn = Input { Value = 1 },
+											Brightness = Input { Value = -0.6842105 },
+											LockXY = Input { Value = 0 },
+											YScale = Input {
+												Value = 0.6,
+												Expression = "AbsoluteScaleY / 1024 * Width"
+											},
+											XScale = Input {
+												Value = 1.8848169,
+												Expression = "AbsoluteScaleX / 1024 * Width"
+											},
+											Contrast = Input { Value = 0.0631579 },
+											Angle = Input {
+												Value = 33.4,
+												Expression = "WavesSetDomain.NoiseAngle"
+											},
+											Center = Input {
+												Value = { 0.39746596064, 0.466666666666667 },
+												Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)"
+											},
+											AbsoluteScaleY = Input {
+												Value = 0.2,
+												Expression = "0.2*WavesSetDomain.NoiseScaleMultiplier"
+											},
+											Width = Input {
+												Value = 3072,
+												Expression = "WavesSetDomain.MapResolution"
+											},
+											Height = Input {
+												Value = 3072,
+												Expression = "WavesSetDomain.MapResolution"
+											},
+											Seethe = Input { Value = 0.4708995 },
+											Discontinuous = Input { Value = 1 },
+											SeetheRate = Input {
+												Value = 0.0286,
+												Expression = "0.01*WavesSetDomain.NoiseSeetheRateMultiplier"
+											},
+											AbsoluteScaleX = Input {
+												Value = 0.6282723,
+												Expression = "0.6282723*WavesSetDomain.NoiseScaleMultiplier"
+											},
+											GlobalOut = Input { Value = 300 },
+											AbsoluteCenter = Input {
+												Value = { 0.0104, 0 },
+												Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/500*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/500*time)"
+											},
+											Detail = Input { Value = 1.623037 }
+										},
+										CtrlWZoom = false,
+										UserControls = ordered() {
+											AbsoluteCenter = {
+												INPID_PreviewControl = "CrosshairControl",
+												INPID_InputControl = "OffsetControl",
+												LINKID_DataType = "Point",
+												IC_ControlPage = 1,
+												CHC_Style = 0,
+												LINKS_Name = "Center"
+											},
+											AbsoluteScaleX = {
+												LINKS_Name = "X Scale",
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 1,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											AbsoluteScaleY = {
+												LINKS_Name = "Y Scale",
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 1,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											Center = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Point"
+											},
+											XScale = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Number"
+											},
+											YScale = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Number"
+											}
+										},
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -1320, 82.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 144, },
+						Width = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Height = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Detail = Input { Value = 1.623037, },
+						Contrast = Input { Value = 0.0631579, },
+						Brightness = Input { Value = -0.6842105, },
+						LockXY = Input { Value = 0, },
+						Angle = Input {
+							Value = 33.4,
+							Expression = "WavesSetDomain.NoiseAngle",
+						},
+						Seethe = Input { Value = 0.4708995, },
+						SeetheRate = Input {
+							Value = 0.0286,
+							Expression = "0.01*WavesSetDomain.NoiseSeetheRateMultiplier",
+						},
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.356521739130435] = { 0, 0, 0, 1 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+						Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution.", },
+						AbsoluteCenter = Input {
+							Value = { 0, 0 },
+							Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/500*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/500*time)",
+						},
+						AbsoluteScaleX = Input {
+							Value = 0.6282723,
+							Expression = "0.6282723*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						AbsoluteScaleY = Input {
+							Value = 0.2,
+							Expression = "0.2*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						Center = Input {
+							Value = { 0.393625853968254, 0.466137566137566 },
+							Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)",
+						},
+						XScale = Input {
+							Value = 1.8553666359375,
+							Expression = "AbsoluteScaleX / 1024 * Width",
+						},
+						YScale = Input {
+							Value = 0.590625,
+							Expression = "AbsoluteScaleY / 1024 * Width",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -990, -49.5 } },
+					UserControls = ordered() {
+						AbsoluteCenter = {
+							INPID_PreviewControl = "CrosshairControl",
+							INPID_InputControl = "OffsetControl",
+							LINKID_DataType = "Point",
+							IC_ControlPage = 1,
+							CHC_Style = 0,
+							LINKS_Name = "Center",
+						},
+						AbsoluteScaleX = {
+							LINKS_Name = "X Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						AbsoluteScaleY = {
+							LINKS_Name = "Y Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						Center = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Point",
+						},
+						XScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						},
+						YScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						}
+					}
+				},
+				BigWavesChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "WavesSetDomain.BigWavesInfluence", },
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "HumongousWavesChannelBooleans",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BigWavesBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -880, 16.5 } },
+				},
+				MediumWavesFN = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 144, },
+						Width = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Height = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Detail = Input { Value = 5.235602, },
+						Contrast = Input { Value = 0.1684211, },
+						Brightness = Input { Value = -0.7684211, },
+						LockXY = Input { Value = 0, },
+						Angle = Input {
+							Value = 33.4,
+							Expression = "WavesSetDomain.NoiseAngle",
+						},
+						Seethe = Input { Value = 0.4708995, },
+						SeetheRate = Input {
+							Value = 0.03146,
+							Expression = "0.011*WavesSetDomain.NoiseSeetheRateMultiplier",
+						},
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution.", },
+						AbsoluteCenter = Input {
+							Value = { 0, 0 },
+							Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1500*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1500*time)",
+						},
+						AbsoluteScaleX = Input {
+							Value = 2.827225,
+							Expression = "2.827225*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						AbsoluteScaleY = Input {
+							Value = 1.256544,
+							Expression = "1.256544*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						Center = Input {
+							Value = { 0.0213164021164021, 0.287251809523809 },
+							Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)",
+						},
+						XScale = Input {
+							Value = 8.349148828125,
+							Expression = "AbsoluteScaleX / 1024 * Width",
+						},
+						YScale = Input {
+							Value = 3.7107315,
+							Expression = "AbsoluteScaleY / 1024 * Width",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -770, -49.5 } },
+					UserControls = ordered() {
+						AbsoluteCenter = {
+							INPID_PreviewControl = "CrosshairControl",
+							INPID_InputControl = "OffsetControl",
+							LINKID_DataType = "Point",
+							IC_ControlPage = 1,
+							CHC_Style = 0,
+							LINKS_Name = "Center",
+						},
+						AbsoluteScaleX = {
+							LINKS_Name = "X Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						AbsoluteScaleY = {
+							LINKS_Name = "Y Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						Center = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Point",
+						},
+						XScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						},
+						YScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						}
+					}
+				},
+				SmallWavesFN = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 144, },
+						Width = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Height = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Detail = Input { Value = 10, },
+						Contrast = Input { Value = 0.3684211, },
+						Brightness = Input { Value = -1, },
+						LockXY = Input { Value = 0, },
+						Angle = Input {
+							Value = 33.4,
+							Expression = "WavesSetDomain.NoiseAngle",
+						},
+						Seethe = Input { Value = 0.4708995, },
+						SeetheRate = Input {
+							Value = 0.05148,
+							Expression = "0.018*WavesSetDomain.NoiseSeetheRateMultiplier",
+						},
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution.", },
+						AbsoluteCenter = Input {
+							Value = { 0, 0 },
+							Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/2500*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/2500*time)",
+						},
+						AbsoluteScaleX = Input {
+							Value = 6.492146,
+							Expression = "6.492146*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						AbsoluteScaleY = Input {
+							Value = 4.293194,
+							Expression = "4.293194*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						Center = Input {
+							Value = { -0.599199322751323, -0.226889989417989 },
+							Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)",
+						},
+						XScale = Input {
+							Value = 19.17211865625,
+							Expression = "AbsoluteScaleX / 1024 * Width",
+						},
+						YScale = Input {
+							Value = 12.67833853125,
+							Expression = "AbsoluteScaleY / 1024 * Width",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, -49.5 } },
+					UserControls = ordered() {
+						AbsoluteCenter = {
+							INPID_PreviewControl = "CrosshairControl",
+							INPID_InputControl = "OffsetControl",
+							LINKID_DataType = "Point",
+							IC_ControlPage = 1,
+							CHC_Style = 0,
+							LINKS_Name = "Center",
+						},
+						AbsoluteScaleX = {
+							INP_Default = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							LINKS_Name = "X Scale",
+						},
+						AbsoluteScaleY = {
+							INP_Default = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							LINKS_Name = "Y Scale",
+						},
+						Center = {
+							LINKID_DataType = "Point",
+							IC_ControlPage = 1,
+						},
+						XScale = {
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+						},
+						YScale = {
+							LINKID_DataType = "Number",
+							IC_ControlPage = 1,
+						}
+					}
+				},
+				BigWavesFN = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							{
+								Tools = ordered() {
+									BIG_WAVES = FastNoise {
+										Inputs = {
+											Inverted = Input { Value = 1 },
+											Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution." },
+											GlobalIn = Input { Value = 1 },
+											Brightness = Input { Value = -0.9263158 },
+											LockXY = Input { Value = 0 },
+											YScale = Input {
+												Value = 1.5706806,
+												Expression = "AbsoluteScaleY / 1024 * Width"
+											},
+											XScale = Input {
+												Value = 4.397907,
+												Expression = "AbsoluteScaleX / 1024 * Width"
+											},
+											Contrast = Input { Value = 0.4526316 },
+											Angle = Input {
+												Value = 33.4,
+												Expression = "WavesSetDomain.NoiseAngle"
+											},
+											Center = Input {
+												Value = { 0.258212846266667, 0.412739966666667 },
+												Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)"
+											},
+											AbsoluteScaleY = Input {
+												Value = 0.5235602,
+												Expression = "0.5235602*WavesSetDomain.NoiseScaleMultiplier"
+											},
+											Width = Input {
+												Value = 3072,
+												Expression = "WavesSetDomain.MapResolution"
+											},
+											Height = Input {
+												Value = 3072,
+												Expression = "WavesSetDomain.MapResolution"
+											},
+											Seethe = Input { Value = 0.4708995 },
+											Discontinuous = Input { Value = 1 },
+											SeetheRate = Input {
+												Value = 0.0715,
+												Expression = "0.025*WavesSetDomain.NoiseSeetheRateMultiplier"
+											},
+											AbsoluteScaleX = Input {
+												Value = 1.465969,
+												Expression = "1.465969*WavesSetDomain.NoiseScaleMultiplier"
+											},
+											GlobalOut = Input { Value = 300 },
+											AbsoluteCenter = Input {
+												Value = { 0.0052, 0 },
+												Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1000*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1000*time)"
+											},
+											Detail = Input { Value = 2.879581 }
+										},
+										CtrlWZoom = false,
+										UserControls = ordered() {
+											AbsoluteCenter = {
+												INPID_PreviewControl = "CrosshairControl",
+												INPID_InputControl = "OffsetControl",
+												LINKID_DataType = "Point",
+												IC_ControlPage = 1,
+												CHC_Style = 0,
+												LINKS_Name = "Center"
+											},
+											AbsoluteScaleX = {
+												LINKS_Name = "X Scale",
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 1,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											AbsoluteScaleY = {
+												LINKS_Name = "Y Scale",
+												INP_MinAllowed = 0,
+												LINKID_DataType = "Number",
+												INPID_InputControl = "SliderControl",
+												IC_ControlPage = 1,
+												INP_MaxScale = 10,
+												INP_Default = 1
+											},
+											Center = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Point"
+											},
+											XScale = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Number"
+											},
+											YScale = {
+												IC_ControlPage = 1,
+												LINKID_DataType = "Number"
+											}
+										},
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { -1320, 16.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 144, },
+						Width = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Height = Input {
+							Value = 3024,
+							Expression = "WavesSetDomain.MapResolution",
+						},
+						Detail = Input { Value = 2.879581, },
+						Contrast = Input { Value = 0.4526316, },
+						Brightness = Input { Value = -0.9263158, },
+						LockXY = Input { Value = 0, },
+						Angle = Input {
+							Value = 33.4,
+							Expression = "WavesSetDomain.NoiseAngle",
+						},
+						Seethe = Input { Value = 0.4708995, },
+						SeetheRate = Input {
+							Value = 0.0715,
+							Expression = "0.025*WavesSetDomain.NoiseSeetheRateMultiplier",
+						},
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Comments = Input { Value = "Increasing the image size will now effectively increase the bounds of the noise map, rather than just its resolution.", },
+						AbsoluteCenter = Input {
+							Value = { 0, 0 },
+							Expression = "Point(math.cos(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1000*time, math.sin(WavesSetDomain.WaterFlowAngle*math.pi/180)*WavesSetDomain.NoiseSpeedMultiplier/1000*time)",
+						},
+						AbsoluteScaleX = Input {
+							Value = 1.465969,
+							Expression = "1.465969*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						AbsoluteScaleY = Input {
+							Value = 0.5235602,
+							Expression = "0.5235602*WavesSetDomain.NoiseScaleMultiplier",
+						},
+						Center = Input {
+							Value = { 0.251793608465608, 0.411354886772487 },
+							Expression = "Point((AbsoluteCenter.X-0.5) * AbsoluteScaleX * 1024/Width + 0.5, (AbsoluteCenter.Y-0.5) * AbsoluteScaleY * 1024/Width + 0.5)",
+						},
+						XScale = Input {
+							Value = 4.329189703125,
+							Expression = "AbsoluteScaleX / 1024 * Width",
+						},
+						YScale = Input {
+							Value = 1.546138715625,
+							Expression = "AbsoluteScaleY / 1024 * Width",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -880, -49.5 } },
+					UserControls = ordered() {
+						AbsoluteCenter = {
+							INPID_PreviewControl = "CrosshairControl",
+							INPID_InputControl = "OffsetControl",
+							LINKID_DataType = "Point",
+							IC_ControlPage = 1,
+							CHC_Style = 0,
+							LINKS_Name = "Center",
+						},
+						AbsoluteScaleX = {
+							LINKS_Name = "X Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						AbsoluteScaleY = {
+							LINKS_Name = "Y Scale",
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							IC_ControlPage = 1,
+							INP_MaxScale = 10,
+							INP_Default = 1,
+						},
+						Center = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Point",
+						},
+						XScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						},
+						YScale = {
+							IC_ControlPage = 1,
+							LINKID_DataType = "Number",
+						}
+					}
+				},
+				BigWavesBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input {
+							Value = 0,
+							Expression = "WavesSetDomain.BigWavesSmoothness",
+						},
+						Input = Input {
+							SourceOp = "BigWavesFN",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -880, -16.5 } },
+				},
+				MediumWavesBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input {
+							Value = 3.14,
+							Expression = "WavesSetDomain.MediumWavesSmoothness",
+						},
+						Input = Input {
+							SourceOp = "MediumWavesFN",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -770, -16.5 } },
+				},
+				SmallWavesBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input { Expression = "WavesSetDomain.SmallWavesSmoothness", },
+						Input = Input {
+							SourceOp = "SmallWavesFN",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, -16.5 } },
+				},
+				OceanGeneratorPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "ComboWavesBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -550, 82.5 } },
+				},
+				SmallWavesChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0.23,
+							Expression = "WavesSetDomain.SmallWavesInfluence",
+						},
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "MediumWavesChannelBooleans",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SmallWavesBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 16.5 } },
+				},
+				ComboWavesBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Brightness = Input { Expression = "WavesSetDomain.WaterElevation", },
+						Input = Input {
+							SourceOp = "SmallWavesChannelBooleans",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 49.5 } },
+				},
+				MediumWavesChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "WavesSetDomain.MediumWavesInfluence", },
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "BigWavesChannelBooleans",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "MediumWavesBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -770, 16.5 } },
+				},
+				ComboWavesBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input {
+							Value = 0,
+							Expression = "WavesSetDomain.OverallSmoothness",
+						},
+						Input = Input {
+							SourceOp = "ComboWavesBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 82.5 } },
+				}
+			},
+		},
+		kas_OceanShader = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "The \"kas_OceanShader\" node creates a multi-spectral ocean surface material that combines an HDRI environment map with a simulated sub-surface translucent like shading effect on the water.\n\nThe \"EnvironmentMap\" texture input allows you to connect your own HDRI panoramic image.\n\nThe \"BumpMap\" texture input allows you to wire in your own wave heightmap texture generator.\n\nCopyright Credits:\n\nSimon's Town Rocks, Cape Town, South Africa IBL \n\nCreative Commons:\nSimon's Town Rocks \n\nBy:\nhttps://hdrihaven.com/ \n\nIs licensed under:\nCC0 (Public Domain) \n\n\nAnonymous Water Template \n\nThe Anonymous Water Template is the actual Fusion 3D water setup as it was used on Roland Emmerich's Anonymous (2011) film, courtesy of Uncharted Territory.\n\nSIGGRAPH 2012 Presentation on Anonymous:\nhttps://www.youtube.com/watch?v=mOpN6C3ZrjY", },
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				},
+				BumpMap = InstanceInput {
+					SourceOp = "WaveBumpPipeRouter",
+					Source = "Input",
+					Name = "BumpMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "WavesMaterialPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 935, 49.5 },
+				Flags = {
+					AllowPan = false,
+					GridSnap = true,
+					PipesAlways = true,
+					AutoSnap = true,
+					FullIndicator = true,
+					RemoveRouters = true
+				},
+				Size = { 654.83, 572.527, 330.997, 34.5276 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -320.5, 1049 }
+			},
+			Tools = ordered() {
+				kas_SimonsTownRocks = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Simons_Town_Rocks_CapeTown_SouthAfrica_IBL.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Simon's Town Rocks, Cape Town, South Africa IBL \n\nCreative Commons:\nSimon's Town Rocks \n\nBy:\nhttps://hdrihaven.com/ \n\nIs licensed under:\nCC0 (Public Domain) ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -1039.5 } },
+				},
+				WaveBumpPipeRouter = PipeRouter {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "SetDomainPipeRouter",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 110, -742.5 } },
+				},
+				SimonsIBLColorCorrector = ColorCorrector {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						MasterRGBGain = Input { Value = 0.282, },
+						MasterRGBGamma = Input { Value = 2.145, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "SimonsResize",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -940.5 } },
+				},
+				SimonsResize = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 960, },
+						KeepAspect = Input { Value = 1, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -973.5 } },
+				},
+				TroughWavesTexture2D = Texture2DOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "TroughWavesSharpen",
+							Source = "Output",
+						},
+						["FilterMode.Nest"] = Input { Value = 1, },
+						MaterialIDNest = Input { Value = 1, },
+						MaterialID = Input { Value = 10, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, -610.5 } },
+				},
+				TroughWavesBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Gain = Input { Value = 3.357, },
+						Gamma = Input { Value = 0.31, },
+						Input = Input {
+							SourceOp = "WaveBumpPipeRouter",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, -676.5 } },
+				},
+				TroughWavesChannelBoolean = MtlChanBool {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						OperationR = Input { Value = 4, },
+						OperationG = Input { Value = 4, },
+						OperationB = Input { Value = 4, },
+						BackgroundMaterial = Input {
+							SourceOp = "WavesGranularEdgesChannelBoolean",
+							Source = "MaterialOutput",
+						},
+						ForegroundMaterial = Input {
+							SourceOp = "TroughWavesTexture2D",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, -577.5 } },
+				},
+				TroughWavesSharpen = Sharpen {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "TroughWavesBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, -643.5 } },
+				},
+				SimonsTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Center = Input { Value = { 0.5, 0.479589934762349 }, },
+						Input = Input {
+							SourceOp = "SimonsIBLColorCorrector",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -907.5 } },
+				},
+				SimonsPhong = MtlPhong {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Red"] = Input { Value = 0.17, },
+						["Diffuse.Color.Green"] = Input { Value = 0.34, },
+						["Diffuse.Color.Blue"] = Input { Value = 0.27822933978867, },
+						["Diffuse.Opacity"] = Input { Value = 0.547, },
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 2.33, },
+						MaterialID = Input { Value = 8, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -841.5 } },
+				},
+				SimonsColorCorrector = ColorCorrector {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						WheelTintAngle1 = Input { Value = -0.608815716584567, },
+						WheelTintLength1 = Input { Value = 0.2156, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "SimonsTransform",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -874.5 } },
+				},
+				SimonGreenTintSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Rotation = Input { Value = 1, },
+						["Rotate.Y"] = Input { Value = 678.4, },
+						["FilterMode.Nest"] = Input { Value = 1, },
+						Image = Input {
+							SourceOp = "SimonsColorCorrector",
+							Source = "Output",
+						},
+						MaterialIDNest = Input { Value = 1, },
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -841.5 } },
+				},
+				SimonsSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Rotation = Input { Value = 1, },
+						["Rotate.Y"] = Input { Value = 678.4, },
+						Image = Input {
+							SourceOp = "SimonsTransform",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -841.5 } },
+				},
+				WavesBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FilterSize = Input { Value = FuID { "5" }, },
+						Input = Input {
+							SourceOp = "WaveBumpPipeRouter",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 18.75, },
+						WrapMode = Input { Value = FuID { "Wrap" }, },
+						MaterialID = Input { Value = 6, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -742.5 } },
+				},
+				GranularFastNoise = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 144, },
+						Width = Input { Value = 2048, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Brightness = Input { Value = -0.009, },
+						XScale = Input { Value = 68.08, },
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Type = Input { Value = 1, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.168] = { 1, 1, 1, 1 },
+									[1] = { 0, 0, 0, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, -643.5 } },
+				},
+				WavesGranularEdgesChannelBoolean = MtlChanBool {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						OperationR = Input { Value = 4, },
+						OperationG = Input { Value = 4, },
+						OperationB = Input { Value = 4, },
+						BackgroundMaterial = Input {
+							SourceOp = "WavesReflect",
+							Source = "MaterialOutput",
+						},
+						ForegroundMaterial = Input {
+							SourceOp = "GranularFalloff",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, -577.5 } },
+				},
+				GranularFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							{
+								Tools = ordered() {
+									Falloff1 = FalloffOperator {
+										Inputs = {
+											ColorVariation = Input { Value = FuID { "Gradient" } },
+											FaceOnMaterial = Input {
+												SourceOp = "FastNoise1",
+												Source = "Output"
+											},
+											MaterialID = Input { Value = 5 },
+											Falloff = Input { Value = 0.444 },
+											Gradient = Input {
+												Value = Gradient {
+													Colors = {
+														[0] = { 0.995, 0.99, 1, 1 },
+														[0.738255033557047] = { 0, 0, 0, 1 }
+													}
+												}
+											}
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 2860, -115.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						ColorVariation = Input { Value = FuID { "Gradient" }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.84, 0.962570017418863, 1, 1 },
+									[0.1275] = { 0, 0, 0, 1 }
+								}
+							},
+						},
+						Falloff = Input { Value = 0.619, },
+						FaceOnMaterial = Input {
+							SourceOp = "GranularFastNoise",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 5, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, -610.5 } },
+				},
+				WavesReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "SimonsPhong",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 0.965, },
+						["Reflection.Falloff"] = Input { Value = 0.911, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "SimonsSphereMap",
+							Source = "MaterialOutput",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 0.9405, },
+						["Refraction.RefractiveIndex.Red"] = Input { Value = 1.08, },
+						["Refraction.RefractiveIndex.Green"] = Input { Value = 1.07, },
+						["Refraction.RefractiveIndex.Blue"] = Input { Value = 1.06, },
+						["Refraction.Tint.Red"] = Input { Value = 0.56, },
+						["Refraction.Tint.Green"] = Input { Value = 0.961907521343278, },
+						["Refraction.Tint.Material"] = Input {
+							SourceOp = "SimonGreenTintSphereMap",
+							Source = "MaterialOutput",
+						},
+						["Bumpmap.Material"] = Input {
+							SourceOp = "WavesBumpMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, -742.5 } },
+				},
+				WavesMaterialPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "TroughWavesChannelBoolean",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 165, -577.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "kas_SimonsTownRocks",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, -1006.5 } },
+					Version = 100
+				}
+			},
+		},
+		OceanReplaceMaterial3D = ReplaceMaterial3D {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				SceneInput = Input {
+					SourceOp = "MeshGenPipeRouter",
+					Source = "Output",
+				},
+				["ReplaceMode.Nest"] = Input { Value = 1, },
+				["ReplaceMode.RedMode"] = Input { Value = 2, },
+				["ReplaceMode.GreenMode"] = Input { Value = 2, },
+				["ReplaceMode.BlueMode"] = Input { Value = 2, },
+				["ReplaceMode.AlphaMode"] = Input { Value = 2, },
+				MaterialInput = Input {
+					SourceOp = "WavesMaterialPipeRouter",
+					Source = "Output",
+				},
+				["MtlStdInputs.MaterialID"] = Input { Value = 11, },
+				Comments = Input { Value = "The \"OceanReplaceMaterial3D\" node is used to retexture the ocean mesh with a new surface material called \"kas_Ocean_Shader\".", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 935, -82.5 } },
+		},
+		MeshGenPipeRouter = PipeRouter {
+			NameSet = true,
+			Inputs = {
+				Input = Input {
+					SourceOp = "WaveSurfaceOutputPipeRouter",
+					Source = "Output",
+				},
+			},
+			ViewInfo = PipeRouterInfo { Pos = { 330, -82.5 } },
+		},
+		RenderCamera3D = Camera3D {
+			NameSet = true,
+			Inputs = {
+				["Transform3DOp.Translate.X"] = Input { Value = -0.167434900999069, },
+				["Transform3DOp.Translate.Y"] = Input { Value = 4.78261545216673, },
+				["Transform3DOp.Translate.Z"] = Input { Value = 9.65826718668345, },
+				["Transform3DOp.Rotate.X"] = Input { Value = -30.0000019073486, },
+				FLength = Input { Value = 18.2123442718302, },
+				["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+				FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+				["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 3, },
+				["MtlStdInputs.MaterialID"] = Input { Value = 6, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 1265, -148.5 } },
+		},
+		Renderer3D = Renderer3D {
+			NameSet = true,
+			CustomData = {
+				ToolVersion = 1
+			},
+			Inputs = {
+				["RendererOpenGL.Supersampling"] = Input { Value = 1, },
+				GlobalOut = Input { Value = 144, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				SceneInput = Input {
+					SourceOp = "CamMerge3D",
+					Source = "Output",
+				},
+				CameraSelector = Input { Value = FuID { "RenderCamera3D" }, },
+				RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+				["RendererOpenGL.Channels.Nest"] = Input { Value = 1, },
+				["RendererOpenGL.AntiAliasing.Nest"] = Input { Value = 1, },
+				["RendererOpenGL.AntiAliasing.Channels.RGBA.LowQuality.Enable"] = Input { Value = 0, },
+				["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+				["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateX"] = Input { Value = 4, },
+				["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+				["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+				["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+				["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+				["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+				["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+				["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+				["RendererOpenGL.AccumQuality"] = Input { Value = 2, },
+				["RendererOpenGL.Lighting"] = Input { Value = 0, },
+				["RendererOpenGL.LightingEnabled"] = Input { Value = 1, },
+				["RendererOpenGL.ShadowsEnabled"] = Input { Value = 1, },
+				["RendererOpenGL.TextureDepth"] = Input { Value = 0, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 1430, -82.5 } },
+			SubInputsData = {
+				RendererOpenGL = {
+					Version = 1
+				}
+			}
+		},
+		CamMerge3D = Merge3D {
+			NameSet = true,
+			Inputs = {
+				SceneInput1 = Input {
+					SourceOp = "OceanReplaceMaterial3D",
+					Source = "Output",
+				},
+				SceneInput2 = Input {
+					SourceOp = "RenderCamera3D",
+					Source = "Output",
+				},
+			},
+			ViewInfo = OperatorInfo { Pos = { 1265, -82.5 } },
+		}
+	},
+	Frames = {
+		{
+			FrameTypeID = "ChildFrame",
+			Mode = 3,
+			LayoutPreset = 0,
+			Left = 0,
+			Top = 27,
+			Width = 2104,
+			Height = 1117,
+			ZoneInfo = {
+				["!Right"] = {
+				},
+				["!Left"] = {
+				},
+				AuxLeft = { Expanded = true },
+				Right = { Expanded = true, },
+				Left = { Expanded = false, },
+				AuxRight = { Expanded = true }
+			},
+			ViewInfo = {
+				Viewer1 = { Show = true, RatioY = 1, RatioX = 0.505357142857143, },
+				InnerLeft = {
+				},
+				MainSplit = {
+					RatioX = 1,
+					RatioY = 0.431226765799257,
+				},
+				CenterSplit = {
+					RatioX = 0.799619228938601,
+					RatioY = 1,
+				},
+				Viewer2 = { Show = true, RatioY = 1, RatioX = 0.494642857142857, },
+				Comments = { Show = false },
+				Time = { Show = true, PixelY = 83, RatioX = 1, },
+				InnerColumns = {
+					RatioX = 1,
+					RatioY = 0.522304832713755,
+				},
+				Keyframes = { Show = false, },
+				LayoutStrip = { Show = true, RatioX = 1, },
+				Inspector = { Show = true, RatioY = 1, RatioX = 1, },
+				InnerRight = {
+				},
+				ActionStrip = { Show = true, RatioX = 1, },
+				OuterColumns = {
+					RatioX = 1,
+					RatioY = 0.967684021543986,
+				},
+				Effects = { Show = false, },
+				Clips = { Show = false, },
+				Metadata = { Show = false, },
+				OuterLeft = {
+				},
+				ViewerSplit = {
+					RatioX = 1,
+					RatioY = 0.85204991087344,
+				},
+				Nodes = { Show = true, RatioY = 1, RatioX = 1, },
+				OuterRight = {
+					RatioY = 1,
+					PixelX = 421,
+				},
+				MediaPool = { Show = false, },
+				Spline = { Show = false, }
+			},
+			Views = ordered() {
+				Effects = MultiView {
+					Active = "EffectView",
+					ViewList = ordered() {
+						EffectView = "EffectView"
+					},
+				},
+				Nodes = MultiView {
+					Active = "FlowView",
+					ViewList = ordered() {
+						FlowView = "FlowView"
+					},
+					Names = {
+						FlowView = "FlowView"
+					},
+					FlowView = FlowView {
+						Flags = {
+							Navigator = true,
+							AutoHideNavigator = true,
+							AutoSnap = true
+						},
+						NavigatorSize = { 200, 140 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1.5,
+						Offset = { 0, 0 }
+					}
+				},
+				Keyframes = MultiView {
+					Active = "TimelineView",
+					ViewList = ordered() {
+						TimelineView = "TimelineView"
+					},
+					Names = {
+						TimelineView = "TimelineView"
+					},
+					TimelineView = TimelineView {
+						TreeControlState = {
+						},
+						DisplayMode = "All Tools",
+						ShowCurrentTimeTools = false,
+						Filter = "Show All",
+						ShowSelectedTools = false,
+						ShowAnimatedToolsOnly = false,
+						ShowEditBoxes = false,
+						KeyFrameView = {
+							Position = { Left = 232, Bottom = 320 },
+							ScaleX = 0.308771929824561,
+							OffsetX = -7.10175438596491,
+							OffsetY = 0,
+							AutoScaling = "scroll",
+							AutoSnapTo = "frame",
+							AutoSnapToGuidelines = false,
+							GuidelinesGrabEnabled = true,
+							GuidelinesSnapTo = "frame"
+						},
+						Spreadsheet = { LeftPos = 232, Visible = false }
+					}
+				},
+				Spline = MultiView {
+					Active = "SplineView",
+					ViewList = ordered() {
+						SplineView = "SplineEditorView"
+					},
+					Names = {
+						SplineView = "SplineView"
+					},
+					SplineView = SplineEditorView {
+						LeftPos = 264,
+						ScaleX = 0.2,
+						ScaleY = 0.00338983050847458,
+						OffsetX = -3.4,
+						OffsetY = 0,
+						AutoScaling = "scroll",
+						AutoSnapTo = "frame",
+						AutoSnapToGuidelines = false,
+						GuidelinesSnapTo = "frame",
+						ShowKeyMarkers = false,
+						IndependentHandles = false,
+						ShowNonSplineModifiers = false,
+						GuidelinesGrabEnabled = true,
+						ShowOneToolOnly = false,
+						ShowSelectedTools = false,
+						ShowAllInputs = false,
+						Filter = "Show All"
+					}
+				},
+				Inspector = MultiView {
+					Active = "Tools",
+					ViewList = ordered() {
+						Tools = "ControlView",
+						Modifiers = "ModifierView"
+					},
+				},
+				Viewer1 = MultiView {
+					Active = "LeftView",
+					ViewList = ordered() {
+						LeftView = "PreviewContainer"
+					},
+					Names = {
+						LeftView = "LeftView"
+					},
+				},
+				Viewer2 = MultiView {
+					Active = "RightView",
+					ViewList = ordered() {
+						RightView = "PreviewContainer"
+					},
+					Names = {
+						RightView = "RightView"
+					},
+				},
+				Time = "TimeView",
+				ActionStrip = "ActionStripView",
+				LayoutStrip = "LayoutStripView"
+			},
+			Layout = {
+				Rows = 2,
+				RatioX = 1,
+				RatioY = 1,
+				{ ID = "LayoutStrip", RatioX = 1, FixedY = 36, Flat = true },
+				{
+					Columns = 2,
+					RatioY = 0.967684021543986,
+					{
+						Rows = 3,
+						RatioX = 0.799619228938601,
+						RatioY = 1,
+						{
+							Rows = 2,
+							RatioX = 1,
+							RatioY = 1,
+							{
+								Columns = 2,
+								RatioX = 1,
+								RatioY = 0.85204991087344,
+								{ ID = "Viewer1", RatioX = 0.505357142857143, RatioY = 1 },
+								{ ID = "Viewer2", RatioX = 0.494642857142857 }
+							},
+							{ ID = "Time", FixedY = 83, Flat = true }
+						},
+						{ ID = "ActionStrip", FixedY = 50, Flat = true },
+						{ ID = "Nodes", RatioX = 1, RatioY = 1 }
+					},
+					{ ID = "Inspector", RatioX = 1, RatioY = 1 }
+				}
+			}
+		}
+	},
+	Prefs = {
+		Comp = {
+			Interactive = {
+				Proxy = {
+					Scale = 5,
+					Auto = true
+				},
+			},
+			Views = {
+				View1 = {
+				},
+				Defaults = {
+					OpToolbar = {
+						Size = 1
+					},
+				},
+				LeftView = {
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = -20,
+								X = 15,
+								Z = 0
+							}
+						}
+					},
+					PickW = 1,
+					PickH = 1,
+					Viewer = {
+						ScaleMode = 1
+					},
+					View3D = {
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						Options = {
+							Lighting = true
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 1.19997501373291,
+								X = 22.7999687194824,
+								Z = 0
+							},
+							Scale = 0.125,
+							Position = {
+								Y = -2.25746989250183,
+								X = -0.0138429626822472,
+								Z = -5.3958740234375
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CameraName = "RenderCamera3D"
+					},
+				},
+				RightView = {
+					PickW = 1,
+					PickH = 1,
+				}
+			},
+			Preview = {
+				HiQ = false,
+			},
+			FrameFormat = {
+				GuideRatio = 1.77777777777778,
+				DepthFull = 3,
+				DepthPreview = 3,
+				DepthInteractive = 3,
+			},
+			LastFile = "Macros:\\KickAss ShaderZ\\Assets\\kas_Simons_Town_Rocks_CapeTown_SouthAfrica_IBL.exr",
+			Unsorted = {
+				GlobalEnd = 144
+			},
+			Tweaks = {
+				OpenCL = {
+					Enable = 2,
+					Caching = 2
+				}
+			},
+			Paths = {
+			},
+			FlowView = {
+				RemoveRouters = false
+			},
+			QuickTime = {
+			},
+		}
+	},
+}
+
+ 

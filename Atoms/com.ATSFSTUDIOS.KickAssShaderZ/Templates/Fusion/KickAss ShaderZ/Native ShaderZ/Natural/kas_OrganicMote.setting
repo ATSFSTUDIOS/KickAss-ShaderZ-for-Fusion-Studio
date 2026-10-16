@@ -1,0 +1,300 @@
+{
+	Tools = ordered() {
+		kas_OrganicMote = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_OrganicMote\" is perfect for stylized NPR rendering needs such as bio-medical visualization. If you are assigning this material to animated elements that are floating around and drifting slowly in your scene, make sure to enable motion blur and DoF bokeh blur in your renderings for added realsim.\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+				TextureMap = InstanceInput {
+					SourceOp = "TextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "TextureMap",
+				},
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "OrganicMoteReflect",
+					Source = "MaterialOutput",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 1705.67, 545.106 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 541.147, 237.038, 145.5, -7.7 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1347.5, -269.8 }
+			},
+			Tools = ordered() {
+				ParklandLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					NameSet = true,
+					Inputs = {
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Copyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 313.5 } },
+				},
+				AgedSteelPlateLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_AgedSteelPlate.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = OperatorInfo { Pos = { 1320, 313.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "ParklandLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 346.5 } },
+					Version = 100
+				},
+				TextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "AgedSteelPlateLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 346.5 } },
+					Version = 100
+				},
+				OrganicMoteReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "CyanEdgeFresnelFalloff",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 1, },
+						["Reflection.FaceOnStrength"] = Input { Value = 0.118, },
+						["Reflection.Falloff"] = Input { Value = 4, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "SoftCyanEdgeFalloff",
+							Source = "MaterialOutput",
+						},
+						["Reflection.Intensity.Material"] = Input {
+							SourceOp = "RedToAlphaChannelBooleans",
+							Source = "Output",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 0.4997895, },
+						["Refraction.Tint.Red"] = Input { Value = 0.979911111111111, },
+						["Refraction.Tint.Blue"] = Input { Value = 0.986210342092666, },
+						MaterialID = Input { Value = 82, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 478.5 } },
+				},
+				SoftCyanEdgeFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["FaceOn.Red"] = Input { Value = 0.85, },
+						["FaceOn.Green"] = Input { Value = 0.47855, },
+						["FaceOn.Blue"] = Input { Value = 0.47855, },
+						["FaceOn.Opacity"] = Input { Value = 1, },
+						["Glancing.Red"] = Input { Value = 0.260946, },
+						["Glancing.Green"] = Input { Value = 0.654, },
+						["Glancing.Blue"] = Input { Value = 0.625700112, },
+						Falloff = Input { Value = 0.675, },
+						FaceOnMaterial = Input {
+							SourceOp = "ParklandSphereMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 445.5 } },
+				},
+				CyanEdgeFresnelFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ColorVariation = Input { Value = FuID { "Gradient" }, },
+						["FaceOn.Opacity"] = Input { Value = 0.5105263, },
+						["Glancing.Red"] = Input { Value = 0, },
+						["Glancing.Green"] = Input { Value = 0, },
+						["Glancing.Blue"] = Input { Value = 0, },
+						["Glancing.Alpha"] = Input { Value = 0, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.00311526479750779] = { 1, 0.798176, 0.524, 0.192 },
+									[1] = { 0.29, 0.640135538339016, 1, 1 }
+								}
+							},
+						},
+						Falloff = Input { Value = 0.101, },
+						FaceOnMaterial = Input {
+							SourceOp = "ShinyBrownWard",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 9, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 478.5 } },
+				},
+				RedToAlphaChannelBooleans = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ToAlpha = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "AgedHighContrastBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 445.5 } },
+				},
+				ParklandSphereMap = SphereMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Rotation = Input { Value = 1, },
+						["Rotate.Y"] = Input { Value = -65, },
+						Image = Input {
+							SourceOp = "ParklandBlur",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 15, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 412.5 } },
+				},
+				ParklandBlur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input { Value = 15, },
+						Input = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 380.106 } },
+				},
+				ShinyBrownWard = MtlWard {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Nest"] = Input { Value = 0, },
+						["Diffuse.Color.Red"] = Input { Value = 0.37, },
+						["Diffuse.Color.Green"] = Input { Value = 0.18356144, },
+						["Diffuse.Color.Blue"] = Input { Value = 0.06734, },
+						["Diffuse.Color.Alpha"] = Input { Value = 0.9947368, },
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "RedToAlphaChannelBooleans",
+							Source = "Output",
+						},
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Intensity"] = Input { Value = 0.211, },
+						["Specular.Intensity.Material"] = Input {
+							SourceOp = "AgedHighContrastBrightnessContrast",
+							Source = "Output",
+						},
+						["Specular.SpreadU"] = Input { Value = 0.2, },
+						["Bumpmap.Material"] = Input {
+							SourceOp = "AgedLumpyBumpMap",
+							Source = "MaterialOutput",
+						},
+						["Transmittance.Nest"] = Input { Value = 1, },
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 478.5 } },
+				},
+				AgedLumpyBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FilterSize = Input { Value = FuID { "5" }, },
+						Input = Input {
+							SourceOp = "AgedHighContrastBrightnessContrast",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 4.85, },
+						MaterialID = Input { Value = 43, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 478.5 } },
+				},
+				AgedHighContrastBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Saturation = Input { Value = 0, },
+						Low = Input { Value = 0.2985507, },
+						High = Input { Value = 0.4985507, },
+						Input = Input {
+							SourceOp = "TextureInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 445.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_OrganicMote"
+}

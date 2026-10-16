@@ -1,0 +1,1493 @@
+--[[--
+==============================================================================
+KickAss ShaderZ Menu - v1.2 2022-11-28 02.58 AM -4
+==============================================================================
+Requires    : Fusion v9.0.2-18.1+ or Resolve v15-18.1+
+Created by  : andromeda_girl
+			  Andrew Hazelden <andrew@andrewhazelden.com>
+
+==============================================================================
+Overview
+==============================================================================
+KickAss ShaderZ aka "KAS" is a collection of Fusion 3D workspace based surface materials created by the Fusion community itself.
+
+==============================================================================
+Installation
+==============================================================================
+Copy the `KickAss ShaderZ Menu.fu` file into the `AllData:/Reactor/Deploy/Config/KickAss ShaderZ/` PathMap directory.
+
+You may have to create this folder if it does not exist yet.
+
+Restart Fusion after the installation is complete.
+
+==============================================================================
+Reactor Usage
+==============================================================================
+The "KickAss ShaderZ Menu > Show KAS Folder" menu item allows you to quickly view the "AllData:/Reactor/Deploy/Macros/KickAss ShaderZ/" PathMap folder location where the individual shader packages are downloaded and installed.
+
+The Fusion Studio Standalone based "AllData:/Reactor/" PathMap folder location is:
+
+(Windows) C:\ProgramData\Blackmagic Design\Fusion\Reactor\
+(Linux) /var/BlackmagicDesign/Fusion/Reactor/
+(Mac) /Library/Application Support/Blackmagic Design/Fusion/Reactor/
+
+==============================================================================
+Todo
+==============================================================================
+Add a Multipath scanning Lua script to auto-regenerate the menu system.
+
+--]]--
+
+{
+	Action
+	{
+		ID = "KAS_Docs_Folder",
+		Category = "KickAss ShaderZ",
+		Name = "Show KAS Docs",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+if reactor_existing_pathmap and reactor_existing_pathmap ~= "nil" then
+	-- Clip off the "reactor_root" style trailing "Reactor/" subfolder
+	reactor_existing_pathmap = string.gsub(reactor_existing_pathmap, "Reactor" .. separator .. "$", "")
+end
+
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local path = app:MapPath(tostring(reactor_pathmap) .. "Reactor/Deploy/Docs/KickAss ShaderZ")
+if bmd.direxists(path) == false then
+	bmd.createdir(path)
+	print("[Created KAS Docs Folder] " .. path)
+end
+
+print("[Show KAS Doc Folder] " .. path)
+bmd.openfileexternal("Open", path)
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Macros_Folder",
+		Category = "KickAss ShaderZ",
+		Name = "Show KAS Macros Folder",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+if reactor_existing_pathmap and reactor_existing_pathmap ~= "nil" then
+	-- Clip off the "reactor_root" style trailing "Reactor/" subfolder
+	reactor_existing_pathmap = string.gsub(reactor_existing_pathmap, "Reactor" .. separator .. "$", "")
+end
+
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local path = app:MapPath(tostring(reactor_pathmap) .. "Reactor/Deploy/Macros/KickAss ShaderZ")
+if bmd.direxists(path) == false then
+	bmd.createdir(path)
+	print("[Created KAS Macros Folder] " .. path)
+end
+
+print("[Show KAS Macros Folder] " .. path)
+bmd.openfileexternal("Open", path)
+				]=],
+			},
+		},
+	},
+
+	Action
+	{
+		ID = "KAS_Comps_Folder",
+		Category = "KickAss ShaderZ",
+		Name = "Show KAS Comps Folder",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+if reactor_existing_pathmap and reactor_existing_pathmap ~= "nil" then
+	-- Clip off the "reactor_root" style trailing "Reactor/" subfolder
+	reactor_existing_pathmap = string.gsub(reactor_existing_pathmap, "Reactor" .. separator .. "$", "")
+end
+
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local path = app:MapPath(tostring(reactor_pathmap) .. "Reactor/Deploy/Comps/KickAss ShaderZ")
+if bmd.direxists(path) == false then
+	bmd.createdir(path)
+	print("[Created Reactor Folder] " .. path)
+end
+
+print("[Show Reactor Comps Folder] " .. path)
+bmd.openfileexternal("Open", path)
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Config_Folder",
+		Category = "KickAss ShaderZ",
+		Name = "Show KAS Config Folder",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+if reactor_existing_pathmap and reactor_existing_pathmap ~= "nil" then
+	-- Clip off the "reactor_root" style trailing "Reactor/" subfolder
+	reactor_existing_pathmap = string.gsub(reactor_existing_pathmap, "Reactor" .. separator .. "$", "")
+end
+
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local path = app:MapPath(tostring(reactor_pathmap) .. "Reactor/Deploy/Config/KickAss ShaderZ")
+if bmd.direxists(path) == false then
+	bmd.createdir(path)
+	print("[Created KAS Config Folder] " .. path)
+end
+
+print("[Show KAS Config Folder] " .. path)
+bmd.openfileexternal("Open", path)
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Edit_Macro_IO",
+		Category = "KickAss ShaderZ",
+		Name = "Edit Macro I/O Connections...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- tbd...
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Save_SelectionAsMacro",
+		Category = "KickAss ShaderZ",
+		Name = "Save Selection as Macro...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- tbd...
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_CreateMacroGroup",
+		Category = "KickAss ShaderZ",
+		Name = "Create Macro Group...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- tbd...
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_SaveSelectionToMacro",
+		Category = "KickAss ShaderZ",
+		Name = "Save Selection to Macro",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local scriptPath = app:MapPath("Scripts:/Comp/KickAss ShaderZ/Tools/Save Selection to Macro.lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[Reactor Error] Open the Reactor window once to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath)
+end
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_PackageShaderZForReactor",
+		Category = "KickAss ShaderZ",
+		Name = "Package ShaderZ for Reactor",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+if reactor_existing_pathmap and reactor_existing_pathmap ~= "nil" then
+	-- Clip off the "reactor_root" style trailing "Reactor/" subfolder
+	reactor_existing_pathmap = string.gsub(reactor_existing_pathmap, "Reactor" .. separator .. "$", "")
+end
+
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local scriptPath = app:MapPath(tostring(reactor_pathmap) .. "Reactor/System/UI/Atomizer.lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[Reactor Error] Open the Reactor window once to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath)
+end
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_PBRImport",
+		Category = "KickAss ShaderZ",
+		Name = "Substance PBR Import",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local scriptPath = app:MapPath("Scripts:/Tool/KickAss ShaderZ/Substance PBR Import.lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[Reactor Error] Open the Reactor window and update/re-install KickAss ShaderZ to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath, {SelectAFile = true})
+end
+				]=],
+			},
+		},
+	},
+	
+	Action
+	{
+		ID = "KAS_WSL_Discussion",
+		Category = "KickAss ShaderZ",
+		Name = "KAS WSL Discussion",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+platform = (FuPLATFORM_WINDOWS and "Windows") or (FuPLATFORM_MAC and "Mac") or (FuPLATFORM_LINUX and "Linux")
+function OpenURL(siteName, path)
+	if platform == "Windows" then
+		-- Running on Windows
+		command = "explorer \"" .. path .. "\""
+	elseif platform == "Mac" then
+		-- Running on Mac
+		command = "open \"" .. path .. "\" &"
+	elseif platform == "Linux" then
+		-- Running on Linux
+		command = "xdg-open \"" .. path .. "\" &"
+	else
+		print("[Error] There is an invalid Fusion platform detected")
+		return
+	end
+	os.execute(command)
+	-- print("[Launch Command] ", command)
+	print("[Opening URL] [" .. siteName .. "] " .. path)
+end
+
+OpenURL("KAS Online Discussion", "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=27949#p27949")
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_HTML_Documentation",
+		Category = "KickAss ShaderZ",
+		Name = "KAS HTML Documentation",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- HypertextCompositor is used to open the KickAss ShaderZ Documentation in a floating HTML help window.
+app:RunScript("Config:/HypertextCompositor/HypertextCompositor.lua" , {dragDropCompFile = app:MapPath("Reactor:/Deploy/Docs/KickAss ShaderZ/KickAss ShaderZ.htm")})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Utility_GreyCheckerboardNode",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GreyCheckerboard",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Utility/kas_GreyCheckerboard.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Utility_ShaderBallNode",
+		Category = "KickAss ShaderZ",
+		Name = "kas_ShaderBall",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+-- comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Utility/kas_ShaderBall.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Utility_ShaderBallDragonNode",
+		Category = "KickAss ShaderZ",
+		Name = "kas_ShaderBallDragon",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+-- comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Utility/kas_ShaderBallDragon.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Utility_ShaderPreviewNode",
+		Category = "KickAss ShaderZ",
+		Name = "kas_ShaderPreview",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+-- comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Utility/kas_ShaderPreview.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Utility_IconSaverNode",
+		Category = "KickAss ShaderZ",
+		Name = "kas_IconSaver",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+-- comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Utility/kas_IconSaver.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_DarkBlueIceShard",
+		Category = "KickAss ShaderZ",
+		Name = "kas_DarkBlueIceShard",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_DarkBlueIceShard.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_GreenEctoplasm",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GreenEctoplasm",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_GreenEctoplasm.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_IridescentBlue",
+		Category = "KickAss ShaderZ",
+		Name = "kas_IridescentBlue",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_IridescentBlue.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_MarbleStone",
+		Category = "KickAss ShaderZ",
+		Name = "kas_MarbleStone",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_MarbleStone.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_Ocean",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Ocean",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_Ocean.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_OrganicMote",
+		Category = "KickAss ShaderZ",
+		Name = "kas_OrganicMote",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_OrganicMote.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_RedBloodCell",
+		Category = "KickAss ShaderZ",
+		Name = "kas_RedBloodCell",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_RedBloodCell.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_VelvetyMoss",
+		Category = "KickAss ShaderZ",
+		Name = "kas_VelvetyMoss",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_VelvetyMoss.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_VolcanicMagma",
+		Category = "KickAss ShaderZ",
+		Name = "kas_VolcanicMagma",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_VolcanicMagma.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_HDRI_kas_Parkland",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Parkland",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/HDRI/kas_Parkland.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_HDRI_kas_SimonsTownRocks",
+		Category = "KickAss ShaderZ",
+		Name = "kas_SimonsTownRocks",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/HDRI/kas_SimonsTownRocks.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_HDRI_kas_StNicholasChurch",
+		Category = "KickAss ShaderZ",
+		Name = "kas_StNicholasChurch",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/HDRI/kas_StNicholasChurch.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_Atomic",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Atomic",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_Atomic.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_Chrome",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Chrome",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_Chrome.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_CobaltBlueCarbonFibre",
+		Category = "KickAss ShaderZ",
+		Name = "kas_CobaltBlueCarbonFibre",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_CobaltBlueCarbonFibre.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_GlassQuartzScratched",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GlassQuartzScratched",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_GlassQuartzScratched.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_GlassDeepBlue",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GlassDeepBlue",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_GlassDeepBlue.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_GlassDeepRuby",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GlassDeepRuby",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_GlassDeepRuby.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_GlassDirty",
+		Category = "KickAss ShaderZ",
+		Name = "kas_GlassDirty",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_GlassDirty.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_Gold",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Gold",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_Gold.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_HeatShield",
+		Category = "KickAss ShaderZ",
+		Name = "kas_HeatShield",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_HeatShield.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_MetalGalvanized",
+		Category = "KickAss ShaderZ",
+		Name = "kas_MetalGalvanized",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_MetalGalvanized.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_MetalScuzzy",
+		Category = "KickAss ShaderZ",
+		Name = "kas_MetalScuzzy",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_MetalScuzzy.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_Radioactive",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Radioactive",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_Radioactive.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_RustyNail",
+		Category = "KickAss ShaderZ",
+		Name = "kas_RustyNail",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_RustyNail.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Industrial_kas_Xray",
+		Category = "KickAss ShaderZ",
+		Name = "kas_Xray",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Industrial/kas_Xray.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_Natural_kas_StoneWall",
+		Category = "KickAss ShaderZ",
+		Name = "kas_StoneWall",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Get the current comp
+comp = app:GetAttrs().FUSIONH_CurrentComp
+
+-- Verify the comp pointer is valid
+if not comp then
+	print('[KickAss ShaderZ] Please open a Fusion composite before adding a shader.')
+	return
+end
+
+-- Deslect all nodes
+comp:SetActiveTool()
+
+-- Add a macro node to the composite
+comp:DoAction("AddSetting", {filename = "Macros:/KickAss ShaderZ/Native ShaderZ/Natural/kas_StoneWall.setting"})
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "InstallCustomShader3D",
+		Category = "KickAss ShaderZ",
+		Name = "Install the CustomShader3D Plugin",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+platform = (FuPLATFORM_WINDOWS and "Windows") or (FuPLATFORM_MAC and "Mac") or (FuPLATFORM_LINUX and "Linux")
+function OpenURL(siteName, path)
+	if platform == "Windows" then
+		-- Running on Windows
+		command = "explorer \"" .. path .. "\""
+	elseif platform == "Mac" then
+		-- Running on Mac
+		command = "open \"" .. path .. "\" &"
+	elseif platform == "Linux" then
+		-- Running on Linux
+		command = "xdg-open \"" .. path .. "\" &"
+	else
+		print("[Error] There is an invalid Fusion platform detected")
+		return
+	end
+	os.execute(command)
+	-- print("[Launch Command] ", command)
+	print("[Opening URL] [" .. siteName .. "] " .. path)
+end
+
+OpenURL("CustomShader3D Plugin", "https://indicated.com/blackmagic-fusion-plugins/custom-shader-3d/")
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_dot_dot_dot",
+		Category = "KickAss ShaderZ",
+		Name = "…",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+-- Show the Kick Ass ShaderZ "WSL Discussion" page when there is no shaders present in a menu category like "PBR ShaderZ" and "CustomShader3D ShaderZ"
+-- https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255
+
+platform = (FuPLATFORM_WINDOWS and "Windows") or (FuPLATFORM_MAC and "Mac") or (FuPLATFORM_LINUX and "Linux")
+function OpenURL(siteName, path)
+	if platform == "Windows" then
+		-- Running on Windows
+		command = "explorer \"" .. path .. "\""
+	elseif platform == "Mac" then
+		-- Running on Mac
+		command = "open \"" .. path .. "\" &"
+	elseif platform == "Linux" then
+		-- Running on Linux
+		command = "xdg-open \"" .. path .. "\" &"
+	else
+		print("[Error] There is an invalid Fusion platform detected")
+		return
+	end
+	os.execute(command)
+	-- print("[Launch Command] ", command)
+	print("[Opening URL] [" .. siteName .. "] " .. path)
+end
+
+OpenURL("KAS Online Discussion", "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255")
+				]=],
+			},
+		},
+	},
+	
+	Action
+	{
+		ID = "KAS_Browser",
+		Category = "KickAss ShaderZ",
+		Name = "Content Browser...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local scriptPath = app:MapPath(tostring(reactor_pathmap) .. "Deploy/Scripts/Comp/KickAss ShaderZ/Content Browser....lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[KAS Reactor Error] Please re-install the \"KickAss ShaderZ\" via Reactor to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath)
+end
+				]=],
+			},
+		},
+	},
+	Action
+	{
+		ID = "KAS_About",
+		Category = "KickAss ShaderZ",
+		Name = "About KickAss ShaderZ...",
+
+		Targets =
+		{
+			Composition =
+			{
+				Execute = _Lua [=[
+local separator = package.config:sub(1,1)
+-- Check for a pre-existing PathMap preference
+local reactor_existing_pathmap = app:GetPrefs("Global.Paths.Map.Reactor:")
+local reactor_pathmap = os.getenv("REACTOR_INSTALL_PATHMAP") or reactor_existing_pathmap or "AllData:"
+local scriptPath = app:MapPath(tostring(reactor_pathmap) .. "Deploy/Scripts/Comp/KickAss ShaderZ/About KickAss ShaderZ....lua")
+if bmd.fileexists(scriptPath) == false then
+	print("[KAS Reactor Error] Please re-install the \"KickAss ShaderZ\" via Reactor to download the missing file: " .. scriptPath)
+else
+	target:RunScript(scriptPath)
+end
+				]=],
+			},
+		},
+	},
+	Menus
+	{
+		Target = "ChildFrame",
+
+		Before "Help"
+		{
+			Sub "KickAss ShaderZ"
+			{
+				Sub "Native ShaderZ"
+				{
+					Sub "HDRI" {
+						"KAS_HDRI_kas_Parkland{}",
+						"KAS_HDRI_kas_SimonsTownRocks{}",
+						"KAS_HDRI_kas_StNicholasChurch{}",
+					},
+					Sub "Industrial" {
+						"KAS_Industrial_kas_Atomic{}",
+						"KAS_Industrial_kas_Chrome{}",
+						"KAS_Industrial_kas_CobaltBlueCarbonFibre{}",
+						"KAS_Industrial_kas_GlassDeepBlue{}",
+						"KAS_Industrial_kas_GlassDeepRuby{}",
+						"KAS_Industrial_kas_GlassDirty{}",
+						"KAS_Industrial_kas_GlassQuartzScratched{}",
+						"KAS_Industrial_kas_Gold{}",
+						"KAS_Industrial_kas_HeatShield{}",
+						"KAS_Industrial_kas_MetalGalvanized{}",
+						"KAS_Industrial_kas_MetalScuzzy{}",
+						"KAS_Industrial_kas_Radioactive{}",
+						"KAS_Industrial_kas_RustyNail{}",
+						"KAS_Industrial_kas_Xray{}",
+					},
+					Sub "Natural" {
+						"KAS_Natural_kas_DarkBlueIceShard{}",
+						"KAS_Natural_kas_GreenEctoplasm{}",
+						"KAS_Natural_kas_IridescentBlue{}",
+						"KAS_Natural_kas_MarbleStone{}",
+						"KAS_Natural_kas_Ocean{}",
+						"KAS_Natural_kas_OrganicMote{}",
+						"KAS_Natural_kas_RedBloodCell{}",
+						"KAS_Natural_kas_StoneWall{}",
+						"KAS_Natural_kas_VelvetyMoss{}",
+						"KAS_Natural_kas_VolcanicMagma{}",
+
+					},
+					Sub "Production" {
+						"KAS_dot_dot_dot{}",
+					},
+					Sub "Utility" {
+						"KAS_Utility_IconSaverNode{}",
+						"KAS_Utility_GreyCheckerboardNode{}",
+						"KAS_Utility_ShaderBallNode{}",
+						"KAS_Utility_ShaderBallDragonNode{}",
+						"KAS_Utility_ShaderPreviewNode{}",
+					},
+					Sub "PBR" {
+						"KAS_dot_dot_dot{}",
+					},
+				},
+				"_",
+				Sub "CustomShader3D ShaderZ"
+				{
+					"InstallCustomShader3D{}",
+					"_",
+					"KAS_dot_dot_dot{}",
+				},
+				Sub "PBR ShaderZ"
+				{
+					"KAS_dot_dot_dot{}",
+				},
+				"_",
+				Sub "Tools" {
+					"KAS_Docs_Folder{}",
+					"KAS_Macros_Folder{}",
+					"KAS_Comps_Folder{}",
+					"KAS_Config_Folder{}",
+					"_",
+					-- "KAS_Edit_Macro_IO{}",
+					-- "KAS_CreateMacroGroup{}",
+					"KAS_SaveSelectionToMacro{}",
+					"KAS_PackageShaderZForReactor{}",
+					 "_",
+					"KAS_PBRImport{}",
+				},
+				Sub "Resources"
+				{
+					"KAS_WSL_Discussion{}",
+					"KAS_HTML_Documentation{}",
+				},
+				"_",
+				"KAS_Browser{}",
+				"KAS_About{}",
+			},
+		},
+	},
+}

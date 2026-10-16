@@ -1,0 +1,852 @@
+{
+	Tools = ordered() {
+		kas_StoneWall = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_StoneWall\" creates a rough wall from fieldstone and mortar. You can choose to render this stone with a bump map, or with the addition of a full surface displacement effect.\n\nTo get the displacement effect out of this material you need to add a Displace3D node and connect its \"SceneInput\" input to a 3D model's \"3DData\" output connection. Then connect the \"kas_StoneWall\" material' s \"DisplacementTextureOutput\" connection to the Displace3D node' s \"Input\" connection. The strength of the displacement effect is controlled on the Displace3D node's scale attribute with a good starting value of approximately 0.2.\n\nCopyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+				AlbedoTextureMap = InstanceInput {
+					SourceOp = "AlbedoInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AlbedoMap",
+				},
+				RoughnessTextureMap = InstanceInput {
+					SourceOp = "RoughnessTextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "RoughnessMap",
+				},
+				NormalTextureMap = InstanceInput {
+					SourceOp = "NormalInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "NormalMap",
+				},
+				GlossTextureMap = InstanceInput {
+					SourceOp = "GlossInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "GlossMap",
+				},
+				AOTextureMap = InstanceInput {
+					SourceOp = "AOInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AOMap",
+				},
+				SpecularTextureMap = InstanceInput {
+					SourceOp = "SpecularInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "SpecularMap",
+				},
+				DisplacementTextureMap = InstanceInput {
+					SourceOp = "DisplacementInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "DisplacementMap",
+				}
+			},
+			Outputs = {
+				DisplacementTextureOutput = InstanceOutput {
+					SourceOp = "DisplacementInputSwitchElseFuse",
+					Source = "Output",
+					Name = "DisplacementTextureOutput",
+				},
+				MaterialOutput = InstanceOutput {
+					SourceOp = "ShaderPipeRouter",
+					Source = "Output",
+					Name = "Material",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -110, -49.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 898.669, 307.134, 263.814, -7.7 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1137.73, -285.097 }
+			},
+			Tools = ordered() {
+				Loader23 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_AO.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 347.106 } },
+				},
+				Loader31 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Specular.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 346.5 } },
+				},
+				Loader26_1 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Displacement.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "R" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 346.5 } },
+				},
+				Loader28 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Gloss.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 347.106 } },
+				},
+				Loader29 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Normal.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210.67, 347.106 } },
+				},
+				Loader30 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Roughness.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 346.5 } },
+				},
+				Loader22 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StoneWall_Albedo.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_StoneWall PBR Textures (Castle Stone Wall)\n\nBy:\nhttps://quixel.com/megascans\n\nIs licensed under:\nQuixel Megascans Freeware", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 346.5 } },
+				},
+				PurpleQuartzPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 2530, 775.5 } },
+				},
+				AlbedoInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader22",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 379.5 } },
+					Version = 100
+				},
+				SpecularTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "SpecularInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 412.5 } },
+				},
+				GlossTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "GlossMerge",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 445.5 } },
+				},
+				GlossMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "GlossInputSwitchElseFuse",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "AOInputSwitchElseFuse",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Hard Light" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 412.5 } },
+				},
+				CookTorrance = MtlCookTorrance {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Nest"] = Input { Value = 0, },
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "AlbedoTransform",
+							Source = "Output",
+						},
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Color.Material"] = Input {
+							SourceOp = "GlossTransform",
+							Source = "Output",
+						},
+						["Specular.Intensity"] = Input { Value = 0.103, },
+						["Specular.Intensity.Material"] = Input {
+							SourceOp = "SpecularTransform",
+							Source = "Output",
+						},
+						["Specular.Roughness.Material"] = Input {
+							SourceOp = "RoughnessTransform",
+							Source = "Output",
+						},
+						["Bumpmap.Material"] = Input {
+							SourceOp = "NormaBumpMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 20, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 544.5 } },
+				},
+				NormaTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "NormalInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 412.5 } },
+				},
+				NormaBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceImageType = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "NormaTransform",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 200, },
+						BumpmapTextureDepth = Input { Value = 4, },
+						["FilterMode.Nest"] = Input { Value = 1, },
+						MaterialID = Input { Value = 21, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 445.5 } },
+				},
+				RoughnessTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "RoughnessTextureInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 412.5 } },
+				},
+				AlbedoTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Size = Input { Value = 0.344, },
+						XSize = Input { Value = 0.25, },
+						YSize = Input { Value = 0.5, },
+						Edges = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "AlbedoInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 412.5 } },
+				},
+				RoughnessTextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader30",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 379.5 } },
+					Version = 100
+				},
+				NormalInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader29",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 379.5 } },
+					Version = 100
+				},
+				GlossInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader28",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 379.5 } },
+					Version = 100
+				},
+				AOInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader23",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 379.5 } },
+					Version = 100
+				},
+				SpecularInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader31",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 379.5 } },
+					Version = 100
+				},
+				DisplacementInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "Loader26_1",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1650, 379.5 } },
+					Version = 100
+				},
+				ShaderPipeRouter = PipeRouter {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "CookTorrance",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 544.5 } },
+				}
+			},
+		},
+		StoneDisplace3D = Displace3D {
+			NameSet = true,
+			Inputs = {
+				SceneInput = Input {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				},
+				Scale = Input { Value = 0.2, },
+				CameraDisplacement = Input { Value = 1, },
+				PointCamera = Input { Value = 1, },
+				CameraSelector = Input { Value = FuID { "ShaderBallCamera3D" }, },
+				Input = Input {
+					SourceOp = "DisplacementInputSwitchElseFuse",
+					Source = "Output",
+				},
+			},
+			ViewInfo = OperatorInfo { Pos = { 55, -49.5 } },
+		},
+		kas_ShaderBall = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderBall\"  adds a shader ball model to your Fusion 3D system scene. It is used to apply and preview the look of surface materials. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n \nThis node's output is supposed to be connected directly to the \"kas_ShaderPreview\" nodes input connection so you can see a high-quality preview of your surface material. ", },
+				LightingControls = Input { Value = 1, },
+				MaterialInput = InstanceInput {
+					SourceOp = "ShaderBallFBXMesh3D",
+					Source = "MaterialInput",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 55, 16.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 545.667, 172.813, 228, 20.7546 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -483.6, 302.428 }
+			},
+			Tools = ordered() {
+				ShaderBallCamera3D = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									PreviewCamera3D = Camera3D {
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = -8.19999504089355 },
+											["Transform3DOp.Translate.X"] = Input { Value = -2.39945639043846 },
+											["Transform3DOp.Translate.Z"] = Input { Value = 2.30316502834493 },
+											FLength = Input { Value = 22.3900912079698 },
+											["Stereo.Mode"] = Input { Value = FuID { "OffAxis" } },
+											AoV = Input { Value = 37.24 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 17 },
+											["Transform3DOp.Rotate.Y"] = Input { Value = -45.0000267028809 },
+											["Transform3DOp.Translate.Y"] = Input { Value = 0.444355502984551 },
+											FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" } },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4 }
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { 550, -246.894 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input {
+							Value = -2.4,
+							Expression = "-2.4",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.47,
+							Expression = "0.47",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							Value = 2.3,
+							Expression = "2.3",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -8.2,
+							Expression = "-8.2",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = -45,
+							Expression = "-45.0",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "0.0", },
+						AoV = Input { Value = 37.24, },
+						FLength = Input { Value = 22.3900912079698, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						IDepth = Input { Value = 300, },
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.BlendMode.GL.BlendMode"] = Input { Value = FuID { "Replace" }, },
+						["SurfacePlaneInputs.BlendMode.SW.BlendMode"] = Input { Value = FuID { "SolidMatte" }, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 17, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -247.5 } },
+				},
+				ShaderBallReplaceNormals3D = ReplaceNormals3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallFBXMesh3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -280.5 } },
+				},
+				ShaderBallDirectionalLight = LightDirectional {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LightingControls = Input { Value = 1, },
+						["Transform3DOp.Rotate.X"] = Input { Expression = "kas_ShaderBall.RotateXInput", },
+						["Transform3DOp.Rotate.Y"] = Input { Expression = "kas_ShaderBall.RotateYInput", },
+						["Transform3DOp.Rotate.Z"] = Input {
+							Value = 35,
+							Expression = "kas_ShaderBall.RotateZInput",
+						},
+						Enabled = Input { Expression = "kas_ShaderBall.LightEnabled", },
+						Intensity = Input { Expression = "kas_ShaderBall.LightIntensityInput", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -181.5 } },
+				},
+				ShaderBallMerge3D = Merge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "ShaderBallCamera3D",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ShaderBallReplaceNormals3D",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ShaderBallDirectionalLight",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -247.5 } },
+				},
+				ShaderBallFBXMesh3D = SurfaceFBXMesh {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						NumMtlSlots = 0
+					},
+					Inputs = {
+						ImportFile = Input { Value = "Macros:/KickAss ShaderZ/Assets/kas_ShaderBall.obj", },
+						ObjName = Input { Value = "ShaderBall", },
+						TransformToWorld = Input { Value = 0, },
+						EnableAxisConversion = Input { Value = 1, },
+						EnableUnitConversion = Input { Value = 1, },
+						Triangulate = Input { Value = 0, },
+						ImportVertexColors = Input { Value = 0, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "ShaderPipeRouter",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				LightEnabled = {
+					CBC_TriState = false,
+					INP_Integer = false,
+					INPID_InputControl = "CheckboxControl",
+					LINKS_Name = "Light Enabled",
+					IC_ControlPage = 1,
+					LINKID_DataType = "Number",
+					INP_Default = 1,
+				},
+				LightingControls = {
+					INP_Integer = false,
+					LBLC_DropDownButton = true,
+					INPID_InputControl = "LabelControl",
+					LBLC_NumInputs = 6,
+					IC_ControlPage = 1,
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					LBLC_NestLevel = 1,
+					LINKS_Name = "Lighting Controls",
+				},
+				LightIntensityInput = {
+					INP_MaxAllowed = 100,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 2,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = 0,
+					LINKID_DataType = "Number",
+					ICD_Center = 0.5,
+					LINKS_Name = "Light Intensity",
+				},
+				RotateXInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate X",
+				},
+				RotateYInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Y",
+				},
+				RotateZInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 35,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Z",
+				},
+				LightColorRedInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					CLRC_ShowWheel = true,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					ICD_Center = 1,
+					INP_Default = 1,
+					LINKS_Name = "Light Color",
+				},
+				LightColorGreenInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					ICD_Center = 1,
+					INP_Default = 1,
+				},
+				LightColorBlueInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 2,
+					ICD_Center = 1,
+					INP_Default = 1,
+				}
+			}
+		}
+	},
+	ActiveTool = "kas_ShaderBall"
+}

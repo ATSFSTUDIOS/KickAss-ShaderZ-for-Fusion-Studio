@@ -1,0 +1,309 @@
+{
+	Tools = ordered() {
+		kas_ShaderBallDragon = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderBallDragon\" adds a Stanford Dragon model shader ball to your Fusion 3D system scene. It is used to apply and preview the look of surface materials. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n \nThis node's output is supposed to be connected directly to the \"kas_ShaderPreview\" nodes input connection so you can see a high-quality preview of your surface material.\n\nThe \"DragonUVMap3D\" node inside the GroupOperator allows you to adjust the UV layout on the model and its perfect for tweaking how the texture map is placed on the mode.\n\nCopyright Credits \nkas_ShaderBallDragon.obj\n\nDragon\n\nBy:\nThe Stanford 3D Scanning Repository \n\nIs licensed under:\nPublic Domain ", },
+				LightingControls = Input { Value = 1, },
+				RotateXInput = Input { Value = -60, },
+				RotateYInput = Input { Value = 5, },
+				RotateZInput = Input { Value = 0, },
+				MaterialInput = InstanceInput {
+					SourceOp = "ShaderBallDragonFBXMesh3D",
+					Source = "MaterialInput",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "DragonUVMap3D",
+					Source = "Output",
+					Name = "3D Data",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 55, -16.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 618.334, 171.813, 228, 19.7546 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -503.6, 301.822 }
+			},
+			Tools = ordered() {
+				ShaderBallCamera3D = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									PreviewCamera3D = Camera3D {
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = -8.19999504089355 },
+											["Transform3DOp.Translate.X"] = Input { Value = -2.39945639043846 },
+											["Transform3DOp.Translate.Z"] = Input { Value = 2.30316502834493 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 17 },
+											AoV = Input { Value = 37.24 },
+											["Stereo.Mode"] = Input { Value = FuID { "OffAxis" } },
+											["Transform3DOp.Rotate.Y"] = Input { Value = -45.0000267028809 },
+											["Transform3DOp.Translate.Y"] = Input { Value = 0.444355502984551 },
+											FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" } },
+											FLength = Input { Value = 22.3900912079698 }
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { 550, -246.894 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input {
+							Value = -2.4,
+							Expression = "-2.4",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.47,
+							Expression = "0.47",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							Value = 2.3,
+							Expression = "2.3",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -8.2,
+							Expression = "-8.2",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = -45,
+							Expression = "-45.0",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "0.0", },
+						AoV = Input { Value = 37.24, },
+						FLength = Input { Value = 22.3900912079698, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						IDepth = Input { Value = 300, },
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.BlendMode.GL.BlendMode"] = Input { Value = FuID { "Replace" }, },
+						["SurfacePlaneInputs.BlendMode.SW.BlendMode"] = Input { Value = FuID { "SolidMatte" }, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 17, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -247.5 } },
+				},
+				ShaderBallReplaceNormals3D = ReplaceNormals3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallDragonFBXMesh3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -280.5 } },
+				},
+				ShaderBallDirectionalLight = LightDirectional {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LightingControls = Input { Value = 1, },
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -60,
+							Expression = "kas_ShaderBallDragon.RotateXInput",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = 5,
+							Expression = "kas_ShaderBallDragon.RotateYInput",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "kas_ShaderBallDragon.RotateZInput", },
+						Enabled = Input { Expression = "kas_ShaderBallDragon.LightEnabled", },
+						Intensity = Input { Expression = "kas_ShaderBallDragon.LightIntensityInput", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -181.5 } },
+				},
+				ShaderBallMerge3D = Merge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "ShaderBallCamera3D",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ShaderBallReplaceNormals3D",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ShaderBallDirectionalLight",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -247.5 } },
+				},
+				ShaderBallDragonFBXMesh3D = SurfaceFBXMesh {
+					NameSet = true,
+					CustomData = {
+						NumMtlSlots = 0,
+					},
+					Inputs = {
+						ImportFile = Input { Value = "Macros:/KickAss ShaderZ/Assets/kas_ShaderBallDragon.obj", },
+						ObjName = Input { Value = "Dragon", },
+						TransformToWorld = Input { Value = 0, },
+						EnableAxisConversion = Input { Value = 1, },
+						EnableUnitConversion = Input { Value = 1, },
+						Triangulate = Input { Value = 0, },
+						ImportVertexColors = Input { Value = 0, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+						Comments = Input { Value = "Copyright Credits \nkas_ShaderBallDragon.obj\n\nDragon\n\nBy:\nThe Stanford 3D Scanning Repository \n\nIs licensed under:\nPublic Domain ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -280.5 } },
+				},
+				DragonUVMap3D = UVMap {
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallMerge3D",
+							Source = "Output",
+						},
+						Orientation = Input { Value = 2, },
+						["Size.X"] = Input { Value = 2.5, },
+						["Size.Y"] = Input { Value = 2.5, },
+						["Size.Z"] = Input { Value = 2.5, },
+						CenterNest = Input { Value = 1, },
+						RotationNest = Input { Value = 1, },
+						TileNest = Input { Value = 1, },
+						FlipNest = Input { Value = 1, },
+						Comments = Input { Value = "The \"DragonUVMap3D\" node inside the GroupOperator allows you to adjust the UV layout on the model and its perfect for tweaking how the texture map is placed on the mode.\n", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				LightEnabled = {
+					CBC_TriState = false,
+					INP_Integer = false,
+					INPID_InputControl = "CheckboxControl",
+					INP_Default = 1,
+					IC_ControlPage = 1,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Enabled",
+				},
+				LightingControls = {
+					INP_Integer = false,
+					LBLC_DropDownButton = true,
+					INPID_InputControl = "LabelControl",
+					LBLC_NumInputs = 6,
+					IC_ControlPage = 1,
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					LBLC_NestLevel = 1,
+					LINKS_Name = "Lighting Controls",
+				},
+				LightIntensityInput = {
+					INP_MaxAllowed = 100,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 2,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = 0,
+					LINKID_DataType = "Number",
+					ICD_Center = 0.5,
+					LINKS_Name = "Light Intensity",
+				},
+				RotateXInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate X",
+				},
+				RotateYInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Y",
+				},
+				RotateZInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 35,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Z",
+				},
+				LightColorRedInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					CLRC_ShowWheel = true,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					ICD_Center = 1,
+					INP_Default = 1,
+					LINKS_Name = "Light Color",
+				},
+				LightColorGreenInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					INP_Default = 1,
+					ICD_Center = 1,
+				},
+				LightColorBlueInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 2,
+					INP_Default = 1,
+					ICD_Center = 1,
+				}
+			}
+		}
+	},
+	ActiveTool = "kas_ShaderBallDragon"
+}

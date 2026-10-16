@@ -1,0 +1,447 @@
+{
+	Tools = ordered() {
+		KickAssPBR = Indicated.CustomShaderOperator3D {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				ShaderTextLabel = Input { Value = 0, },
+				ShaderTextInputs = Input { Value = "FuFloat4 BaseColor;\nFuFloat4 Roughness;\nFuFloat4 Normal;\nFuFloat4 Metallic;\nFuFloat4 Height;\nFuFloat4 IBL;\nfloat4 Diffuse;\nFuLight Lights[];\n\n", },
+				ShaderTextBody = Input { Value = "float4 Shade(inout FuFragment f) {\n	float4 Kd = BaseColor.Shade(f);\n\n	// f.Normal is in eye space\n	float3 n = f.Normal;\n\n	// Ambient light accumulation buffer\n	float3 aAccum = 0;\n\n	// Diffuse light accumulation buffer\n	float3 dAccum = 0;\n\n	// Per-light isotropic Lambertian lighting\n	float3 Lambert;\n\n	// Surface to Light vector mapped in eye space for each fragment\n	float3 l;\n\n	// Iterate through the Lights[] array and perform shading to fill up the aAccum and dAccum buffers.\n	for(int i = 0; i < Lights.length; i++){\n		// FuLightData holds the AmbientColor, Color, and LightVector\n		FuLightData data = Lights[i].Illuminate(f);\n\n		// Only Ambient lights set the AmbientColor to anything other than zeros.  Also, ambient lights set Color and LightVector to zeros. So each light only will affect either the aAccum or dAccum buffer.\n		aAccum += data.AmbientColor.rgb;\n\n		// Set the LightVector to a unit vector so it becomes purely direction, not distance.\n		l = normalize(data.LightVector);\n\n		// Lambertian lighting is the dot product of the normal and the light directions.  Surfaces pointing toward the light will be bright, those perpendicular to the light will be dark.  Those pointing away will be negative. Saturate() clamps the value to a [0,1] range, so the negative lighting values will be zeroed out.\n		Lambert = saturate(dot(n,l));\n\n		// Ambient lights don't set the Color, but other lights do.  The Color includes shadow maps, decay, projectors, etc..  The light Color gets multiplied by the Lambertian intensity to give the final diffuse color which accumulates in dAccum.\n		dAccum += data.Color.rgb * Lambert;\n	}\n\n	// The final float4 fragment is the Kd, the surface color, multiplied by the summed lighting.  Kd also provides the alpha which is unaffected by lighting.\n	float4 ret = float4(Kd * (dAccum + aAccum) * Diffuse, Kd.a);\n\n	// Return the final shaded output\n	return ret;\n}\n", },
+				RCGroup = Input { Value = 1, },
+				UseLights = Input { Value = 1, },
+				MaterialGroup = Input { Value = 1, },
+				FloatGroup = Input { Value = 1, },
+				ColorGroup = Input { Value = 1, },
+				BoolGroup = Input { Value = 1, },
+				MatrixGroup = Input { Value = 1, },
+				MaterialIDNest = Input { Value = 1, },
+				MaterialID = Input { Value = 1, },
+				BaseColor = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "BaseColor",
+						}
+					},
+				},
+				Roughness = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "Roughness",
+						}
+					},
+				},
+				Normal = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "Normal",
+						}
+					},
+				},
+				Metallic = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "Metallic",
+						}
+					},
+				},
+				Height = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "Height",
+						}
+					},
+				},
+				IBL = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Material",
+							Set = "IBL",
+						}
+					},
+				},
+				DiffuseRed = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Color",
+							Set = "Diffuse",
+						}
+					},
+				},
+				DiffuseGreen = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Color",
+							Set = "Diffuse",
+						}
+					},
+				},
+				DiffuseBlue = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Color",
+							Set = "Diffuse",
+						}
+					},
+				},
+				DiffuseAlpha = Input {
+					CustomData = {
+						Metadata = {
+							Type = "Color",
+							Set = "Diffuse",
+						}
+					},
+				},
+			},
+			ViewInfo = OperatorInfo { Pos = { 55, 16.5 } },
+			UserControls = ordered() {
+				BaseColor = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 1,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				BaseColorLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "BaseColor",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				BaseColorDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				Roughness = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 2,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				RoughnessLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Roughness",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				RoughnessDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				Normal = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 3,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				NormalLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Normal",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				NormalDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				Metallic = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 4,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				MetallicLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Metallic",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				MetallicDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				Height = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 5,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				HeightLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Height",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				HeightDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				Emissive = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 6,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				EmissiveLabel = {
+					ICD_Width = 0.9,
+					INP_External = false,
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Emissive",
+					INP_Passive = true,
+				},
+				EmissiveDeleteButton = {
+					ICD_Width = 0.1,
+					INPID_InputControl = "MultiButtonControl",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+					INP_DoNotifyChanged = 1,
+					INP_External = 0,
+					LINKID_DataType = "Number",
+					ICS_Name = "",
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+				},
+				IBL = {
+					{
+						LINKID_DataType = "MtlGraph3D"
+					},
+					{
+						LINKID_DataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Image"
+					},
+					{
+						LINKID_AllowedDataType = "Mask"
+					},
+					LINK_Main = 7,
+					INP_AcceptsGLImages = true,
+					INPID_InputControl = "ImageControl",
+					IC_ControlPage = 0,
+					INP_Required = false,
+					INP_AcceptsMasks = true,
+				},
+				IBLLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "IBL",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				},
+				IBLDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				DiffuseDeleteButton = {
+					LINKID_DataType = "Number",
+					INPID_InputControl = "MultiButtonControl",
+					INP_DoNotifyChanged = 1,
+					MBTNC_AddButton = "X",
+					MBTNC_Type = "Toggle",
+					ICD_Width = 0.1,
+					INP_External = 0,
+					ICS_Name = "",
+					IC_ControlPage = 1,
+					MBTNC_ButtonHeight = 18,
+				},
+				DiffuseRed = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 0,
+					INP_MaxScale = 1,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					ICS_Name = "Diffuse",
+					IC_ControlGroup = 1,
+				},
+				DiffuseGreen = {
+					IC_ControlGroup = 1,
+					INP_MinScale = 0,
+					INPID_InputControl = "ColorControl",
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					IC_ControlPage = 0,
+					INP_MaxScale = 1,
+					INP_Default = 1,
+				},
+				DiffuseBlue = {
+					IC_ControlGroup = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					INPID_InputControl = "ColorControl",
+					IC_ControlID = 2,
+					IC_ControlPage = 0,
+					INP_MaxScale = 1,
+					INP_Default = 1,
+				},
+				DiffuseAlpha = {
+					IC_ControlGroup = 1,
+					INP_MinScale = 0,
+					INPID_InputControl = "ColorControl",
+					LINKID_DataType = "Number",
+					IC_ControlID = 3,
+					IC_ControlPage = 0,
+					INP_MaxScale = 1,
+					INP_Default = 1,
+				},
+				DiffuseLabel = {
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = 1,
+					ICS_Name = "Diffuse",
+					ICD_Width = 0.9,
+					INP_Passive = true,
+					INP_External = false,
+				}
+			}
+		}
+	},
+	ActiveTool = "KickAssPBR"
+}

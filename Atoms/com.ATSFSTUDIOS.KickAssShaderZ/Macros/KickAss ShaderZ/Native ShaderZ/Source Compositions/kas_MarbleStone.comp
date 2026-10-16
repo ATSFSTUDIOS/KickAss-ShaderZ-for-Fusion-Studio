@@ -1,0 +1,3411 @@
+Composition {
+	CurrentTime = 0,
+	RenderRange = { 0, 0 },
+	GlobalRange = { 0, 1 },
+	CurrentID = 2893,
+	HiQ = true,
+	MotionBlur = false,
+	PlaybackUpdateMode = 0,
+	Version = "Fusion Studio 16.1.1 build 5",
+	SavedOutputs = 1,
+	HeldTools = 0,
+	DisabledTools = 0,
+	LockedTools = 0,
+	AudioOffset = 0,
+	Resumable = true,
+	OutputClips = {
+		"Comp:/kas_MarbleStone.0.png"
+	},
+	Tools = {
+		InvertCustomToolLUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 204, Blue = 0 },
+		},
+		kas_ShaderPreview = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderPreview\" is has a Renderer3D node inside is that renders a preview shader swatch with a baked-in grey checker background.\n\nThis node is supposed to be connected directly to the \"kas_ShaderBall.Output\" node's output connection. ", },
+				SceneInput3D = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "SceneInput",
+				},
+				RendererType = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "RendererType",
+					Name = "Renderer",
+				},
+				Width = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "Width",
+					Default = 1920,
+				},
+				Height = InstanceInput {
+					SourceOp = "IconRenderer3D",
+					Source = "Height",
+					Default = 1080,
+				}
+			},
+			Outputs = {
+				IconOutput = InstanceOutput {
+					SourceOp = "GreyCheckerboardMerge",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 3355, 511.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 300.041, 110, 279.273, 46.63 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -975.239, 145.242 }
+			},
+			Tools = ordered() {
+				IconRenderer3D = Renderer3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									Renderer3D1_1 = Renderer3D {
+										Inputs = {
+											SceneInput = Input {
+												SourceOp = "Merge3D1_1",
+												Source = "Output"
+											},
+											Width = Input { Value = 160 },
+											["RendererOpenGL.LightingEnabled"] = Input { Value = 1 },
+											["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+											RendererType = Input { Value = FuID { "RendererOpenGL" } },
+											GlobalOut = Input { Value = 119 },
+											Depth = Input { Value = 4 },
+											["RendererSoftware.LightingEnabled"] = Input { Value = 1 },
+											Height = Input { Value = 100 }
+										},
+										Name = "Renderer3D1_1",
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { -11385.5, 24.4024 } },
+										CustomData = {
+											ToolVersion = 2
+										}
+									}
+								}
+							}
+						},
+						ToolVersion = 2
+					},
+					Inputs = {
+						["RendererSoftware.LightingEnabled"] = Input { Value = 1, },
+						GlobalOut = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "MarbleDisplace3D",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.LowQuality.Enable"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 2, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, },
+						["RendererOpenGL.TransparencySorting"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, -148.5 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				GreyCheckerboardMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IconRenderer3D",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, -115.5 } },
+				},
+				GreyCheckerboard = GroupOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 3,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Source = "CheckerSize",
+												SourceOp = "CheckerCustomTool",
+												Default = 17
+											},
+											Width = InstanceInput {
+												Source = "Width",
+												SourceOp = "CheckerBackground",
+												Default = 1300
+											},
+											Height = InstanceInput {
+												Source = "Height",
+												SourceOp = "CheckerBackground",
+												Default = 1000
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										NameSet = true,
+										CtrlWZoom = false,
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 100 },
+													Width = Input { Value = 130 }
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } }
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" },
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													CheckerSize = Input { Value = 17 },
+													ShowNumber2 = Input { Value = 0 },
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowLUT3 = Input { Value = 0 },
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													ShowLUT4 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													ShowNumber3 = Input { Value = 0 },
+													ShowNumber4 = Input { Value = 0 },
+													ShowPoint4 = Input { Value = 0 },
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													}
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_MinScale = 0,
+														INP_Integer = true,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 0, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 0, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 204, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 204, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } }
+											}
+										},
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Pos = { 880, -114.506 },
+											PipeStyle = "Direct",
+											Offset = { 66.6667, 28.3333 },
+											Scale = 1,
+											Size = { 417.864, 118.382, 63, 22 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							},
+							[2] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Default = 17,
+												SourceOp = "CheckerCustomTool",
+												Source = "CheckerSize"
+											},
+											Width = InstanceInput {
+												Default = 1300,
+												SourceOp = "CheckerBackground",
+												Source = "Width"
+											},
+											Height = InstanceInput {
+												Default = 1000,
+												SourceOp = "CheckerBackground",
+												Source = "Height"
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 1000 },
+													Width = Input { Value = 1300 }
+												}
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													},
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													ShowPoint4 = Input { Value = 0 },
+													ShowLUT3 = Input { Value = 0 },
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowNumber4 = Input { Value = 0 },
+													ShowLUT4 = Input { Value = 0 },
+													ShowNumber3 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													ShowNumber2 = Input { Value = 0 },
+													CheckerSize = Input { Value = 17 },
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" }
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_MinScale = 0,
+														INP_Integer = true,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 0, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 0, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 204, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 204, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Size = { 417.864, 118.382, 63, 22 },
+											PipeStyle = "Direct",
+											Scale = 1,
+											Offset = { 66.6667, 28.3333 },
+											Pos = { 880, -114.506 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = ordered() {
+						Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com", },
+						Center = InstanceInput {
+							SourceOp = "CheckerCustomTool",
+							Source = "PointIn1",
+						},
+						CheckerSize = InstanceInput {
+							SourceOp = "CheckerCustomTool",
+							Source = "CheckerSize",
+							Default = 17,
+						},
+						Width = InstanceInput {
+							SourceOp = "CheckerBackground",
+							Source = "Width",
+							Expression = "IconRenderer3D.Width",
+							Default = 1300,
+						},
+						Height = InstanceInput {
+							SourceOp = "CheckerBackground",
+							Source = "Height",
+							Expression = "IconRenderer3D.Height",
+							Default = 1000,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "MasterRGBOutputLow",
+							Name = "Checker Low Grey",
+							ControlGroup = 2,
+							Default = 0.2093,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "MasterRGBOutputHigh",
+							Name = "Checker High Grey",
+							ControlGroup = 2,
+							Default = 0.3137,
+						}
+					},
+					Outputs = {
+						Output = InstanceOutput {
+							SourceOp = "MakeGreyLevelsColorCorrector",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { 770, -115.5 },
+						Flags = {
+							AllowPan = false,
+							AutoSnap = true
+						},
+						Size = { 417.864, 118.382, 63, 22 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 66.6667, 28.3333 }
+					},
+					Tools = ordered() {
+						CheckerBackground = Background {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								GlobalOut = Input { Value = 1, },
+								Width = Input {
+									Value = 1920,
+									Expression = "IconRenderer3D.Width",
+								},
+								Height = Input {
+									Value = 1080,
+									Expression = "IconRenderer3D.Height",
+								},
+								["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+						},
+						CheckerCustomTool = Custom {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								PointIn1 = Input { Value = { 0.496, 0.5 }, },
+								NumberIn1 = Input {
+									Value = 170,
+									Expression = "CheckerSize",
+								},
+								NumberIn2 = Input { Value = 0.20392, },
+								LUTIn1 = Input {
+									SourceOp = "CheckerCustomToolLUTIn1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CheckerCustomToolLUTIn2",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CheckerCustomToolLUTIn3",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CheckerCustomToolLUTIn4",
+									Source = "Value",
+								},
+								Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)", },
+								Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)", },
+								RedExpression = Input { Value = "abs(i1-i2) ", },
+								GreenExpression = Input { Value = "abs(i1-i2)", },
+								BlueExpression = Input { Value = "abs(i1-i2)", },
+								NumberControls = Input { Value = 1, },
+								NameforNumber1 = Input { Value = "SquareSize", },
+								ShowNumber2 = Input { Value = 0, },
+								ShowNumber3 = Input { Value = 0, },
+								ShowNumber4 = Input { Value = 0, },
+								ShowNumber5 = Input { Value = 0, },
+								ShowNumber6 = Input { Value = 0, },
+								ShowNumber7 = Input { Value = 0, },
+								ShowNumber8 = Input { Value = 0, },
+								NameforPoint1 = Input { Value = "Center", },
+								ShowPoint2 = Input { Value = 0, },
+								ShowPoint3 = Input { Value = 0, },
+								ShowPoint4 = Input { Value = 0, },
+								ShowLUT1 = Input { Value = 0, },
+								ShowLUT2 = Input { Value = 0, },
+								ShowLUT3 = Input { Value = 0, },
+								ShowLUT4 = Input { Value = 0, },
+								Image1 = Input {
+									SourceOp = "CheckerBackground",
+									Source = "Output",
+								},
+								CheckerSize = Input { Value = 170, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 16.5 } },
+							UserControls = ordered() {
+								CheckerSize = {
+									INP_MinScale = 0,
+									INP_Integer = true,
+									INP_MinAllowed = 0,
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+									IC_ControlPage = 0,
+									INP_MaxScale = 100,
+									INP_Default = 64,
+								}
+							}
+						},
+						CheckerCustomToolLUTIn1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn2 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn3 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn4 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						},
+						MakeGreyLevelsColorCorrector = ColorCorrector {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Menu = Input { Value = 1, },
+								MasterRGBOutputLow = Input { Value = 0.2093, },
+								MasterRGBOutputHigh = Input { Value = 0.3137, },
+								ColorRanges = Input {
+									Value = ColorCurves {
+										Curves = {
+											{
+												Points = {
+													{ 0, 1 },
+													{ 0.4, 0.2 },
+													{ 0.6, 0 },
+													{ 1, 0 }
+												}
+											},
+											{
+												Points = {
+													{ 0, 0 },
+													{ 0.4, 0 },
+													{ 0.6, 0.2 },
+													{ 1, 1 }
+												}
+											}
+										}
+									},
+								},
+								HistogramIgnoreTransparent = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "CheckerCustomTool",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+						}
+					},
+				}
+			},
+		},
+		MarbleDisplace3D = Displace3D {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				SceneInput = Input {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				},
+				Scale = Input { Value = 0.02, },
+				CameraDisplacement = Input { Value = 1, },
+				CameraSelector = Input { Value = FuID { "ShaderBallCamera3D" }, },
+				Input = Input {
+					SourceOp = "DisplaceOutPipeRouter",
+					Source = "Output",
+				},
+				Comments = Input { Value = "To get the displacement effect out of this material you need to add a Displace3D node and connect its \"SceneInput\" input to a 3D model's \"3DData\" output connection. Then connect the \"kas_MarbleStoneDisplace\" node' s \"DisplacementTextureOutput\" connection to the Displace3D node' s \"Input\" connection. The strength of the displacement effect is controlled on the Displace3D node's scale attribute with a good starting value of approximately 0.02. ", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 3190, 511.5 } },
+		},
+		kas_IconSaver = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_IconSaver\" renders a Fusion v9 Bin window 130x100 px BMP format icon to the Comp PathMap folder. If you have HiQ enabled simply viewing this node will write you new bin icon to disk. \n\nThis node is supposed to be connected directly to the \"kas_ShaderBall.Output\" node's output connection. ", },
+				SceneInput3D = InstanceInput {
+					SourceOp = "IconRenderer3D_1",
+					Source = "SceneInput",
+				},
+				Filename = InstanceInput {
+					SourceOp = "IconSaver",
+					Source = "Clip",
+				},
+				RendererType = InstanceInput {
+					SourceOp = "IconRenderer3D_1",
+					Source = "RendererType",
+					Name = "Renderer",
+				}
+			},
+			Outputs = {
+				IconOutput = InstanceOutput {
+					SourceOp = "IconSaver",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 3355, 577.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 492.041, 121, 279.273, 46.63 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -975.239, 145.242 }
+			},
+			Tools = ordered() {
+				IconRenderer3D_1 = Renderer3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									Renderer3D1_1 = Renderer3D {
+										Inputs = {
+											SceneInput = Input {
+												SourceOp = "Merge3D1_1",
+												Source = "Output"
+											},
+											Width = Input { Value = 160 },
+											["RendererOpenGL.LightingEnabled"] = Input { Value = 1 },
+											["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+											RendererType = Input { Value = FuID { "RendererOpenGL" } },
+											GlobalOut = Input { Value = 119 },
+											Depth = Input { Value = 4 },
+											["RendererSoftware.LightingEnabled"] = Input { Value = 1 },
+											Height = Input { Value = 100 }
+										},
+										Name = "Renderer3D1_1",
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { -11385.5, 24.4024 } },
+										CustomData = {
+											ToolVersion = 2
+										}
+									}
+								}
+							}
+						},
+						ToolVersion = 2
+					},
+					Inputs = {
+						["RendererSoftware.LightingEnabled"] = Input { Value = 1, },
+						GlobalOut = Input { Value = 1, },
+						Width = Input { Value = 1300, },
+						Height = Input { Value = 1000, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "MarbleDisplace3D",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.LowQuality.Enable"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateX"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.RateY"] = Input { Value = 8, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 0, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 2, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, },
+						["RendererOpenGL.TransparencySorting"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, -148.5 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				IconSaver = Saver {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ProcessWhenBlendIs00 = Input { Value = 0, },
+						Clip = Input {
+							Value = Clip {
+								Filename = "Comp:/kas_MarbleStone.0.png",
+								FormatID = "PNGFormat",
+								Length = 0,
+								Saving = true,
+								TrimIn = 0,
+								ExtendFirst = 0,
+								ExtendLast = 0,
+								Loop = 1,
+								AspectMode = 0,
+								Depth = 0,
+								TimeCode = 0,
+								GlobalStart = -2000000000,
+								GlobalEnd = 0
+							},
+						},
+						OutputFormat = Input { Value = FuID { "PNGFormat" }, },
+						SaveFrames = Input { Value = FuID { "HiQInteractive" }, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "LanczosIconResize",
+							Source = "Output",
+						},
+						["PNGFormat.PreDivide"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, -115.5 } },
+				},
+				LanczosIconResize = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 130, },
+						Height = Input { Value = 100, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 8, },
+						Input = Input {
+							SourceOp = "GreyCheckerboardMerge_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, -115.5 } },
+				},
+				GreyCheckerboardMerge_1 = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "MakeGreyLevelsColorCorrector_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IconRenderer3D_1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, -115.5 } },
+				},
+				GreyCheckerboard_1 = GroupOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 3,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Default = 17,
+												SourceOp = "CheckerCustomTool",
+												Source = "CheckerSize"
+											},
+											Width = InstanceInput {
+												Default = 1300,
+												SourceOp = "CheckerBackground",
+												Source = "Width"
+											},
+											Height = InstanceInput {
+												Default = 1000,
+												SourceOp = "CheckerBackground",
+												Source = "Height"
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 100 },
+													Width = Input { Value = 130 }
+												}
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													},
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													ShowPoint4 = Input { Value = 0 },
+													ShowLUT3 = Input { Value = 0 },
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													ShowNumber2 = Input { Value = 0 },
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowNumber4 = Input { Value = 0 },
+													ShowLUT4 = Input { Value = 0 },
+													ShowNumber3 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													CheckerSize = Input { Value = 17 },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" }
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_Integer = true,
+														INP_MinScale = 0,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 0, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 0, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Green = 0, Blue = 204, Red = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Green = 204, Blue = 204, Red = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+												NameSet = true,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Size = { 417.864, 118.382, 63, 22 },
+											PipeStyle = "Direct",
+											Scale = 1,
+											Offset = { 66.6667, 28.3333 },
+											Pos = { 880, -114.506 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							},
+							[2] = {
+								Tools = ordered() {
+									GreyCheckerboard = GroupOperator {
+										Inputs = ordered() {
+											Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com" },
+											Center = InstanceInput {
+												SourceOp = "CheckerCustomTool",
+												Source = "PointIn1"
+											},
+											CheckerSize = InstanceInput {
+												Source = "CheckerSize",
+												SourceOp = "CheckerCustomTool",
+												Default = 17
+											},
+											Width = InstanceInput {
+												Source = "Width",
+												SourceOp = "CheckerBackground",
+												Default = 1300
+											},
+											Height = InstanceInput {
+												Source = "Height",
+												SourceOp = "CheckerBackground",
+												Default = 1000
+											},
+											Input1 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputLow",
+												Name = "Checker Low Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.2093
+											},
+											Input2 = InstanceInput {
+												ControlGroup = 2,
+												Source = "MasterRGBOutputHigh",
+												Name = "Checker High Grey",
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Default = 0.3137
+											}
+										},
+										NameSet = true,
+										CtrlWZoom = false,
+										Tools = ordered() {
+											CheckerBackground = Background {
+												CtrlWShown = false,
+												Inputs = {
+													GlobalOut = Input { Value = 1 },
+													["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+													Height = Input { Value = 1000 },
+													Width = Input { Value = 1300 }
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { -55, 16.5 } }
+											},
+											CheckerCustomTool = Custom {
+												CtrlWShown = false,
+												Inputs = {
+													ShowNumber5 = Input { Value = 0 },
+													LUTIn4 = Input {
+														SourceOp = "CheckerCustomToolLUTIn4",
+														Source = "Value"
+													},
+													ShowPoint2 = Input { Value = 0 },
+													ShowLUT1 = Input { Value = 0 },
+													PointIn1 = Input { Value = { 0.496, 0.5 } },
+													RedExpression = Input { Value = "abs(i1-i2) " },
+													Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)" },
+													ShowLUT2 = Input { Value = 0 },
+													LUTIn2 = Input {
+														SourceOp = "CheckerCustomToolLUTIn2",
+														Source = "Value"
+													},
+													ShowNumber8 = Input { Value = 0 },
+													NumberIn1 = Input {
+														Value = 17,
+														Expression = "CheckerSize"
+													},
+													ShowNumber2 = Input { Value = 0 },
+													LUTIn3 = Input {
+														SourceOp = "CheckerCustomToolLUTIn3",
+														Source = "Value"
+													},
+													NameforNumber1 = Input { Value = "SquareSize" },
+													NumberControls = Input { Value = 1 },
+													CheckerSize = Input { Value = 17 },
+													NumberIn2 = Input { Value = 0.20392 },
+													ShowNumber6 = Input { Value = 0 },
+													Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)" },
+													ShowNumber4 = Input { Value = 0 },
+													LUTIn1 = Input {
+														SourceOp = "CheckerCustomToolLUTIn1",
+														Source = "Value"
+													},
+													ShowNumber3 = Input { Value = 0 },
+													GreenExpression = Input { Value = "abs(i1-i2)" },
+													ShowPoint3 = Input { Value = 0 },
+													BlueExpression = Input { Value = "abs(i1-i2)" },
+													ShowLUT4 = Input { Value = 0 },
+													ShowLUT3 = Input { Value = 0 },
+													ShowPoint4 = Input { Value = 0 },
+													NameforPoint1 = Input { Value = "Center" },
+													ShowNumber7 = Input { Value = 0 },
+													Image1 = Input {
+														SourceOp = "CheckerBackground",
+														Source = "Output"
+													}
+												},
+												UserControls = ordered() {
+													CheckerSize = {
+														INP_Integer = true,
+														INP_MinScale = 0,
+														INP_MinAllowed = 0,
+														LINKID_DataType = "Number",
+														INPID_InputControl = "SliderControl",
+														IC_ControlPage = 0,
+														INP_MaxScale = 100,
+														INP_Default = 64
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 55, 16.5 } }
+											},
+											CheckerCustomToolLUTIn1 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 0, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn2 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 0, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn3 = LUTBezier {
+												SplineColor = { Red = 0, Blue = 204, Green = 0 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											CheckerCustomToolLUTIn4 = LUTBezier {
+												SplineColor = { Red = 204, Blue = 204, Green = 204 },
+												KeyColorSplines = {
+													[0] = {
+														[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+														[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+													}
+												},
+												CtrlWShown = false
+											},
+											MakeGreyLevelsColorCorrector = ColorCorrector {
+												CtrlWShown = false,
+												Inputs = {
+													HistogramIgnoreTransparent = Input { Value = 1 },
+													Menu = Input { Value = 1 },
+													MasterRGBOutputLow = Input { Value = 0.2093 },
+													Input = Input {
+														SourceOp = "CheckerCustomTool",
+														Source = "Output"
+													},
+													MasterRGBOutputHigh = Input { Value = 0.3137 },
+													ColorRanges = Input {
+														Value = ColorCurves {
+															Curves = {
+																{
+																	Points = {
+																		{ 0, 1 },
+																		{ 0.4, 0.2 },
+																		{ 0.6, 0 },
+																		{ 1, 0 }
+																	}
+																},
+																{
+																	Points = {
+																		{ 0, 0 },
+																		{ 0.4, 0 },
+																		{ 0.6, 0.2 },
+																		{ 1, 1 }
+																	}
+																}
+															}
+														}
+													}
+												},
+												NameSet = true,
+												ViewInfo = OperatorInfo { Pos = { 165, 16.5 } }
+											}
+										},
+										ViewInfo = GroupInfo {
+											Flags = {
+												AllowPan = false,
+												AutoSnap = true
+											},
+											Direction = "Horizontal",
+											Pos = { 880, -114.506 },
+											PipeStyle = "Direct",
+											Offset = { 66.6667, 28.3333 },
+											Scale = 1,
+											Size = { 417.864, 118.382, 63, 22 }
+										},
+										CustomData = {
+										},
+										Outputs = {
+											Output = InstanceOutput {
+												SourceOp = "MakeGreyLevelsColorCorrector",
+												Source = "Output"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = ordered() {
+						Comments = Input { Value = "The GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com", },
+						Center = InstanceInput {
+							SourceOp = "CheckerCustomTool_1",
+							Source = "PointIn1",
+						},
+						CheckerSize = InstanceInput {
+							SourceOp = "CheckerCustomTool_1",
+							Source = "CheckerSize",
+							Default = 17,
+						},
+						Width = InstanceInput {
+							SourceOp = "CheckerBackground_1",
+							Source = "Width",
+							Expression = "IconRenderer3D_1.Width",
+							Default = 1300,
+						},
+						Height = InstanceInput {
+							SourceOp = "CheckerBackground_1",
+							Source = "Height",
+							Expression = "IconRenderer3D_1.Height",
+							Default = 1000,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1",
+							Source = "MasterRGBOutputLow",
+							Name = "Checker Low Grey",
+							ControlGroup = 2,
+							Default = 0.2093,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1",
+							Source = "MasterRGBOutputHigh",
+							Name = "Checker High Grey",
+							ControlGroup = 2,
+							Default = 0.3137,
+						}
+					},
+					Outputs = {
+						Output = InstanceOutput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { 770, -115.5 },
+						Flags = {
+							AllowPan = false,
+							AutoSnap = true
+						},
+						Size = { 417.864, 118.382, 63, 22 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 66.6667, 28.3333 }
+					},
+					Tools = ordered() {
+						CheckerBackground_1 = Background {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								GlobalOut = Input { Value = 1, },
+								Width = Input {
+									Value = 1300,
+									Expression = "IconRenderer3D_1.Width",
+								},
+								Height = Input {
+									Value = 1000,
+									Expression = "IconRenderer3D_1.Height",
+								},
+								["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+						},
+						CheckerCustomTool_1 = Custom {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								PointIn1 = Input { Value = { 0.496, 0.5 }, },
+								NumberIn1 = Input {
+									Value = 170,
+									Expression = "CheckerSize",
+								},
+								NumberIn2 = Input { Value = 0.20392, },
+								LUTIn1 = Input {
+									SourceOp = "CheckerCustomToolLUTIn1_1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CheckerCustomToolLUTIn2_1",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CheckerCustomToolLUTIn3_1",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CheckerCustomToolLUTIn4_1",
+									Source = "Value",
+								},
+								Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)", },
+								Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)", },
+								RedExpression = Input { Value = "abs(i1-i2) ", },
+								GreenExpression = Input { Value = "abs(i1-i2)", },
+								BlueExpression = Input { Value = "abs(i1-i2)", },
+								NumberControls = Input { Value = 1, },
+								NameforNumber1 = Input { Value = "SquareSize", },
+								ShowNumber2 = Input { Value = 0, },
+								ShowNumber3 = Input { Value = 0, },
+								ShowNumber4 = Input { Value = 0, },
+								ShowNumber5 = Input { Value = 0, },
+								ShowNumber6 = Input { Value = 0, },
+								ShowNumber7 = Input { Value = 0, },
+								ShowNumber8 = Input { Value = 0, },
+								NameforPoint1 = Input { Value = "Center", },
+								ShowPoint2 = Input { Value = 0, },
+								ShowPoint3 = Input { Value = 0, },
+								ShowPoint4 = Input { Value = 0, },
+								ShowLUT1 = Input { Value = 0, },
+								ShowLUT2 = Input { Value = 0, },
+								ShowLUT3 = Input { Value = 0, },
+								ShowLUT4 = Input { Value = 0, },
+								Image1 = Input {
+									SourceOp = "CheckerBackground_1",
+									Source = "Output",
+								},
+								CheckerSize = Input { Value = 170, },
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 16.5 } },
+							UserControls = ordered() {
+								CheckerSize = {
+									INP_Integer = true,
+									INP_MinScale = 0,
+									INP_MinAllowed = 0,
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+									IC_ControlPage = 0,
+									INP_MaxScale = 100,
+									INP_Default = 64,
+								}
+							}
+						},
+						CheckerCustomToolLUTIn1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn2_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn3_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn4_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						},
+						MakeGreyLevelsColorCorrector_1 = ColorCorrector {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Menu = Input { Value = 1, },
+								MasterRGBOutputLow = Input { Value = 0.2093, },
+								MasterRGBOutputHigh = Input { Value = 0.3137, },
+								ColorRanges = Input {
+									Value = ColorCurves {
+										Curves = {
+											{
+												Points = {
+													{ 0, 1 },
+													{ 0.4, 0.2 },
+													{ 0.6, 0 },
+													{ 1, 0 }
+												}
+											},
+											{
+												Points = {
+													{ 0, 0 },
+													{ 0.4, 0 },
+													{ 0.6, 0.2 },
+													{ 1, 1 }
+												}
+											}
+										}
+									},
+								},
+								HistogramIgnoreTransparent = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "CheckerCustomTool_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+						}
+					},
+				}
+			},
+		},
+		kas_MarbleStoneDisplace = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+				DisplacementTextureInput = InstanceInput {
+					SourceOp = "DisplaceMapPipeRouter",
+					Source = "Input",
+					Name = "DisplacementTextureInput",
+				}
+			},
+			Outputs = {
+				DisplacementTextureOutput = InstanceOutput {
+					SourceOp = "DisplaceOutPipeRouter",
+					Source = "Output",
+					Name = "DisplacementTextureOutput",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 2970, 511.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 268.191, 233.573, 99.6831, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -3150.46, -474.701 }
+			},
+			Tools = ordered() {
+				MarbleStoneDisplacementLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_Displacement.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 3195.63, 542.477 } },
+				},
+				DisplaceMapPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 3093.81, 488.91 } },
+				},
+				DisplaceOutPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "DisplacementInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 3192.8, 653.473 } },
+				},
+				DisplacementInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input1 = Input {
+							SourceOp = "DisplaceMapPipeRouter",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "MarbleStoneDisplacementLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 3195.63, 580.62 } },
+					Version = 100
+				}
+			},
+		},
+		InvertCustomToolLUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 204, Blue = 204 },
+		},
+		kas_MarbleStone = GroupOperator {
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_MarbleStone\" creates a glossy tiled floor material. You can choose to render this stone with a full surface displacement effect on the mesh.\n\nCopyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+				AlbedoTextureMap = InstanceInput {
+					SourceOp = "AlbedoInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AlbedoMap",
+				},
+				RoughnessTextureMap = InstanceInput {
+					SourceOp = "RoughnessTextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "RoughnessMap",
+				},
+				NormalTextureMap = InstanceInput {
+					SourceOp = "NormalInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "NormalMap",
+				},
+				GlossTextureMap = InstanceInput {
+					SourceOp = "GlossInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "GlossMap",
+				},
+				AOTextureMap = InstanceInput {
+					SourceOp = "AOInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "AOMap",
+				},
+				StrengthVariability = InstanceInput {
+					SourceOp = "MarbleStoneReflect",
+					Source = "Reflection.StrengthVariability",
+					Default = 1,
+				},
+				GlancingStrength = InstanceInput {
+					SourceOp = "MarbleStoneReflect",
+					Source = "Reflection.GlancingStrength",
+					Default = 0.5,
+				},
+				FaceOnStrength = InstanceInput {
+					SourceOp = "MarbleStoneReflect",
+					Source = "Reflection.FaceOnStrength",
+					Default = 0.05,
+				},
+				Falloff = InstanceInput {
+					SourceOp = "MarbleStoneReflect",
+					Source = "Reflection.Falloff",
+					Default = 2.5,
+				},
+				RefractiveIndex = InstanceInput {
+					SourceOp = "MarbleStoneReflect",
+					Source = "Refraction.RefractiveIndex.RGB",
+					Default = 2,
+				}
+			},
+			Outputs = {
+				MaterialOutput = InstanceOutput {
+					SourceOp = "ShaderPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 2970, 577.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 853.25, 401.206, 231.814, 33.3374 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1110.15, -285.097 }
+			},
+			Tools = ordered() {
+				StNicolasChurch_IBL_Loader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_StNicholasChurch_IBL.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "St. Nicholas Church, Gdansk, Poland IBL \n\nCreative Commons:\nSt. Nicolaus Church Interior HDRI \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 313.5 } },
+				},
+				MarbleStoneGlossLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_Gloss.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 313.5 } },
+				},
+				MarbleStoneNormalLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_Normal.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 313.5 } },
+				},
+				MarbleStoneRoughnessLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_Roughness.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 313.5 } },
+				},
+				MarbleStoneAlbedoLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_Albedo.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 313.5 } },
+				},
+				MarbleStoneAOLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_MarbleStone_AO.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Comments = Input { Value = "Copyright Credits\n\nFreeware:\nkas_MarbleStone PBR Textures \n\nBy:\nhttps://www.textures.com \n\nIs licensed under:\nCG Textures Freeware ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 313.5 } },
+				},
+				PurpleQuartzPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 2530, 775.5 } },
+				},
+				AlbedoInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "MarbleStoneAlbedoLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 346.5 } },
+					Version = 100
+				},
+				RoughnessTextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "MarbleStoneRoughnessLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 346.5 } },
+					Version = 100
+				},
+				NormalInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "MarbleStoneNormalLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 346.5 } },
+					Version = 100
+				},
+				GlossInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "MarbleStoneGlossLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 346.5 } },
+					Version = 100
+				},
+				AOInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "MarbleStoneAOLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 346.5 } },
+					Version = 100
+				},
+				ShaderPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "MarbleStoneReflect",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1650, 610.5 } },
+				},
+				GlossBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Low = Input { Value = 0.345, },
+						High = Input { Value = 0.522, },
+						Input = Input {
+							SourceOp = "InvertCustomTool",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 445.5 } },
+				},
+				MarbleStoneReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "MarbleStoneCookTorrance",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 0.5, },
+						["Reflection.FaceOnStrength"] = Input { Value = 0.05, },
+						["Reflection.Falloff"] = Input { Value = 2.5, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "PanoDefocus",
+							Source = "Output",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 2, },
+						MaterialID = Input { Value = 3, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 610.5 } },
+				},
+				PanoDefocus = Defocus {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = 1, },
+						XDefocusSize = Input { Value = 6.5, },
+						BloomLevel = Input { Value = 0, },
+						BloomThreshold = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PanoColorCorrector",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 445.5 } },
+				},
+				InvertCustomTool = Custom {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "InvertCustomToolLUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "InvertCustomToolLUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "InvertCustomToolLUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "InvertCustomToolLUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "1-r1", },
+						GreenExpression = Input { Value = "1-g1", },
+						BlueExpression = Input { Value = "1-b1", },
+						AlphaExpression = Input { Value = "1", },
+						Image1 = Input {
+							SourceOp = "GlossTransform",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 412.5 } },
+				},
+				PanoColorCorrector = ColorCorrector {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						MasterRGBGain = Input { Value = 0.75, },
+						MasterRGBGamma = Input { Value = 1.4, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PanoResize",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 412.5 } },
+				},
+				PanoResize = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 2048,
+							Expression = "Height*2",
+						},
+						Height = Input { Value = 1024, },
+						KeepAspect = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "PanoInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 379.5 } },
+				},
+				NormalTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "NormalInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 379.5 } },
+				},
+				GlossTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "GlossInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 379.5 } },
+				},
+				NormaBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceImageType = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "NormalTransform",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 200, },
+						BumpmapTextureDepth = Input { Value = 4, },
+						["FilterMode.Nest"] = Input { Value = 1, },
+						MaterialID = Input { Value = 21, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 412.5 } },
+				},
+				RoughnessTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "RoughnessTextureInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 379.5 } },
+				},
+				RoughnessBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Gain = Input { Value = 2.025, },
+						Contrast = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "RoughnessTransform",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 412.5 } },
+				},
+				MarbleStoneCookTorrance = MtlCookTorrance {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "AlbedoColorCorrector",
+							Source = "Output",
+						},
+						["Specular.Nest"] = Input { Value = 1, },
+						["Specular.Color.Material"] = Input {
+							SourceOp = "AOTransform",
+							Source = "Output",
+						},
+						["Specular.Intensity"] = Input { Value = 2, },
+						["Specular.Intensity.Material"] = Input {
+							SourceOp = "GlossBrightnessContrast",
+							Source = "Output",
+						},
+						["Specular.Roughness"] = Input { Value = 0.1, },
+						["Specular.Roughness.Material"] = Input {
+							SourceOp = "RoughnessBrightnessContrast",
+							Source = "Output",
+						},
+						["Bumpmap.Material"] = Input {
+							SourceOp = "NormaBumpMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 610.5 } },
+				},
+				AlbedoColorCorrector = ColorCorrector {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						CorrectionRange = Input { Value = 1, },
+						WheelRangeDummy1 = Input { Value = 1, },
+						WheelTintAngle2 = Input { Value = 0.0935835209054994, },
+						WheelTintLength2 = Input { Value = 0.1091, },
+						SuppressionRangeDummy = Input { Value = 1, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "AlbedoTransform",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 412.5 } },
+				},
+				AlbedoTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Center = Input { Value = { 0.689984223574487, 0.308429118773946 }, },
+						Size = Input { Value = 0.75, },
+						Angle = Input { Value = -33.054486033619, },
+						Edges = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "AlbedoInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 379.5 } },
+				},
+				AOTransform = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "AlbedoTransform",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "AOInputSwitchElseFuse",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 379.5 } },
+				},
+				PanoInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "StNicolasChurch_IBL_Loader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 346.5 } },
+					Version = 100
+				}
+			},
+		},
+		InvertCustomToolLUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 204 },
+		},
+		kas_ShaderBall = GroupOperator {
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_ShaderBall\"  adds a shader ball model to your Fusion 3D system scene. It is used to apply and preview the look of surface materials. Make sure to enable the Fusion 3D workspace \"3D Options > Lighting\" mode so you see an accurate preview of the material in the realtime viewport.\n \nThis node's output is supposed to be connected directly to the \"kas_ShaderPreview\" nodes input connection so you can see a high-quality preview of your surface material. ", },
+				LightingControls = Input { Value = 1, },
+				MaterialInput = InstanceInput {
+					SourceOp = "ShaderBallFBXMesh3D",
+					Source = "MaterialInput",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "ShaderBallMerge3D",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 3190, 577.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 545.667, 172.813, 228, 20.7546 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -483.6, 302.428 }
+			},
+			Tools = ordered() {
+				ShaderBallCamera3D = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									PreviewCamera3D = Camera3D {
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = -8.19999504089355 },
+											["Transform3DOp.Translate.X"] = Input { Value = -2.39945639043846 },
+											["Transform3DOp.Translate.Z"] = Input { Value = 2.30316502834493 },
+											["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4 },
+											["MtlStdInputs.MaterialID"] = Input { Value = 17 },
+											AoV = Input { Value = 37.24 },
+											["Stereo.Mode"] = Input { Value = FuID { "OffAxis" } },
+											["Transform3DOp.Rotate.Y"] = Input { Value = -45.0000267028809 },
+											["Transform3DOp.Translate.Y"] = Input { Value = 0.444355502984551 },
+											FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" } },
+											FLength = Input { Value = 22.3900912079698 }
+										},
+										CtrlWZoom = false,
+										NameSet = true,
+										ViewInfo = OperatorInfo { Pos = { 550, -246.894 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input {
+							Value = -2.4,
+							Expression = "-2.4",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.47,
+							Expression = "0.47",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							Value = 2.3,
+							Expression = "2.3",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							Value = -8.2,
+							Expression = "-8.2",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							Value = -45,
+							Expression = "-45.0",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Expression = "0.0", },
+						AoV = Input { Value = 37.24, },
+						FLength = Input { Value = 22.3900912079698, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						IDepth = Input { Value = 300, },
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.BlendMode.GL.BlendMode"] = Input { Value = FuID { "Replace" }, },
+						["SurfacePlaneInputs.BlendMode.SW.BlendMode"] = Input { Value = FuID { "SolidMatte" }, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 17, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -247.5 } },
+				},
+				ShaderBallReplaceNormals3D = ReplaceNormals3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ShaderBallFBXMesh3D",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, -280.5 } },
+				},
+				ShaderBallDirectionalLight = LightDirectional {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LightingControls = Input { Value = 1, },
+						["Transform3DOp.Rotate.X"] = Input { Expression = "kas_ShaderBall.RotateXInput", },
+						["Transform3DOp.Rotate.Y"] = Input { Expression = "kas_ShaderBall.RotateYInput", },
+						["Transform3DOp.Rotate.Z"] = Input {
+							Value = 35,
+							Expression = "kas_ShaderBall.RotateZInput",
+						},
+						Enabled = Input { Expression = "kas_ShaderBall.LightEnabled", },
+						Intensity = Input { Expression = "kas_ShaderBall.LightIntensityInput", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -181.5 } },
+				},
+				ShaderBallMerge3D = Merge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "ShaderBallCamera3D",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ShaderBallReplaceNormals3D",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ShaderBallDirectionalLight",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, -247.5 } },
+				},
+				ShaderBallFBXMesh3D = SurfaceFBXMesh {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						NumMtlSlots = 0
+					},
+					Inputs = {
+						ImportFile = Input { Value = "Macros:/KickAss ShaderZ/Assets/kas_ShaderBall.obj", },
+						ObjName = Input { Value = "ShaderBall", },
+						TransformToWorld = Input { Value = 0, },
+						EnableAxisConversion = Input { Value = 1, },
+						EnableUnitConversion = Input { Value = 1, },
+						Triangulate = Input { Value = 0, },
+						ImportVertexColors = Input { Value = 0, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "ShaderPipeRouter",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, -280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				LightEnabled = {
+					CBC_TriState = false,
+					INP_Integer = false,
+					INPID_InputControl = "CheckboxControl",
+					INP_Default = 1,
+					IC_ControlPage = 1,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Enabled",
+				},
+				LightingControls = {
+					INP_Integer = false,
+					LBLC_DropDownButton = true,
+					INPID_InputControl = "LabelControl",
+					LBLC_NumInputs = 6,
+					IC_ControlPage = 1,
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					LINKID_DataType = "Number",
+					LBLC_NestLevel = 1,
+					LINKS_Name = "Lighting Controls",
+				},
+				LightIntensityInput = {
+					INP_MaxAllowed = 100,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 2,
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = 0,
+					LINKID_DataType = "Number",
+					ICD_Center = 0.5,
+					LINKS_Name = "Light Intensity",
+				},
+				RotateXInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate X",
+				},
+				RotateYInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Y",
+				},
+				RotateZInput = {
+					INP_MaxAllowed = 360,
+					INP_Integer = false,
+					INPID_InputControl = "ScrewControl",
+					IC_Steps = 1,
+					IC_ControlPage = 1,
+					INP_MaxScale = 180,
+					INP_Default = 35,
+					INP_MinScale = -180,
+					INP_MinAllowed = -360,
+					LINKID_DataType = "Number",
+					LINKS_Name = "Light Rotate Z",
+				},
+				LightColorRedInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					CLRC_ShowWheel = true,
+					LINKID_DataType = "Number",
+					IC_ControlID = 0,
+					ICD_Center = 1,
+					INP_Default = 1,
+					LINKS_Name = "Light Color",
+				},
+				LightColorGreenInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 1,
+					INP_Default = 1,
+					ICD_Center = 1,
+				},
+				LightColorBlueInput = {
+					INPID_InputControl = "ColorControl",
+					IC_ControlPage = 1,
+					INP_MaxScale = 5,
+					IC_ControlGroup = 2,
+					INP_MinScale = -1,
+					LINKID_DataType = "Number",
+					IC_ControlID = 2,
+					INP_Default = 1,
+					ICD_Center = 1,
+				}
+			}
+		},
+		InvertCustomToolLUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 0, Blue = 0 },
+		}
+	},
+	Frames = {
+		{
+			FrameTypeID = "ChildFrame",
+			Mode = 3,
+			LayoutPreset = 0,
+			Left = 0,
+			Top = 27,
+			Width = 1937,
+			Height = 1268,
+			ZoneInfo = {
+				AuxRight = { Expanded = true },
+				["!Left"] = {
+				},
+				AuxLeft = { Expanded = true },
+				Right = { Expanded = true, Adjust = false },
+				Left = { Expanded = false, },
+				["!Right"] = {
+				}
+			},
+			ViewInfo = {
+				Viewer1 = { Show = true, RatioY = 1, RatioX = 0.499667332002661, },
+				InnerLeft = {
+				},
+				MainSplit = {
+					RatioX = 1,
+					RatioY = 0.47557003257329,
+				},
+				CenterSplit = {
+					RatioX = 0.689245087900724,
+					RatioY = 1,
+				},
+				Viewer2 = { Show = true, Adjust = false, RatioY = 1, MRU = 1, RatioX = 0.500332667997339, },
+				Comments = { Show = false },
+				Time = { Show = true, RatioX = 1, PixelY = 83, },
+				InnerColumns = {
+					RatioX = 1,
+					RatioY = 0.52442996742671,
+				},
+				Keyframes = { Show = false, },
+				LayoutStrip = { Show = true, RatioX = 1, },
+				Inspector = { Show = true, Adjust = false, RatioY = 1, MRU = 1, RatioX = 1, },
+				InnerRight = {
+					PixelX = 430,
+					RatioY = 1,
+				},
+				MediaPool = { Show = false, },
+				OuterColumns = {
+					RatioX = 1,
+					RatioY = 0.971541501976285,
+				},
+				Effects = { Show = false, },
+				Clips = { Show = false, },
+				Metadata = { Show = false, },
+				OuterLeft = {
+				},
+				ViewerSplit = {
+					RatioX = 1,
+					RatioY = 0.870917573872473,
+				},
+				Nodes = { Show = true, RatioY = 1, RatioX = 1, },
+				OuterRight = {
+					PixelX = 601,
+					RatioY = 1,
+				},
+				ActionStrip = { Show = false, },
+				Spline = { Show = false, }
+			},
+			Views = ordered() {
+				Effects = MultiView {
+					Active = "EffectView",
+					ViewList = ordered() {
+						EffectView = "EffectView"
+					},
+				},
+				Nodes = MultiView {
+					Active = "FlowView",
+					ViewList = ordered() {
+						FlowView = "FlowView"
+					},
+					Names = {
+						FlowView = "FlowView"
+					},
+					FlowView = FlowView {
+						Flags = {
+							AutoHideNavigator = true,
+							AutoSnap = true
+						},
+						NavigatorSize = { 200, 140 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1.5,
+						Offset = { 0, 0 }
+					}
+				},
+				Keyframes = MultiView {
+					Active = "TimelineView",
+					ViewList = ordered() {
+						TimelineView = "TimelineView"
+					},
+					Names = {
+						TimelineView = "TimelineView"
+					},
+					TimelineView = TimelineView {
+						TreeControlState = {
+						},
+						DisplayMode = "All Tools",
+						ShowCurrentTimeTools = false,
+						Filter = "Show All",
+						ShowSelectedTools = false,
+						ShowAnimatedToolsOnly = false,
+						ShowEditBoxes = false,
+						KeyFrameView = {
+							Position = { Left = 232, Bottom = 320 },
+							ScaleX = 0.00214424951267057,
+							OffsetX = -0.0514619883040936,
+							OffsetY = 0,
+							AutoScaling = "scroll",
+							AutoSnapTo = "frame",
+							AutoSnapToGuidelines = false,
+							GuidelinesGrabEnabled = true,
+							GuidelinesSnapTo = "frame"
+						},
+						Spreadsheet = { LeftPos = 232, Visible = false }
+					}
+				},
+				Spline = MultiView {
+					Active = "SplineView",
+					ViewList = ordered() {
+						SplineView = "SplineEditorView"
+					},
+					Names = {
+						SplineView = "SplineView"
+					},
+					SplineView = SplineEditorView {
+						LeftPos = 264,
+						ScaleX = 0.2,
+						ScaleY = 0.00338983050847458,
+						OffsetX = -3.4,
+						OffsetY = 0,
+						AutoScaling = "scroll",
+						AutoSnapTo = "frame",
+						AutoSnapToGuidelines = false,
+						GuidelinesSnapTo = "frame",
+						ShowKeyMarkers = false,
+						IndependentHandles = false,
+						ShowNonSplineModifiers = false,
+						GuidelinesGrabEnabled = true,
+						ShowOneToolOnly = false,
+						ShowSelectedTools = false,
+						ShowAllInputs = false,
+						Filter = "Show All"
+					}
+				},
+				Inspector = MultiView {
+					Active = "Tools",
+					ViewList = ordered() {
+						Tools = "ControlView",
+						Modifiers = "ModifierView"
+					},
+				},
+				Viewer1 = MultiView {
+					Active = "LeftView",
+					ViewList = ordered() {
+						LeftView = "PreviewContainer"
+					},
+					Names = {
+						LeftView = "LeftView"
+					},
+				},
+				Viewer2 = MultiView {
+					Active = "RightView",
+					ViewList = ordered() {
+						RightView = "PreviewContainer"
+					},
+					Names = {
+						RightView = "RightView"
+					},
+				},
+				Time = "TimeView",
+				ActionStrip = "ActionStripView",
+				LayoutStrip = "LayoutStripView"
+			},
+			Layout = {
+				Rows = 2,
+				RatioX = 1,
+				RatioY = 1,
+				{ ID = "LayoutStrip", RatioX = 1, FixedY = 36, Flat = true },
+				{
+					Columns = 2,
+					RatioY = 0.971541501976285,
+					{
+						Rows = 2,
+						RatioX = 0.689245087900724,
+						RatioY = 1,
+						{
+							Rows = 2,
+							RatioX = 1,
+							RatioY = 1,
+							{
+								Columns = 2,
+								RatioX = 1,
+								RatioY = 0.870917573872473,
+								{ ID = "Viewer1", RatioX = 0.499667332002661, RatioY = 1 },
+								{ ID = "Viewer2", RatioX = 0.500332667997339 }
+							},
+							{ ID = "Time", FixedY = 83, Flat = true }
+						},
+						{ ID = "Nodes", RatioX = 1, RatioY = 1 }
+					},
+					{ ID = "Inspector", RatioX = 1, RatioY = 1 }
+				}
+			}
+		}
+	},
+	Prefs = {
+		Comp = {
+			Views = {
+				Right = {
+					Viewer = {
+						ScaleMode = 1
+					},
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = -20,
+								X = 15,
+								Z = 0
+							}
+						}
+					},
+					View3D = {
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						Options = {
+							Lighting = true
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 57.9999885559082,
+								X = 19,
+								Z = 0
+							},
+							Scale = 0.615572154521942,
+							Position = {
+								Y = -0.108497463166714,
+								X = 0.163159877061844,
+								Z = -0.0484558492898941
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CameraName = "Perspective"
+					}
+				},
+				Left = {
+					Viewer = {
+						ScaleMode = 1
+					},
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = -20,
+								X = 15,
+								Z = 0
+							}
+						}
+					},
+					View3D = {
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						Options = {
+							Lighting = true
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 55.3999977111816,
+								X = 9.60000038146973,
+								Z = 0
+							},
+							Scale = 0.629960477352142,
+							Position = {
+								Y = -0.143143132328987,
+								X = -0.121285669505596,
+								Z = -0.284291386604309
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CameraName = "ShaderBallCamera3D"
+					}
+				},
+				View1 = {
+					MaterialViewer = {
+						Options = {
+							RendererType = "RendererOpenGL"
+						},
+						Camera = {
+							Rotation = {
+								Y = 201.599990844727,
+								X = -0.799998879432678,
+								Z = 0
+							}
+						}
+					},
+					PickW = 1,
+					PickH = 1,
+					AlwaysOnTop = true,
+					FullScreen = false,
+				},
+				RightView = {
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = 266.400024414062,
+								X = 377.000030517578,
+								Z = 0
+							}
+						}
+					},
+					PickW = 1,
+					PickH = 1,
+					Viewer = {
+						ScaleMode = 1,
+						Normalise = false
+					},
+					View3D = {
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						Options = {
+							Lighting = true,
+							ShowCameras = false
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamPersp = {
+							Rotation = {
+								Y = 38.3999977111816,
+								X = 16.3999996185303,
+								Z = 0
+							},
+							Scale = 0.426317423582077,
+							Position = {
+								Y = -0.127422451972961,
+								X = 0.143134236335754,
+								Z = -0.0249925311654806
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CameraName = "ShaderBallCamera3D_1"
+					},
+				},
+				LeftView = {
+					MaterialViewer = {
+						Camera = {
+							Rotation = {
+								Y = 545.800048828125,
+								X = -9.19999122619629,
+								Z = 0
+							}
+						}
+					},
+					PickW = 1,
+					PickH = 1,
+					Viewer = {
+						ScaleMode = 1,
+					},
+					View3D = {
+						Options = {
+							Lighting = true,
+							ShowCameras = false,
+						},
+						CamRight = {
+							Rotation = {
+								Y = -90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamFront = {
+							Rotation = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CamLeft = {
+							Rotation = {
+								Y = 90,
+								X = 0,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						OverscanMode = 3,
+						CamPersp = {
+							Rotation = {
+								Y = 381.400024414062,
+								X = 28.600004196167,
+								Z = 0
+							},
+							Scale = 0.71503072977066,
+							Position = {
+								Y = -0.0545031689107418,
+								X = -0.0070103001780808,
+								Z = 0.0165846105664968
+							}
+						},
+						CamTop = {
+							Rotation = {
+								Y = 0,
+								X = 90,
+								Z = 0
+							},
+							Scale = 1,
+							Position = {
+								Y = 0,
+								X = 0,
+								Z = 0
+							}
+						},
+						CameraName = "ShaderBallCamera3D",
+					},
+				}
+			},
+			FrameFormat = {
+				Width = 3840,
+				Height = 1920,
+				Rate = 24,
+				GuideRatio = 1.77777777777778,
+			},
+			Unsorted = {
+				GlobalEnd = 1,
+				RenderSettings = {
+					Configs = {
+					}
+				}
+			},
+			Tweaks = {
+				OpenCL = {
+					Enable = 0,
+					Caching = 0
+				}
+			},
+			Paths = {
+				EnableReverseMapping = true,
+			},
+			FlowView = {
+				RemoveRouters = false
+			},
+			QuickTime = {
+			},
+		}
+	},
+}
+
+ 

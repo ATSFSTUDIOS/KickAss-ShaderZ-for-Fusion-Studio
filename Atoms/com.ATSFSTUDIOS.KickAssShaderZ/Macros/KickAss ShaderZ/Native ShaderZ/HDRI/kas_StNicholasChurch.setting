@@ -1,0 +1,65 @@
+{
+	Tools = ordered() {
+		ChromeReflect = MtlReflect {
+			NameSet = true,
+			Inputs = {
+				["Reflection.GlancingStrength"] = Input { Value = 1, },
+				["Reflection.Falloff"] = Input { Value = 0, },
+				["Reflection.Color.Material"] = Input {
+					SourceOp = "kas_StNicholasChurchSphereMap",
+					Source = "MaterialOutput",
+				},
+				["Refraction.RefractiveIndex.RGB"] = Input { Value = 1, },
+				["Refraction.Tint.Red"] = Input { Value = 0, },
+				["Refraction.Tint.Green"] = Input { Value = 0, },
+				["Refraction.Tint.Blue"] = Input { Value = 0, },
+				MaterialID = Input { Value = 8, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 440, -49.5 } },
+		},
+		kas_StNicholasChurchSphereMap = SphereMap {
+			NameSet = true,
+			Inputs = {
+				Rotation = Input { Value = 1, },
+				Image = Input {
+					SourceOp = "kas_StNicholasChurch",
+					Source = "Output",
+				},
+				MaterialIDNest = Input { Value = 1, },
+				MaterialID = Input { Value = 15, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 330, -49.5 } },
+		},
+		kas_StNicholasChurch = Loader {
+			Clips = {
+				Clip {
+					ID = "Clip1",
+					Filename = "Macros:/KickAss ShaderZ/Assets/kas_StNicholasChurch_IBL.exr",
+					FormatID = "OpenEXRFormat",
+					StartFrame = -1,
+					LengthSetManually = true,
+					TrimIn = 0,
+					TrimOut = 0,
+					ExtendFirst = 0,
+					ExtendLast = 0,
+					Loop = 0,
+					AspectMode = 0,
+					Depth = 0,
+					TimeCode = 0,
+					GlobalStart = 0,
+					GlobalEnd = 0
+				}
+			},
+			NameSet = true,
+			Inputs = {
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+				["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+				["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+				["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+				Comments = Input { Value = "St. Nicholas Church, Gdansk, Poland IBL \n\nCreative Commons:\nSt. Nicolaus Church Interior HDRI \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+			},
+			ViewInfo = OperatorInfo { Pos = { 220, -49.5 } },
+		}
+	}
+}

@@ -1,0 +1,581 @@
+{
+	Tools = ordered() {
+		kas_PreviewUDIM = GroupOperator {
+			NameSet = true,
+			CustomData = {
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255",
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "kas_PreviewUDIM is a macro that applies a labeled UDIM grid texture onto your polgon models. This makes it possible to visualize what UDIM tile is used on each part of a model. The macro is controlled using a pair of \"U Tile\" & \"V Tile\" sliders that define the number of UV layout tiles you wish to see. \n\nThe macro relies internally on the hos_Tiler fuse to create the tiled map patten. To use this macro you need to set the start frame and current time value to frame 0.\n\nCreated by Andrew Hazelden <andrew@andrewhazelden.com>", },
+				UTiles = Input { Value = 5, },
+				VTiles = Input { Value = 5, },
+				Input1 = InstanceInput {
+					SourceOp = "TransformTexCoord",
+					Source = "SceneInput",
+				}
+			},
+			Outputs = {
+				SceneOutput = InstanceOutput {
+					SourceOp = "UDIMReplaceMaterial3D",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 1100, 16.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 794.248, 244.075, 391.551, 56.2229 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -28, 60.2 }
+			},
+			Tools = ordered() {
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "FrameText",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 110, -49.5 } },
+				},
+				FrameText = TextPlus {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 180,
+							Expression = "RGBBackground.Width",
+						},
+						Height = Input {
+							Value = 180,
+							Expression = "RGBBackground.Height",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input { Value = { 0.5, 0.45 }, },
+						Size = Input { Value = 0.25, },
+						Font = Input { Value = "Open Sans", },
+						StyledText = Input {
+							Value = "U4V4",
+							Expression = "Text('U' .. tostring(floor(time % (kas_PreviewUDIM.UTiles))) .. 'V' .. tostring(floor(time / kas_PreviewUDIM.UTiles)) )",
+						},
+						Style = Input { Value = "Bold", },
+						ManualFontKerningPlacement = Input {
+							Value = StyledText {
+								Array = {
+								},
+								Value = ""
+							},
+						},
+						StartEndRenderScripts = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, -49.5 } },
+				},
+				GridBackground = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 900,
+							Expression = "RGBBackground.Height * (kas_PreviewUDIM.UTiles)",
+						},
+						Height = Input {
+							Value = 900,
+							Expression = "RGBBackground.Width * (kas_PreviewUDIM.VTiles)",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 82.5 } },
+				},
+				RGBBackground = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 180,
+							Expression = "Height",
+						},
+						Height = Input { Value = 180, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						FrameRenderScript = Input { Value = "_VERSION = [[v1.0 2018-01-12]]\n--[[\nRandom Color\nby Andrew Hazelden\n\nCreate a unique RGB color per frame and apply it to the background node.\n]]\n\n\n-- Generate a random value from 0-1 that fits within a threshold zone\n-- This is used to limit the color palette possibilites and reduce the contrast\n-- Example: ColorRange(0.5)\nfunction ColorRange(threshold)\n	-- val = (math.random() * tonumber(threshold)) + (1-tonumber(threshold))\n	val = (math.random() * tonumber(threshold))\n	return val\nend\n\n\n-- Randomize the RGB colors using a see value and a contrast range input value\n-- Example: RandomColor(seed, 0.5)\nfunction RandomColor(seed, range)\n	math.randomseed(seed)\n	firstRandom = math.random()\n	return {R=ColorRange(range), G=ColorRange(range), B=ColorRange(range)}\nend\n\n-- Generate a custom color\nseedValue = comp.RenderStart + time\ncolor = RandomColor(seedValue, 0.5)\n\n-- Push this new RGB color value into the Background node's RGB color sliders\nself.TopLeftRed = color.R\nself.TopLeftGreen = color.G\nself.TopLeftBlue = color.B\n\n-- print(\"[Color] \" .. string.format(\"{R=%.04f, G=%.04f, B=%.04f}\", color.R, color.G, color.B))\n\n\n\n", },
+						StartEndRenderScripts = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 16.5 } },
+				},
+				Rectangle1 = RectangleMask {
+					CtrlWShown = false,
+					Inputs = {
+						Invert = Input { Value = 1, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input {
+							Value = 180,
+							Expression = "RGBBackground.Width",
+						},
+						MaskHeight = Input {
+							Value = 180,
+							Expression = "RGBBackground.Height",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Width = Input { Value = 0.98, },
+						Height = Input { Value = 0.986, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, -16.5 } },
+				},
+				Bitmap1 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						MaskWidth = Input { Value = 3840, },
+						MaskHeight = Input { Value = 2160, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, -16.5 } },
+				},
+				BGMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "CheckerMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Bitmap1",
+							Source = "Mask",
+						},
+						ApplyMode = Input { Value = FuID { "Screen" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 16.5 } },
+				},
+				TextMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "BGMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 16.5 } },
+				},
+				UDIMTiler = Fuse.hos_Tiler {
+					NameSet = true,
+					Inputs = {
+						Frames = Input {
+							Value = 25,
+							Expression = "(kas_PreviewUDIM.UTiles) * (kas_PreviewUDIM.VTiles)",
+						},
+						ReverseYOrder = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "GridBackground",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TextMerge",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 16.5 } },
+					Version = 110
+				},
+				kas_GreyCheckerboard_1_1 = GroupOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+					},
+					Inputs = ordered() {
+						Comments = Input { Value = "The KickAss GreyCheckerboard macro node is built ontop of:\n\n\"Checkerboard\" from the Muse Tools Library\nby Joe Laude\nwww.musevfx.com", },
+						Center = InstanceInput {
+							SourceOp = "CheckerCustomTool_1_1",
+							Source = "PointIn1",
+						},
+						CheckerSize = InstanceInput {
+							SourceOp = "CheckerCustomTool_1_1",
+							Source = "CheckerSize",
+							Expression = "RGBBackground.Height * 0.25",
+							Default = 17,
+						},
+						Width = InstanceInput {
+							SourceOp = "CheckerBackground_1_1",
+							Source = "Width",
+							Expression = "RGBBackground.Width",
+							Default = 1300,
+						},
+						Height = InstanceInput {
+							SourceOp = "CheckerBackground_1_1",
+							Source = "Height",
+							Expression = "RGBBackground.Height",
+							Default = 1000,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1_1",
+							Source = "MasterRGBOutputLow",
+							Name = "Checker Low Grey",
+							ControlGroup = 2,
+							Default = 0.2093,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1_1",
+							Source = "MasterRGBOutputHigh",
+							Name = "Checker High Grey",
+							ControlGroup = 2,
+							Default = 0.3137,
+						}
+					},
+					Outputs = {
+						Output = InstanceOutput {
+							SourceOp = "MakeGreyLevelsColorCorrector_1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { -110, 82.5 },
+						Flags = {
+							AllowPan = false,
+							AutoSnap = true
+						},
+						Size = { 417.864, 118.382, 63, 22 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 66.6667, 28.3333 }
+					},
+					Tools = ordered() {
+						CheckerBackground_1_1 = Background {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Width = Input {
+									Value = 180,
+									Expression = "RGBBackground.Width",
+								},
+								Height = Input {
+									Value = 180,
+									Expression = "RGBBackground.Height",
+								},
+								["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+							},
+							ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+						},
+						CheckerCustomTool_1_1 = Custom {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								PointIn1 = Input { Value = { 0, 0 }, },
+								NumberIn1 = Input {
+									Value = 45,
+									Expression = "CheckerSize",
+								},
+								NumberIn2 = Input { Value = 0.20392, },
+								LUTIn1 = Input {
+									SourceOp = "CheckerCustomToolLUTIn1_1_1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CheckerCustomToolLUTIn2_1_1",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CheckerCustomToolLUTIn3_1_1",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CheckerCustomToolLUTIn4_1_1",
+									Source = "Value",
+								},
+								Intermediate1 = Input { Value = "(abs(floor((x-p1x)*(w/n1)))%2)", },
+								Intermediate2 = Input { Value = "(abs(floor((y-p1y)*(h/n1)))%2)", },
+								RedExpression = Input { Value = "abs(i1-i2) ", },
+								GreenExpression = Input { Value = "abs(i1-i2)", },
+								BlueExpression = Input { Value = "abs(i1-i2)", },
+								NumberControls = Input { Value = 1, },
+								NameforNumber1 = Input { Value = "SquareSize", },
+								ShowNumber2 = Input { Value = 0, },
+								ShowNumber3 = Input { Value = 0, },
+								ShowNumber4 = Input { Value = 0, },
+								ShowNumber5 = Input { Value = 0, },
+								ShowNumber6 = Input { Value = 0, },
+								ShowNumber7 = Input { Value = 0, },
+								ShowNumber8 = Input { Value = 0, },
+								NameforPoint1 = Input { Value = "Center", },
+								ShowPoint2 = Input { Value = 0, },
+								ShowPoint3 = Input { Value = 0, },
+								ShowPoint4 = Input { Value = 0, },
+								ShowLUT1 = Input { Value = 0, },
+								ShowLUT2 = Input { Value = 0, },
+								ShowLUT3 = Input { Value = 0, },
+								ShowLUT4 = Input { Value = 0, },
+								Image1 = Input {
+									SourceOp = "CheckerBackground_1_1",
+									Source = "Output",
+								},
+								CheckerSize = Input {
+									Value = 45,
+									Expression = "RGBBackground.Height * 0.25",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 55, 16.5 } },
+							UserControls = ordered() {
+								CheckerSize = {
+									INP_MinScale = 0,
+									INP_Integer = true,
+									INP_MinAllowed = 0,
+									LINKID_DataType = "Number",
+									INPID_InputControl = "SliderControl",
+									IC_ControlPage = 0,
+									INP_MaxScale = 100,
+									INP_Default = 64,
+								}
+							}
+						},
+						CheckerCustomToolLUTIn1_1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn2_1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn3_1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CheckerCustomToolLUTIn4_1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						},
+						MakeGreyLevelsColorCorrector_1_1 = ColorCorrector {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								Menu = Input { Value = 1, },
+								MasterRGBOutputLow = Input { Value = 0.2093, },
+								MasterRGBOutputHigh = Input { Value = 0.3137, },
+								ColorRanges = Input {
+									Value = ColorCurves {
+										Curves = {
+											{
+												Points = {
+													{ 0, 1 },
+													{ 0.4, 0.2 },
+													{ 0.6, 0 },
+													{ 1, 0 }
+												}
+											},
+											{
+												Points = {
+													{ 0, 0 },
+													{ 0.4, 0 },
+													{ 0.6, 0.2 },
+													{ 1, 1 }
+												}
+											}
+										}
+									},
+								},
+								HistogramIgnoreTransparent = Input { Value = 1, },
+								Input = Input {
+									SourceOp = "CheckerCustomTool_1_1",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+						}
+					},
+				},
+				CheckerMerge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "MakeGreyLevelsColorCorrector_1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "RGBBackground",
+							Source = "Output",
+						},
+						Gain = Input { Value = 0, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 16.5 } },
+				},
+				UDIMReplaceMaterial3D = ReplaceMaterial3D {
+					NameSet = true,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "TransformTexCoord",
+							Source = "Output",
+						},
+						["ReplaceMode.Nest"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "UDIMTiler",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -82.5 } },
+				},
+				TransformTexCoord = CustomVertex3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["TexCoord.Nest"] = Input { Value = 1, },
+						["TexCoord.U"] = Input { Value = "tu / n1", },
+						["TexCoord.V"] = Input { Value = "tv / n2", },
+						ApplyInSourceCoordinates = Input { Value = 1, },
+						Number1 = Input {
+							Value = 5,
+							Expression = "kas_PreviewUDIM.UTiles",
+						},
+						Number2 = Input {
+							Value = 5,
+							Expression = "kas_PreviewUDIM.VTiles",
+						},
+						["Point2.Nest"] = Input { Value = 1, },
+						LUT1 = Input {
+							SourceOp = "TransformTexCoordLUT1",
+							Source = "Value",
+						},
+						LUT2 = Input {
+							SourceOp = "TransformTexCoordLUT2",
+							Source = "Value",
+						},
+						LUT3 = Input {
+							SourceOp = "TransformTexCoordLUT3",
+							Source = "Value",
+						},
+						LUT4 = Input {
+							SourceOp = "TransformTexCoordLUT4",
+							Source = "Value",
+						},
+						NameForNumber1 = Input { Value = "U Offset", },
+						NameForNumber2 = Input { Value = "V Offset", },
+						ShowNumber3 = Input { Value = 0, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						ShowPoint5 = Input { Value = 0, },
+						ShowPoint6 = Input { Value = 0, },
+						ShowPoint7 = Input { Value = 0, },
+						ShowPoint8 = Input { Value = 0, },
+						ShowImage1 = Input { Value = 0, },
+						ShowImage2 = Input { Value = 0, },
+						ShowImage3 = Input { Value = 0, },
+						ShowLUT1 = Input { Value = 0, },
+						ShowLUT2 = Input { Value = 0, },
+						ShowLUT3 = Input { Value = 0, },
+						ShowLUT4 = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, -82.5 } },
+				}
+			},
+			UserControls = ordered() {
+				UTiles = {
+					INP_Integer = true,
+					LINKID_DataType = "Number",
+					INPID_InputControl = "ScrewControl",
+					INP_MinScale = 0,
+					INP_MaxScale = 100,
+					LINKS_Name = "U Tiles",
+				},
+				VTiles = {
+					INP_Integer = true,
+					LINKID_DataType = "Number",
+					INPID_InputControl = "ScrewControl",
+					INP_MinScale = 0,
+					INP_MaxScale = 100,
+					LINKS_Name = "V Tiles",
+				}
+			}
+		},
+		TransformTexCoordLUT1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 0, Blue = 0 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 204, Blue = 0 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 204 },
+			CtrlWShown = false,
+		},
+		TransformTexCoordLUT4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 204, Green = 204, Blue = 204 },
+			CtrlWShown = false,
+		}
+	},
+	ActiveTool = "kas_PreviewUDIM"
+}

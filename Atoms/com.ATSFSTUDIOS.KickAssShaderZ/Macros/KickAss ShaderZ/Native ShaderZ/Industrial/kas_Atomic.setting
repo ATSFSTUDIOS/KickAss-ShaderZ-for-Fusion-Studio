@@ -1,0 +1,420 @@
+{
+	Tools = ordered() {
+		kas_Atomic = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Settings = {
+				},
+				HelpPage = "https://www.steakunderwater.com/wesuckless/viewtopic.php?p=25255#p25255"
+			},
+			Inputs = ordered() {
+				Comments = Input { Value = "\"kas_Atomic\" creates an irradiated material that is self-illuminated with an orange shade.\n\nCopyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+				TextureMap = InstanceInput {
+					SourceOp = "TextureInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "TextureMap",
+				},
+				EnvironmentMap = InstanceInput {
+					SourceOp = "EnvironmentMapInputSwitchElseFuse",
+					Source = "Input1",
+					Name = "EnvironmentMap",
+				}
+			},
+			Outputs = {
+				Material = InstanceOutput {
+					SourceOp = "ShaderPipeRouter",
+					Source = "Output",
+					Name = "Material Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -440, 148.5 },
+				Flags = {
+					AllowPan = false,
+					AutoSnap = true
+				},
+				Size = { 580.709, 279.919, 64.3233, 21.3808 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -1381.99, -285.673 }
+			},
+			Tools = ordered() {
+				ParklandLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_Parkland.exr",
+							FormatID = "OpenEXRFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.OpenEXRFormat.RedName"] = Input { Value = FuID { "R" }, },
+						["Clip1.OpenEXRFormat.GreenName"] = Input { Value = FuID { "G" }, },
+						["Clip1.OpenEXRFormat.BlueName"] = Input { Value = FuID { "B" }, },
+						["Clip1.OpenEXRFormat.AlphaName"] = Input { Value = FuID { "A" }, },
+						Comments = Input { Value = "Copyright Credits \nkas_Parkland.exr\n\nCreative Commons:\nEgg mountain at afternoon \n\nBy:\nhttps://hdrmaps.com \n\nIs licensed under:\nCC BY 2.0 ", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 314.106 } },
+				},
+				AgedSteelPlateLoader = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Macros:/KickAss ShaderZ/Assets/kas_AgedScratchedSteelPlate.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 313.5 } },
+				},
+				EnvironmentMapInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "ParklandLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 346.5 } },
+					Version = 100
+				},
+				TextureInputSwitchElseFuse = Fuse.SwitchElse {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Switch = Input { Value = 1, },
+						Else = Input { Value = 2, },
+						Input2 = Input {
+							SourceOp = "AgedSteelPlateLoader",
+							Source = "Output",
+						},
+						Comments = Input { Value = "The \"SwitchElse.fuse\" is used to automatically switch the surface material between user supplied imagery, and the fallback option of the internal \"default\" imagery. This input switching happens when nothing is connected to the  surface material's \"GroupOperator\" based \"TextureMap\" and \"EnvironmentMap\" input connections.", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 346.5 } },
+					Version = 100
+				},
+				ShaderPipeRouter = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "AtomicReflect",
+							Source = "MaterialOutput",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1870, 511.5 } },
+				},
+				NeutralBrightnessContrast = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Saturation = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "TextureInputSwitchElseFuse",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 379.5 } },
+				},
+				RedToAlphaChannelBooleans_5 = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ToAlpha = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "NeutralBrightnessContrast",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 412.5 } },
+				},
+				ScratchedWard = MtlWard {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Diffuse.Color.Green"] = Input { Value = 0, },
+						["Diffuse.Color.Blue"] = Input { Value = 0, },
+						["Diffuse.Color.Alpha"] = Input { Value = 0, },
+						["Diffuse.Color.Material"] = Input {
+							SourceOp = "RedToAlphaChannelBooleans_5",
+							Source = "Output",
+						},
+						["Specular.Color.Red"] = Input { Value = 0, },
+						["Specular.Color.Green"] = Input { Value = 0.662919009480532, },
+						["Specular.Intensity"] = Input { Value = 0.192, },
+						["Specular.SpreadU"] = Input { Value = 0.2, },
+						["Specular.SpreadV"] = Input { Value = 0.2, },
+						["Bumpmap.Material"] = Input {
+							SourceOp = "ScratchedBumpMap",
+							Source = "MaterialOutput",
+						},
+						["Transmittance.Nest"] = Input { Value = 1, },
+						["Transmittance.Color.Red"] = Input { Value = 0.292500058203224, },
+						["Transmittance.Color.Green"] = Input { Value = 1, },
+						["Transmittance.ColorDetail"] = Input { Value = 1, },
+						UseTwoSidedLighting = Input { Value = 1, },
+						MaterialID = Input { Value = 4, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 511.5 } },
+				},
+				ScratchedBumpMap = BumpMap {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "RedToAlphaChannelBooleans_5",
+							Source = "Output",
+						},
+						HeightScale = Input { Value = 0.85, },
+						MaterialID = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 445.5 } },
+				},
+				GreenPurpleFresnelFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					CustomData = {
+						Settings = {
+							[1] = {
+								Tools = ordered() {
+									Falloff2_1_1 = FalloffOperator {
+										Inputs = {
+											["FaceOn.Green"] = Input { Value = 0 },
+											FaceOnMaterial = Input {
+												SourceOp = "ChannelBooleans10_2_1",
+												Source = "Output"
+											},
+											["Glancing.Green"] = Input { Value = 0.890463876613411 },
+											["FaceOn.Opacity"] = Input { Value = 0.449 },
+											MaterialID = Input { Value = 7 },
+											["Glancing.Red"] = Input { Value = 0.83 },
+											ColorVariation = Input { Value = FuID { "Gradient" } },
+											["FaceOn.Red"] = Input { Value = 0.312932399115925 },
+											["FaceOn.Blue"] = Input { Value = 0.613 },
+											Gradient = Input {
+												Value = Gradient {
+													Colors = {
+														[0.4026845637584] = { 0.7252, 0.7104, 0.74, 0 },
+														[0.986577181208054] = { 0.27, 0, 0.54, 0.713 }
+													}
+												}
+											}
+										},
+										Name = "Falloff2_1_1",
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 0, 1237.5 } },
+										CustomData = {
+										}
+									}
+								}
+							},
+							[2] = {
+								Tools = ordered() {
+									Falloff2_1_1 = FalloffOperator {
+										Inputs = {
+											["FaceOn.Green"] = Input { Value = 0 },
+											FaceOnMaterial = Input {
+												SourceOp = "ChannelBooleans10_2_1",
+												Source = "Output"
+											},
+											["Glancing.Green"] = Input { Value = 0.890463876613411 },
+											["FaceOn.Opacity"] = Input { Value = 0.449 },
+											MaterialID = Input { Value = 7 },
+											["Glancing.Red"] = Input { Value = 0.83 },
+											ColorVariation = Input { Value = FuID { "Gradient" } },
+											["FaceOn.Red"] = Input { Value = 0.312932399115925 },
+											["FaceOn.Blue"] = Input { Value = 0.613 },
+											Gradient = Input {
+												Value = Gradient {
+													Colors = {
+														[0.4026845637584] = { 0.7252, 0.7104, 0.74, 0 },
+														[0.98993288590604] = { 1, 0.559494973639541, 0, 0.713 }
+													}
+												}
+											}
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 0, 1237.5 } },
+										CustomData = {
+										}
+									}
+								}
+							},
+							[3] = {
+								Tools = ordered() {
+									Falloff2_1_1 = FalloffOperator {
+										Inputs = {
+											["FaceOn.Green"] = Input { Value = 0 },
+											FaceOnMaterial = Input {
+												SourceOp = "ChannelBooleans10_2_1",
+												Source = "Output"
+											},
+											["Glancing.Green"] = Input { Value = 0.890463876613411 },
+											["FaceOn.Opacity"] = Input { Value = 0.449 },
+											MaterialID = Input { Value = 7 },
+											["Glancing.Red"] = Input { Value = 0.83 },
+											ColorVariation = Input { Value = FuID { "Gradient" } },
+											["FaceOn.Blue"] = Input { Value = 0.613 },
+											["FaceOn.Red"] = Input { Value = 0.312932399115925 },
+											Gradient = Input {
+												Value = Gradient {
+													Colors = {
+														[0.4026845637584] = { 0.7252, 0.7104, 0.74, 0 },
+														[0.98993288590604] = { 0, 0.0662757339376139, 1, 1 }
+													}
+												}
+											},
+											Falloff = Input { Value = 0.41 }
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 0, 1237.5 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						ColorVariation = Input { Value = FuID { "Gradient" }, },
+						["FaceOn.Red"] = Input { Value = 0.312932399115925, },
+						["FaceOn.Green"] = Input { Value = 0, },
+						["FaceOn.Blue"] = Input { Value = 0.613, },
+						["FaceOn.Opacity"] = Input { Value = 0.449, },
+						["Glancing.Red"] = Input { Value = 0.83, },
+						["Glancing.Green"] = Input { Value = 0.890463876613411, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.418924759370658, 1, 0, 0 },
+									[0.986577181208054] = { 0.27, 0, 0.54, 0.713 }
+								}
+							},
+						},
+						Falloff = Input { Value = 0.911, },
+						FaceOnMaterial = Input {
+							SourceOp = "RedToAlphaChannelBooleans_5",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 7, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 412.5 } },
+				},
+				RedEdgeFresnelFalloff = FalloffOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ColorVariation = Input { Value = FuID { "Gradient" }, },
+						["FaceOn.Red"] = Input { Value = 0.666666666666667, },
+						["FaceOn.Alpha"] = Input { Value = 0, },
+						["FaceOn.Opacity"] = Input { Value = 0.654, },
+						["Glancing.Red"] = Input { Value = 0, },
+						["Glancing.Green"] = Input { Value = 0, },
+						["Glancing.Blue"] = Input { Value = 0, },
+						["Glancing.Alpha"] = Input { Value = 0, },
+						["Glancing.Opacity"] = Input { Value = 0.0789474, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.307, 0, 0, 0 },
+									[1] = { 0, 0, 0, 0.706 }
+								}
+							},
+						},
+						Falloff = Input { Value = 2.262, },
+						FaceOnMaterial = Input {
+							SourceOp = "ScratchedWard",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 9, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 511.5 } },
+				},
+				AtomicReflect = MtlReflect {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						BackgroundMaterial = Input {
+							SourceOp = "RedEdgeFresnelFalloff",
+							Source = "MaterialOutput",
+						},
+						["Reflection.GlancingStrength"] = Input { Value = 1, },
+						["Reflection.FaceOnStrength"] = Input { Value = 1, },
+						["Reflection.Color.Material"] = Input {
+							SourceOp = "ParklandMaterialMerge",
+							Source = "MaterialOutput",
+						},
+						["Reflection.Intensity.Material"] = Input {
+							SourceOp = "RedToAlphaChannelBooleans_5",
+							Source = "Output",
+						},
+						["Refraction.RefractiveIndex.RGB"] = Input { Value = 1, },
+						["Refraction.Tint.Red"] = Input { Value = 0.992, },
+						["Refraction.Tint.Green"] = Input { Value = 0, },
+						["Bumpmap.Material"] = Input {
+							SourceOp = "ScratchedBumpMap",
+							Source = "MaterialOutput",
+						},
+						MaterialID = Input { Value = 82, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 511.5 } },
+				},
+				ParklandMaterialMerge = MtlMerge3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Value = 0, },
+						BackgroundMaterial = Input {
+							SourceOp = "GreenPurpleFresnelFalloff",
+							Source = "MaterialOutput",
+						},
+						ForegroundMaterial = Input {
+							SourceOp = "EnvironmentMapInputSwitchElseFuse",
+							Source = "Output",
+						},
+						MaterialID = Input { Value = 3, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 412.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kas_Atomic"
+}
