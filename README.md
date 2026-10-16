@@ -16,19 +16,17 @@ If you'd like to explore how the KickAss Shaders were created, simply expand the
 
 ## Created by
 
-- andromeda_girl
+- Andromeda_Girl
 - Andrew Hazelden
 
 ## Requirements
 
 - [Blackmagic Fusion v9.0.2 to 21.1.1+</a> or Resolve v15 to 21.1.1+](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion)
-- Reactor Standalone Package Manager
-
+- [Reactor Standalone](https://github.com/Kartaverse/Reactor-Standalone) Package Manager
 
 ## Installation
 
 The KickAss ShaderZ is installed using the Reactor package manager. Look for KickAss ShaderZ in the &quot;Shaders&quot; category on the left side of the Reactor window.
-
 
 ## Content Browser
 
@@ -36,9 +34,7 @@ The KickAss ShaderZ is installed using the Reactor package manager. Look for Kic
 
 The &quot;Content Browser&quot; window allows you to effortlessly navigate through the &quot;Industrial&quot;, &quot;Natural&quot;, &quot;Utility&quot;, and &quot;HDRI&quot; categories of macros included in the KAS shader collection. This view is accessed using the &quot;KickAss ShaderZ &gt; Content Browser...&quot; menu item.
 
-
 ## KickAss ShaderZ Descriptions
-
 
 ## Industrial
 
@@ -116,7 +112,7 @@ If you want to see the kas_HeatShield material with the same look as the thumbna
 
 &quot;<a href="DoAction://KAS_Industrial_kas_Radioactive">kas_Radioactive</a>&quot; creates an irradiated material that is self-illuminated with a strong violet shade.
 
-![](Docs/images/swatches/kas_Radioactive.png)
+![kas_Radioactive](Docs/images/swatches/kas_Radioactive.png)
 
 ### kas_RustyNail
 
@@ -132,12 +128,11 @@ If you want to see the kas_HeatShield material with the same look as the thumbna
 
 ## Natural
 
-
 ### kas_DarkBlueIceShard
 
 &quot;<a href="DoAction://KAS_Natural_kas_DarkBlueIceShard">kas_DarkBlueIceShard</a>&quot; creates a frosted blue icy material.
 
-![](Docs/images/swatches/kas_DarkBlueIceShard.png)
+![kas_DarkBlueIceShard](Docs/images/swatches/kas_DarkBlueIceShard.png)
 
 ### kas_GreenEctoplasm
 
@@ -149,12 +144,11 @@ If you want to see the kas_HeatShield material with the same look as the thumbna
 
 &quot;<a href="DoAction://KAS_Natural_kas_IridescentBlue">kas_IridescentBlue</a>&quot; creates a luminous material with a saturated blue sheen, and a fresnel edge shading effect.
 
-![](Docs/images/swatches/kas_IridescentBlue.png)
+![kas_IridescentBlue](Docs/images/swatches/kas_IridescentBlue.png)
 
 ### kas_MarbleStone
 
 &quot;<a href="DoAction://KAS_Natural_kas_MarbleStone">kas_MarbleStone</a>&quot; creates a glossy tiled floor material. You can choose to render this stone with a full surface displacement effect on the mesh.
-
 
 To get the displacement effect out of this material you need to add a Displace3D node and connect its &quot;SceneInput&quot; input to a 3D model&#39;s &quot;3DData&quot; output connection. Then connect the &quot;kas_MarbleStoneDisplace&quot; node&#39;s &quot;DisplacementTextureOutput&quot; connection to the Displace3D node&#39;s &quot;Input&quot;connection. The strength of the displacement effect is controlled on the Displace3D node&#39;s scale attribute with a good starting value of approximately 0.02.
 
@@ -173,7 +167,6 @@ By:<br>
 Is licensed under:<br>
 CG Textures Freeware
 
-
 <hr>
 
 Creative Commons:<br>
@@ -191,8 +184,7 @@ Is licensed under:<br>
 
 &quot;<a href="DoAction://KAS_Natural_kas_OrganicMote">kas_OrganicMote</a>&quot; is perfect for stylized NPR rendering needs such as bio-medical visualization. If you are assigning this material to animated elements that are floating around and drifting slowly in your scene, make sure to enable motion blur and DoF bokeh blur in your renderings for added realism.
 
-![](Docs/images/swatches/kas_OrganicMote.png)
-
+![kas_OrganicMote](Docs/images/swatches/kas_OrganicMote.png)
 
 ### kas_Ocean
 
@@ -215,14 +207,12 @@ By:<br>
 Is licensed under:<br>
 <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0 (Public Domain)</a>
 
-
 Anonymous Water Template
 
 The Anonymous Water Template is the actual Fusion 3D water setup as it was used on Roland Emmerich's <a href="https://www.imdb.com/title/tt1521197/">Anonymous</a> (2011) film, courtesy of <a href="http://www.uncharted-territory.com/">Uncharted Territory</a>.
 
 SIGGRAPH 2012 Presentation on Anonymous:<br>
 <a href="https://www.youtube.com/watch?v=mOpN6C3ZrjY">https://www.youtube.com/watch?v=mOpN6C3ZrjY</a>
-
 
 ### kas_RedBloodCell
 
@@ -237,7 +227,6 @@ SIGGRAPH 2012 Presentation on Anonymous:<br>
 To get the displacement effect out of this material you need to add a Displace3D node and connect its "SceneInput" input to a 3D model&#39; s &quot;3DData&quot; output connection. Then connect the &quot;kas_StoneWall&quot; material&#39; s &quot;DisplacementTextureOutput&quot; connection to the Displace3D node&#39; s &quot;Input&quot; connection. The strength of the displacement effect is controlled on the Displace3D node&#39;s scale attribute with a good starting value of approximately 0.2.
 
 ![kas_StoneWall](Docs/images/swatches/kas_StoneWall.png)
-
 
 kas_MarbleStone Asset Licenses:
 
@@ -304,7 +293,6 @@ The &quot;DragonUVMap3D&quot; node inside the GroupOperator allows you to adjust
 
 ![kas_ShaderBallDragon](Docs/images/swatches/kas_ShaderBallDragon.png)
 
-
 kas_ShaderBallDragon Asset License:
 
 By:<br>
@@ -323,16 +311,13 @@ The kas_ShaderPreview node includes an integrated copy of the GreyCheckerboard m
 
 ![kas_ShaderPreview](Docs/images/swatches/kas_ShaderPreview.png)
 
-
 ## HDRI
-
 
 ### kas_Parkland
 
 &quot;<a href="DoAction://KAS_HDRI_kas_Parkland">kas_Parkland</a>&quot; is an HDRI image of Egg mountain in Gory Sowie, Poland. The foreground of the image has a grassy field with smooth rolling mountains stretching upwards in the distance.
 
 ![kas_Parkland](Docs/images/swatches/kas_Parkland.png)
-
 
 ### kas_SimonsTownRocks
 
@@ -345,7 +330,6 @@ The kas_ShaderPreview node includes an integrated copy of the GreyCheckerboard m
 &quot;<a href="DoAction://KAS_HDRI_kas_StNicholasChurch">kas_StNicholasChurch</a>&quot; is an HDRI image of the interior of the Domincian order&#39;s St. Nicholas Church in Gdańsk, Poland. The church was originally errected in 1227. The interior of the church currently features a baroque altar design with a black and golden coloured theme.
 
 ![kas_StNicholasChurch](Docs/images/swatches/kas_StNicholasChurch.png)
-
 
 ## Copyright Credits
 
