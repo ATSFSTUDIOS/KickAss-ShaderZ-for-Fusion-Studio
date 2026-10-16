@@ -4,15 +4,15 @@ v2 2026-10-16
 
 ## Overview
 
-&quot;KickAss ShaderZ&quot; is a community supported repository of material shaders for the Fusion community by the Fusion community. Curated by Andromeda_Girl and developed for Reactor by Andrew Hazelden.
+&quot;KickAss ShaderZ&quot; is an open-source collection of 3D surface material shaders for the Fusion community, by the Fusion community.. Curated by Andromeda_Girl and developed for Reactor by Andrew Hazelden.
 
-WSL members can submit shaders to be added and watch the library grow.
+WSL forum members can submit new shaders to be added to the collection, and watch the library grow.
 
 ### For More Information
 
 If you'd like to explore how the KickAss Shaders were created, simply expand the group to peek inside the shader.
 
-<a href="https://www.steakunderwater.com/wesuckless/viewtopic.php?p=27949#p27949">KickAss ShaderZ</a> is a project that is hosted on the WeSuckLess Fusion community forum. You can check out the <a href="https://gitlab.com/WeSuckLess/Reactor/tree/master/Atoms/com.AU.KickAssShaderZ">Reactor GitLab Repository</a> if you need direct access to the individual files via your web browser.
+<a href="https://www.steakunderwater.com/wesuckless/viewtopic.php?p=27949#p27949">KickAss ShaderZ</a> is a project that is hosted on the WeSuckLess Fusion community forum. You can check out the contents of this repository if you need direct access to the individual files via your web browser.
 
 ## Created by
 
@@ -156,8 +156,6 @@ To get the displacement effect out of this material you need to add a Displace3D
 
 kas_MarbleStone Asset Licenses:
 
-<hr>
-
 Freeware:<br>
 <a href="AddMedia://Reactor:/Deploy/Macros/KickAss ShaderZ/Assets/kas_MarbleStone_Roughness.jpg">kas_MarbleStone PBR Textures</a>
 
@@ -229,8 +227,6 @@ To get the displacement effect out of this material you need to add a Displace3D
 ![kas_StoneWall](Docs/images/swatches/kas_StoneWall.png)
 
 kas_MarbleStone Asset Licenses:
-
-<hr>
 
 Freeware:<br>
 <a href="https://quixel.com/assets/scpgdgca">kas_StoneWall PBR Textures (Castle Stone Wall)</a>
@@ -417,7 +413,6 @@ The &quot;TextureMap&quot; input connection allows you to supply your own imager
 
 Note: <i>When imagery is connected to these inputs they are automatically activated and used inside the material via a pair of SwitchElse.fuse nodes that are packed inside the shader. The second you disconnect your imagery from the input connections the surface material defaults back to the internal default texture maps.</i>
 
-
 ## Fusion Effects Tab
 
 In Fusion Studio Standalone v16 you can access the KickAss ShaderZ by open up the &quot;Effects&quot; Tab. Then expand the &quot;Templates &gt; KickAss ShaderZ &gt; Native ShaderZ &gt;&quot; section. You can now select between a &quot;Industrial&quot;, &quot;Natural&quot;, and &quot;Utility&quot; set of surface materials.
@@ -440,9 +435,7 @@ The &quot;KickAss ShaderZ&quot;root level menu system in Fusion Studio provides 
 
 ![kas_menus](Docs/images/kas_menus.png)
 
-
 The KAS menu layout consists of the following entries:
-
 
 KickAss ShaderZ &gt;
 
@@ -560,11 +553,11 @@ The &quot;KickAss ShaderZ &gt; Tools &gt; Save Selection to Macro&quot; menu ite
 
 When you run the &quot;Save Selection to Macro&quot; menu item, a file save dialog appears. You can then type in a name for your new macro &quot;.setting&quot; file and choose a folder location where you want the macro saved to.
 
-![](Docs/images/kas_menus_tools_save_selection_to_macro_save_file.png)
+![save_file](Docs/images/kas_menus_tools_save_selection_to_macro_save_file.png)
 
 Whatever nodes are selected in the Nodes view are then instantly exported and pushed out to this new macro .setting file. Your newly saved macro is then opened up in the external script editor that is defined in the Fusion Preferences &quot;Global and Default Settings &gt; Script &gt; Editor Path&quot; section.
 
 By opening up the macro file in an external text edior like Notepad++ (Windows)/BBEdit(macOS)/Gedit(Linux) it is possible to add the final polish like adding a CutomData HelpPage entry, or renaming the input and output connections.
 
-![](Docs/images/kas_menus_tools_save_selection_to_macro_save_editor.png)
+![save_editor](Docs/images/kas_menus_tools_save_selection_to_macro_save_editor.png)
 
