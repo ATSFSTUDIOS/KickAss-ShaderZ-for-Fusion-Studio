@@ -4,7 +4,7 @@ v2 2026-10-16
 
 ## Overview
 
-&quot;KickAss ShaderZ&quot; is an open-source collection of 3D surface material shaders for the Fusion community, by the Fusion community.  Curated by Andromeda_Girl and developed for Reactor by Andrew Hazelden.
+&quot;KickAss ShaderZ&quot; is an open-source collection of 3D surface material shaders for the Fusion community, by the Fusion community. Curated by Andromeda_Girl and developed for Reactor by Andrew Hazelden.
 
 WSL forum members can submit new shaders to be added to the collection, and watch the library grow.
 
