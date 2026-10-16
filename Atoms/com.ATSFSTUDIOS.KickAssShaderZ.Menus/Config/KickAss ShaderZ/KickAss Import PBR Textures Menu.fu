@@ -1,9 +1,9 @@
 --[[--
 ==============================================================================
-KickAss ShaderZ - v1.2 2022-11-28 01.36 AM -4
+KickAss ShaderZ - v2 2026-10-16
 Import PBR Textures Menu
 ==============================================================================
-Requires    : Fusion v9.0.2-18.1+ or Resolve v15.1-18.1+
+Requires    : Fusion v9.0.2 to 21.1.1+ or Resolve v15.1 to 21.1.1+
 Created by  : andromeda_girl
               Andrew Hazelden <andrew@andrewhazelden.com>
 
