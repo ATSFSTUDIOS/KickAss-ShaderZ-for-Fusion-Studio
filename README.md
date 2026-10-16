@@ -10,7 +10,7 @@ WSL forum members can submit new shaders to be added to the collection, and watc
 
 ### For More Information
 
-The KickAss ShaderZ toolset ships with a custom "File > Import > [PBR Textures...](PBR Import.md)" menu entry.
+The KickAss ShaderZ toolset ships with a custom "File > Import > [PBR Textures](PBR-Import.md)..." menu entry.
 
 If you'd like to explore how the KickAss Shaders were created, simply expand the group to peek inside the shader.
 
