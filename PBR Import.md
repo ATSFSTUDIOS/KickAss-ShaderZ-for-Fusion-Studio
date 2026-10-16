@@ -10,7 +10,7 @@ In a practical sense, the process of running this script works in a very similar
 
 Step 1. Select a Loader node in the Flow view.
 
-Step 2. Right-click in the flow view and from the contextual menu select the "Script < KickAss ShaderZ < Substance PBR Import" menu item to launch the script.
+Step 2. Right-click in the flow view and from the contextual menu select the "Script > KickAss ShaderZ > Substance PBR Import" menu item to launch the script.
 
 Step 3. Customize the settings in the dialog, then click the &quot;Create PBR Material&quot; button.
 
