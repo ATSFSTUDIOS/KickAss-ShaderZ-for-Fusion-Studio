@@ -2,9 +2,7 @@
 
 The KickAss ShaderZ toolset ships with a custom "File > Import > PBR Textures..." menu entry.
 
-The "Substance PBR Import" script reads the image from the selected Loader node and expands it to import the full set of Substance painter style "PBR metal roughness" texture maps.
-
-In a practical sense, the process of running this script works in a very similar way to the "hos_SplitEXRUltra" script in that it loads in multiple images based upon a single selected Loader node in the comp.
+The "Substance PBR Import" script reads the image from the selected Loader node and expands it to import the full set of Substance painter style "PBR metal roughness" texture maps. In a practical sense, the process of running this script works in a very similar way to the "hos_SplitEXRUltra" script in that it loads in multiple images based upon a single selected Loader node in the comp.
 
 ## Usage:
 
